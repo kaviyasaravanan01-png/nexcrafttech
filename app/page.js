@@ -8,6 +8,7 @@ import Testimonials from "@/components/Testimonials";
 import Pricing from "@/components/Pricing";
 import FAQ from "@/components/FAQ";
 import Contact from "@/components/Contact";
+import Map from "@/components/Map";
 
 export default function Home() {
   return (
@@ -22,6 +23,7 @@ export default function Home() {
       <Pricing />
       <FAQ />
       <Contact />
+      <Map />
     </>
   );
 }
