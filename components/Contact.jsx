@@ -21,12 +21,22 @@ const contactItems = [
   {
     icon: (
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-        <circle cx="12" cy="12" r="10" /><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20" /><path d="M2 12h20" />
+        <path d="M22 16.92V17a10 10 0 1 1-5.93-9.14" /><polyline points="22 4 12 14.01 9 11.01" />
       </svg>
     ),
-    label: "Website",
-    value: "nexcrafttech.com",
-    href: "https://nexcrafttech.com",
+    label: "Phone",
+    value: "8778585263",
+    href: "tel:8778585263",
+  },
+  {
+    icon: (
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+        <rect x="2" y="2" width="20" height="20" rx="5" /><path d="M16 11c1.1 0 2 .9 2 2v2c0 1.1-.9 2-2 2H8c-1.1 0-2-.9-2-2v-2c0-1.1.9-2 2-2h8z" />
+      </svg>
+    ),
+    label: "WhatsApp",
+    value: "8778585263",
+    href: "https://wa.me/918778585263",
   },
   {
     icon: (
@@ -35,8 +45,8 @@ const contactItems = [
       </svg>
     ),
     label: "Location",
-    value: "India (Remote-first)",
-    href: null,
+    value: "No 17 Bharathiyar Street, MGR Nagar, Chennai 600078",
+    href: "https://maps.google.com/?q=No+17+Bharathiyar+Street,+MGR+Nagar,+Chennai+600078",
   },
 ];
 
