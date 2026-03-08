@@ -193,14 +193,17 @@ export default function Process() {
                 }} className="group-hover:!bg-[rgba(201,169,110,0.2)]" />
 
                 {/* Number badge */}
-                <div className="process-num" style={{
-                  width: 32, height: 32, borderRadius: "50%",
-                  display: "flex", alignItems: "center", justifyContent: "center",
-                  background: "rgba(201,169,110,0.08)", border: "1px solid rgba(201,169,110,0.15)",
-                  color: "#c9a96e", fontSize: 12, fontWeight: 700,
-                  marginLeft: "auto", marginRight: "auto", marginBottom: "0.75rem",
-                  transition: "all 0.4s",
-                }} className="process-num group-hover:!bg-[rgba(201,169,110,0.15)] group-hover:!border-[rgba(201,169,110,0.3)]">
+                <div
+                  className="process-num group-hover:!bg-[rgba(201,169,110,0.15)] group-hover:!border-[rgba(201,169,110,0.3)]"
+                  style={{
+                    width: 32, height: 32, borderRadius: "50%",
+                    display: "flex", alignItems: "center", justifyContent: "center",
+                    background: "rgba(201,169,110,0.08)", border: "1px solid rgba(201,169,110,0.15)",
+                    color: "#c9a96e", fontSize: 12, fontWeight: 700,
+                    marginLeft: "auto", marginRight: "auto", marginBottom: "0.75rem",
+                    transition: "all 0.4s",
+                  }}
+                >
                   {step.num}
                 </div>
 
