@@ -116,6 +116,19 @@ export default function Contact() {
         ]);
         if (error) throw error;
       }
+      // Send email notification
+      await fetch("/api/sendMail", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: form.name,
+          email: form.email,
+          company: form.company,
+          service: form.service,
+          budget: form.budget,
+          message: form.message,
+        }),
+      });
       setStatus("success");
       setForm({ name: "", email: "", company: "", service: "", budget: "", message: "" });
 
