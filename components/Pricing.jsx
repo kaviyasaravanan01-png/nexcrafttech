@@ -88,6 +88,8 @@ const plans = [
       "Contact form",
       "WhatsApp chat integration",
       "1 month support",
+      "Vercel / Netlify hosting",
+      "Speed optimization"
     ],
     highlight: false,
   },
@@ -245,6 +247,48 @@ export default function Pricing() {
           >
             No hidden fees. Pick a plan or get a custom quote.
           </p>
+
+          {/* Special Launch Offer heading */}
+          <div style={{ margin: "1.2rem 0 0.7rem 0", textAlign: "center" }}>
+            <span style={{
+              display: "inline-block",
+              fontWeight: 700,
+              fontSize: 16,
+              color: "#c9a96e",
+              background: "rgba(201,169,110,0.08)",
+              padding: "6px 18px",
+              borderRadius: 8,
+              letterSpacing: "0.04em",
+              marginBottom: 6,
+            }}>
+              Special Launch Offer – Limited Time Pricing
+            </span>
+          </div>
+
+          {/* Trust line */}
+          {/* <div style={{
+            display: "flex",
+            justifyContent: "center",
+            gap: 18,
+            marginBottom: "1.2rem",
+            fontSize: 14,
+            fontWeight: 600,
+            color: "#22c55e",
+            flexWrap: "wrap",
+          }}>
+            <span style={{ display: "flex", alignItems: "center", gap: 6 }}>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#22c55e" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12" /></svg>
+              Free consultation
+            </span>
+            <span style={{ display: "flex", alignItems: "center", gap: 6 }}>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#22c55e" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12" /></svg>
+              No hidden charges
+            </span>
+            <span style={{ display: "flex", alignItems: "center", gap: 6 }}>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#22c55e" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12" /></svg>
+              Fast delivery (5–10 days)
+            </span>
+          </div> */}
         </motion.div>
 
         {/* Gold divider */}
