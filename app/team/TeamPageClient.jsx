@@ -12,7 +12,7 @@ const teamMembers = [
   {
     name: "Anand Anathur Elangovan",
     role: "AI Developer",
-    bio: "Full-stack engineer with 5+ years building scalable web apps. Builds intelligent chatbots and automation workflows.",
+    bio: "AI Developer specializing in scalable web apps, chatbots, and automation. Specialized in developing AI-powered solutions using modern technologies",
     initials: "AE",
     color: "#c9a96e",
     skills: ["Next.js", "React", "Node.js", "AI/ML", "GCP", "Data modeling"],
@@ -34,6 +34,15 @@ const teamMembers = [
     initials: "JR",
     color: "#e8d5b0",
     skills: ["GCP", "AWS", "Python", "PostgreSQL"],
+    socials: { linkedin: "#", github: "#" },
+  },
+  {
+    name: "Vani Venna",
+    role: "Full-stack Developer",
+    bio: "Full-stack engineer with 5+ years building scalable web apps. Builds intelligent chatbots and automation workflows.",
+    initials: "VV",
+    color: "#c9a96e",
+    skills: ["Next.js", "React", "Node.js", "Nest.js", "AWS"],
     socials: { linkedin: "#", github: "#" },
   },
   {
