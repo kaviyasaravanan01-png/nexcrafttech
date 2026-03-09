@@ -365,7 +365,7 @@ export default function Testimonials() {
         </div>
 
         {/* ═══ VIDEO REVIEWS CAROUSEL ═══ */}
-        <motion.div
+        {/* <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7, delay: 0.4, ease: [0.25, 0.1, 0, 1] }}
@@ -386,7 +386,7 @@ export default function Testimonials() {
           </div>
 
           <div style={{ position: "relative", maxWidth: "36rem", marginLeft: "auto", marginRight: "auto" }}>
-            {/* Nav arrows */}
+       
             <div className="carousel-arrows" style={{ position: "absolute", top: "40%", left: -52, transform: "translateY(-50%)", zIndex: 3 }}>
               <NavBtn onClick={() => { videoCarousel.prev(); videoCarousel.pause(); }}>
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M15 18l-6-6 6-6" /></svg>
@@ -398,7 +398,7 @@ export default function Testimonials() {
               </NavBtn>
             </div>
 
-            {/* Video slide */}
+        
             <div style={{ overflow: "hidden", borderRadius: 14 }}>
               <AnimatePresence initial={false} custom={videoCarousel.dir} mode="wait">
                 <motion.div
@@ -415,10 +415,10 @@ export default function Testimonials() {
               </AnimatePresence>
             </div>
 
-            {/* Dots */}
+        
             <Dots count={videoTestimonials.length} active={videoCarousel.active} onDot={(i) => { videoCarousel.go(i); videoCarousel.pause(); }} />
           </div>
-        </motion.div>
+        </motion.div> */}
       </div>
 
       <style jsx>{`

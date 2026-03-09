@@ -1,0 +1,5 @@
+npm init -y
+npm install axios csv-writer dotenv
+
+
+node lead-scraper.js
