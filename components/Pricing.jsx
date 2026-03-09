@@ -6,57 +6,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 if (typeof window !== "undefined") gsap.registerPlugin(ScrollTrigger);
-
-const plans = [
-  {
-    name: "Starter",
-    desc: "Professional online presence for small businesses.",
-    price: "₹15,000",
-    period: "one-time",
-    features: [
-      "Up to 5 pages",
-      "Mobile responsive",
-      "Basic SEO setup",
-      "Contact form",
-      "1 month support",
-      "Vercel / Netlify hosting",
-    ],
-    highlight: false,
-  },
-  {
-    name: "Growth",
-    desc: "Scale with custom features & ongoing support.",
-    price: "₹45,000",
-    period: "one-time",
-    features: [
-      "Up to 15 pages",
-      "Custom design & animations",
-      "Advanced SEO & analytics",
-      "CMS / Admin panel",
-      "3 months support",
-      "Performance optimized",
-      "WhatsApp integration",
-    ],
-    highlight: true,
-  },
-  {
-    name: "Enterprise",
-    desc: "Full-scale solutions with AI, cloud & dedicated support.",
-    price: "₹1,50,000+",
-    period: "project-based",
-    features: [
-      "Unlimited pages",
-      "AI chatbot integration",
-      "Custom cloud backend",
-      "eCommerce / SaaS features",
-      "12 months priority support",
-      "Dedicated project manager",
-      "CI/CD & staging setup",
-    ],
-    highlight: false,
-  },
-];
-
+// Animation variants for pricing cards
 const cardVariants = {
   hidden: { opacity: 0, y: 50, scale: 0.95 },
   visible: (i) => ({
@@ -70,6 +20,111 @@ const cardVariants = {
     },
   }),
 };
+
+const plans = [
+  // --- Original Pricing Plans (commented for later use) ---
+  /*
+  const plans = [
+    {
+      name: "Starter",
+      desc: "Professional online presence for small businesses.",
+      price: "₹15,000",
+      period: "one-time",
+      features: [
+        "Up to 5 pages",
+        "Mobile responsive",
+        "Basic SEO setup",
+        "Contact form",
+        "1 month support",
+        "Vercel / Netlify hosting",
+      ],
+      highlight: false,
+    },
+    {
+      name: "Growth",
+      desc: "Scale with custom features & ongoing support.",
+      price: "₹45,000",
+      period: "one-time",
+      features: [
+        "Up to 15 pages",
+        "Custom design & animations",
+        "Advanced SEO & analytics",
+        "CMS / Admin panel",
+        "3 months support",
+        "Performance optimized",
+        "WhatsApp integration",
+      ],
+      highlight: true,
+    },
+    {
+      name: "Enterprise",
+      desc: "Full-scale solutions with AI, cloud & dedicated support.",
+      price: "₹1,50,000+",
+      period: "project-based",
+      features: [
+        "Unlimited pages",
+        "AI chatbot integration",
+        "Custom cloud backend",
+        "eCommerce / SaaS features",
+        "12 months priority support",
+        "Dedicated project manager",
+        "CI/CD & staging setup",
+      ],
+      highlight: false,
+    },
+  ];
+  */
+
+  // --- Special Launch Offer – Limited Time Pricing ---
+  {
+    name: "Starter",
+    desc: "Professional online presence for small businesses.",
+    price: "₹6,999",
+    period: "one-time",
+    features: [
+      "Up to 4 pages",
+      "Mobile responsive",
+      "Basic SEO setup",
+      "Contact form",
+      "WhatsApp chat integration",
+      "1 month support",
+    ],
+    highlight: false,
+  },
+  {
+    name: "Growth",
+    desc: "Scale with custom features & ongoing support. Best for startups and growing businesses.",
+    price: "₹14,999",
+    period: "one-time",
+    features: [
+      "Up to 10 pages",
+      "Custom design & animations",
+      "SEO setup + analytics",
+      "WhatsApp integration",
+      "Admin content update option",
+      "Performance optimized",
+      "3 month support",
+    ],
+    highlight: true,
+  },
+  {
+    name: "Business / Advanced",
+    desc: "For serious businesses.",
+    price: "₹29,999+",
+    period: "project based",
+    features: [
+      "Up to 20 pages",
+      "Custom UI/UX",
+      "AI chatbot integration",
+      "Custom cloud backend",
+      "CMS / Admin panel",
+      "Performance optimization",
+      "6 months support",
+      "CI/CD & staging setup"
+    ],
+    highlight: false,
+  },
+];
 
 export default function Pricing() {
   const sectionRef = useRef(null);
