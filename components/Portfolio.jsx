@@ -63,6 +63,15 @@ const projects = [
     url: "https://ableinteriorsdigitalwebsite.vercel.app/",
     color: "#22c55e",
   },
+  {
+    id: 7,
+    title: "Prompt Library",
+    slug: "prompt-library",
+    desc: "AI prompt marketplace for Midjourney, ChatGPT, Veo, Gemini & more. Trusted by 400,000+ users.",
+    tags: ["Marketplace", "AI Prompts", "Video Tutorials", "Next.js", "SEO"],
+    url: "https://promptslibrary-nine.vercel.app/",
+    color: "#4f46e5",
+  },
 ];
 
 const cardVariants = {
