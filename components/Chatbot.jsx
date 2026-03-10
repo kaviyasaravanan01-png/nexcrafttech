@@ -13,18 +13,18 @@ const COMPANY_INFO = {
 };
 
 const SERVICES = [
-  { name: "Website Development", price: "From ₹15,000", desc: "Fast, responsive websites — landing pages to full eCommerce." },
-  { name: "SEO & Marketing", price: "From ₹8,000/mo", desc: "Get found on Google. Ads, SEO, and content that drives traffic." },
-  { name: "AI Chatbots", price: "From ₹25,000", desc: "WhatsApp & website bots that automate support and generate leads." },
+  { name: "Website Development", price: "From ₹6,000", desc: "Fast, responsive websites — landing pages to full eCommerce." },
+  { name: "SEO & Marketing", price: "From ₹3,000/mo", desc: "Get found on Google. Ads, SEO, and content that drives traffic." },
+  { name: "AI Chatbots", price: "From ₹5,000", desc: "WhatsApp & website bots that automate support and generate leads." },
   { name: "Cloud & AI Solutions", price: "From ₹40,000", desc: "Cloud infra, data pipelines, and AI-powered workflows." },
-  { name: "App Development", price: "From ₹50,000", desc: "Cross-platform mobile apps with modern UI/UX." },
-  { name: "Maintenance & Support", price: "From ₹5,000/mo", desc: "Monthly updates, security patches, and performance monitoring." },
+  { name: "App Development", price: "From ₹10,000", desc: "Cross-platform mobile apps with modern UI/UX." },
+  { name: "Maintenance & Support", price: "From ₹2,000/mo", desc: "Monthly updates, security patches, and performance monitoring." },
 ];
 
 const PRICING = [
-  { name: "Starter", price: "₹15,000 (one-time)", features: "Up to 5 pages, mobile responsive, basic SEO, contact form, 1 month support" },
-  { name: "Growth", price: "₹45,000 (one-time)", features: "Up to 15 pages, custom design & animations, CMS, advanced SEO, 3 months support, WhatsApp integration" },
-  { name: "Enterprise", price: "₹1,50,000+ (project-based)", features: "Unlimited pages, AI chatbot, custom cloud backend, eCommerce/SaaS, 12 months priority support, dedicated PM" },
+  { name: "Starter", price: "₹6,000 (one-time)", features: "Up to 5 pages, mobile responsive, basic SEO, contact form, 1 month support" },
+  { name: "Growth", price: "₹14,000 (one-time)", features: "Up to 15 pages, custom design & animations, CMS, advanced SEO, 3 months support, WhatsApp integration" },
+  { name: "Enterprise", price: "₹29,000+ (project-based)", features: "Unlimited pages, AI chatbot, custom cloud backend, eCommerce/SaaS, 12 months priority support, dedicated PM" },
 ];
 
 const QUICK_REPLIES = [
@@ -54,22 +54,22 @@ function getResponse(input) {
 
   // Individual services
   if (/website|web\s?dev|landing\s?page|ecommerce|e-commerce/.test(q)) {
-    return `🌐 **Website Development** — From ₹15,000\n\nWe build fast, responsive websites from landing pages to full eCommerce stores using Next.js, React, and modern tech.\n\nIncludes: Custom design, mobile responsive, SEO-ready, fast loading.\n\n👉 Want a free quote? Contact us at ${COMPANY_INFO.email}`;
+    return `🌐 **Website Development** — From ₹6,000\n\nWe build fast, responsive websites from landing pages to full eCommerce stores using Next.js, React, and modern tech.\n\nIncludes: Custom design, mobile responsive, SEO-ready, fast loading.\n\n👉 Want a free quote? Contact us at ${COMPANY_INFO.email}`;
   }
   if (/seo|marketing|google|ads|traffic|digital marketing/.test(q)) {
-    return `📈 **SEO & Digital Marketing** — From ₹8,000/mo\n\nGet found on Google with our SEO, content marketing, and paid ads management.\n\nIncludes: Keyword research, on-page/off-page SEO, Google Ads, analytics.\n\n👉 Contact: ${COMPANY_INFO.email}`;
+    return `📈 **SEO & Digital Marketing** — From ₹4,000/mo\n\nGet found on Google with our SEO, content marketing, and paid ads management.\n\nIncludes: Keyword research, on-page/off-page SEO, Google Ads, analytics.\n\n👉 Contact: ${COMPANY_INFO.email}`;
   }
   if (/chatbot|bot|whatsapp bot|ai bot|automation/.test(q)) {
-    return `🤖 **AI Chatbots** — From ₹25,000\n\nWe build WhatsApp & website chatbots that automate customer support and generate leads 24/7.\n\nIncludes: Custom training, multi-language, CRM integration.\n\n👉 Contact: ${COMPANY_INFO.email}`;
+    return `🤖 **AI Chatbots** — From ₹5,000\n\nWe build WhatsApp & website chatbots that automate customer support and generate leads 24/7.\n\nIncludes: Custom training, multi-language, CRM integration.\n\n👉 Contact: ${COMPANY_INFO.email}`;
   }
   if (/cloud|ai solution|gcp|aws|data|pipeline/.test(q)) {
-    return `☁️ **Cloud & AI Solutions** — From ₹40,000\n\nCloud infrastructure, data pipelines, and AI-powered workflows on GCP/AWS.\n\n👉 Contact: ${COMPANY_INFO.email}`;
+    return `☁️ **Cloud & AI Solutions** — From ₹15,000\n\nCloud infrastructure, data pipelines, and AI-powered workflows on GCP/AWS.\n\n👉 Contact: ${COMPANY_INFO.email}`;
   }
   if (/app|mobile|android|ios|react native|flutter/.test(q)) {
-    return `📱 **App Development** — From ₹50,000\n\nCross-platform mobile apps with modern UI/UX using React Native.\n\n👉 Contact: ${COMPANY_INFO.email}`;
+    return `📱 **App Development** — From ₹10,000\n\nCross-platform mobile apps with modern UI/UX using React Native.\n\n👉 Contact: ${COMPANY_INFO.email}`;
   }
   if (/maintenance|support|update|bug|fix/.test(q)) {
-    return `🔧 **Maintenance & Support** — From ₹5,000/mo\n\nMonthly updates, security patches, performance monitoring, and priority bug fixes.\n\n👉 Contact: ${COMPANY_INFO.email}`;
+    return `🔧 **Maintenance & Support** — From ₹2,000/mo\n\nMonthly updates, security patches, performance monitoring, and priority bug fixes.\n\n👉 Contact: ${COMPANY_INFO.email}`;
   }
 
   // Pricing

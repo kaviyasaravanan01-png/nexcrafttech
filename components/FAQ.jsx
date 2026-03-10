@@ -34,7 +34,7 @@ const faqs = [
   },
   {
     q: "How does your pricing work?",
-    a: "We offer transparent, fixed-price packages starting at ₹15,000 for websites. No hidden fees. You get a detailed quote before we start, and payment is milestone-based so you only pay for completed work.",
+    a: "We offer transparent, fixed-price packages starting at ₹6,000 for websites. No hidden fees. You get a detailed quote before we start, and payment is milestone-based so you only pay for completed work.",
   },
   {
     q: "Can you integrate AI chatbots into my website?",

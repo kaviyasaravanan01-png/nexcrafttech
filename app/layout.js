@@ -28,7 +28,7 @@ export const metadata = {
     template: "%s | NexCraft Technologies",
   },
   description:
-    "NexCraft Technologies builds fast, modern websites, AI chatbots, and handles SEO & digital marketing for startups and growing businesses. Transparent pricing from ₹15,000.",
+    "NexCraft Technologies builds fast, modern websites, AI chatbots, and handles SEO & digital marketing for startups and growing businesses. Transparent pricing from ₹6,000.",
   keywords: [
     "NexCraft Technologies",
     "web development India",
@@ -41,7 +41,7 @@ export const metadata = {
   ],
   openGraph: {
     title: "NexCraft Technologies — Websites, AI & SEO",
-    description: "We build websites that grow your business. Transparent pricing, fast delivery.",
+    description: "We build websites that grow your business. Transparent pricing from ₹6,000, fast delivery.",
     siteName: "NexCraft Technologies",
     type: "website",
     url: "https://nexcrafttech.com",
@@ -50,7 +50,7 @@ export const metadata = {
   twitter: {
     card: "summary_large_image",
     title: "NexCraft Technologies — Websites, AI & SEO",
-    description: "We build websites that grow your business. Transparent pricing, fast delivery.",
+    description: "We build websites that grow your business. Transparent pricing from ₹6,000, fast delivery.",
   },
   robots: {
     index: true,

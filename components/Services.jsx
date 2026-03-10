@@ -19,7 +19,7 @@ const services = [
     ),
     title: "Website Development",
     desc: "Fast, responsive websites — from landing pages to full eCommerce.",
-    price: "₹15,000",
+    price: "₹6,000",
     lottieType: "globe",
   },
   {
@@ -30,7 +30,7 @@ const services = [
     ),
     title: "SEO & Marketing",
     desc: "Get found on Google. Ads, SEO, and content that drives traffic.",
-    price: "₹8,000/mo",
+    price: "₹4,000/mo",
     lottieType: "chart",
   },
   {
@@ -43,7 +43,7 @@ const services = [
     ),
     title: "AI Chatbots",
     desc: "WhatsApp & website bots that automate support and generate leads.",
-    price: "₹25,000",
+    price: "₹5,000",
     lottieType: "chip",
   },
   {
@@ -54,7 +54,7 @@ const services = [
     ),
     title: "Cloud & AI",
     desc: "Cloud infra, data pipelines, and AI-powered workflows on GCP.",
-    price: "₹40,000",
+    price: "₹15,000",
     lottieType: "cloud",
   },
   {
@@ -65,7 +65,7 @@ const services = [
     ),
     title: "App Development",
     desc: "Cross-platform mobile & desktop apps. One codebase, every device.",
-    price: "₹50,000",
+    price: "₹10,000",
     lottieType: "phone",
   },
   {
@@ -76,7 +76,7 @@ const services = [
     ),
     title: "Maintenance",
     desc: "Bug fixes, updates, security patches. We keep your site running.",
-    price: "₹5,000/mo",
+    price: "₹2,000/mo",
     lottieType: "wrench",
   },
 ];

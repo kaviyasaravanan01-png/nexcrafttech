@@ -1,0 +1,593 @@
+
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>WhatsApp Leads Dashboard</title>
+      <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f0f2f5; margin: 0; padding: 20px; color: #333; }
+        .container { max-width: 800px; margin: 0 auto; }
+        h1 { text-align: center; color: #128C7E; }
+        .lead-card { background: white; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); padding: 20px; margin-bottom: 20px; transition: transform 0.2s; }
+        .lead-card:hover { transform: translateY(-2px); box-shadow: 0 4px 8px rgba(0,0,0,0.15); }
+        .lead-name { font-size: 1.2em; font-weight: bold; margin-bottom: 10px; color: #075E54; }
+        .lead-info { margin-bottom: 5px; color: #555; }
+        .btn { display: inline-block; background-color: #25D366; color: white; padding: 10px 20px; text-decoration: none; border-radius: 50px; font-weight: bold; margin-top: 15px; transition: background-color 0.2s; }
+        .btn:hover { background-color: #128C7E; }
+        .stats { background: white; padding: 15px; border-radius: 8px; margin-bottom: 20px; text-align: center; font-weight: bold; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        .visited { opacity: 0.6; }
+      </style>
+      <script>
+        function markVisited(element) {
+          element.closest('.lead-card').classList.add('visited');
+          element.innerText = "WhatsApp Opened ✓";
+          element.style.backgroundColor = "#999";
+        }
+      </script>
+    </head>
+    <body>
+      <div class="container">
+        <h1>WhatsApp Leads Dashboard</h1>
+    
+        <div class="stats">
+          Total Leads: 95 | Leads with WhatsApp: 79
+        </div>
+    
+        <div class="lead-card">
+          <div class="lead-name">1. BLUE HOMES INTERIORS</div>
+          <div class="lead-info">📞 <strong>Phone:</strong> 096770 67989</div>
+          <div class="lead-info">📍 <strong>Address:</strong> 1st Cross St, MGR Nagar, Lakshmi Nagar, Velachery, Chennai, Tamil Nadu 600042, India</div>
+          <a class="btn" href="https://wa.me/919677067989?text=Hi%20BLUE%20HOMES%20INTERIORS%2C%0A%0AI%E2%80%99m%20Anand%2C%20an%20AI%20%26%20Web%20Developer.%20I%20noticed%20your%20business%20and%20saw%20that%20there%20isn%E2%80%99t%20a%20dedicated%20website%20yet.%0A%0AI%20help%20businesses%20create%20modern%20websites%20to%20attract%20more%20customers.%0A%0AI%20can%20also%20create%20a%20sample%20homepage%20for%20your%20business%20for%20free.%0A%0AMy%20work%3A%0Ahttps%3A%2F%2Fnexcrafttechtest.vercel.app%2F%0A%0ALet%20me%20know%20if%20you're%20interested." target="_blank" onclick="markVisited(this)">💬 Open WhatsApp</a>
+        </div>
+      
+        <div class="lead-card">
+          <div class="lead-name">2. K5 INTERIORS</div>
+          <div class="lead-info">📞 <strong>Phone:</strong> 073389 14995</div>
+          <div class="lead-info">📍 <strong>Address:</strong> No 43/55 Pozhichalur, First Main Rd, opp. KR mini party Hall, Pasumpon Nagar Extension, Pammal, Chennai, Tamil Nadu 600075, India</div>
+          <a class="btn" href="https://wa.me/917338914995?text=Hi%20K5%20INTERIORS%2C%0A%0AI%E2%80%99m%20Anand%2C%20an%20AI%20%26%20Web%20Developer.%20I%20noticed%20your%20business%20and%20saw%20that%20there%20isn%E2%80%99t%20a%20dedicated%20website%20yet.%0A%0AI%20help%20businesses%20create%20modern%20websites%20to%20attract%20more%20customers.%0A%0AI%20can%20also%20create%20a%20sample%20homepage%20for%20your%20business%20for%20free.%0A%0AMy%20work%3A%0Ahttps%3A%2F%2Fnexcrafttechtest.vercel.app%2F%0A%0ALet%20me%20know%20if%20you're%20interested." target="_blank" onclick="markVisited(this)">💬 Open WhatsApp</a>
+        </div>
+      
+        <div class="lead-card">
+          <div class="lead-name">3. Peril Interior Designers</div>
+          <div class="lead-info">📞 <strong>Phone:</strong> 098418 33554</div>
+          <div class="lead-info">📍 <strong>Address:</strong> 91, Jawaharlal Nehru Salai, 100, ft road, Thiru Nagar Colony, NGO Colony, Vadapalani, Chennai, Tamil Nadu 600026, India</div>
+          <a class="btn" href="https://wa.me/919841833554?text=Hi%20Peril%20Interior%20Designers%2C%0A%0AI%E2%80%99m%20Anand%2C%20an%20AI%20%26%20Web%20Developer.%20I%20noticed%20your%20business%20and%20saw%20that%20there%20isn%E2%80%99t%20a%20dedicated%20website%20yet.%0A%0AI%20help%20businesses%20create%20modern%20websites%20to%20attract%20more%20customers.%0A%0AI%20can%20also%20create%20a%20sample%20homepage%20for%20your%20business%20for%20free.%0A%0AMy%20work%3A%0Ahttps%3A%2F%2Fnexcrafttechtest.vercel.app%2F%0A%0ALet%20me%20know%20if%20you're%20interested." target="_blank" onclick="markVisited(this)">💬 Open WhatsApp</a>
+        </div>
+      
+        <div class="lead-card">
+          <div class="lead-name">4. Scaleup Unisex Salon Chennai - Best for Nails | Best for Curly Hair | Best for Hair Colour | Best for Botox</div>
+          <div class="lead-info">📞 <strong>Phone:</strong> 086103 82952</div>
+          <div class="lead-info">📍 <strong>Address:</strong> New no 18, Old no 26, 2nd Floor, Hoppman Street, Ramapuram, Thiruvalluvar Nagar, Alandur, Chennai, Tamil Nadu 600016, India</div>
+          <a class="btn" href="https://wa.me/918610382952?text=Hi%20Scaleup%20Unisex%20Salon%20Chennai%20-%20Best%20for%20Nails%20%7C%20Best%20for%20Curly%20Hair%20%7C%20Best%20for%20Hair%20Colour%20%7C%20Best%20for%20Botox%2C%0A%0AI%E2%80%99m%20Anand%2C%20an%20AI%20%26%20Web%20Developer.%20I%20noticed%20your%20business%20and%20saw%20that%20there%20isn%E2%80%99t%20a%20dedicated%20website%20yet.%0A%0AI%20help%20businesses%20create%20modern%20websites%20to%20attract%20more%20customers.%0A%0AI%20can%20also%20create%20a%20sample%20homepage%20for%20your%20business%20for%20free.%0A%0AMy%20work%3A%0Ahttps%3A%2F%2Fnexcrafttechtest.vercel.app%2F%0A%0ALet%20me%20know%20if%20you're%20interested." target="_blank" onclick="markVisited(this)">💬 Open WhatsApp</a>
+        </div>
+      
+        <div class="lead-card">
+          <div class="lead-name">5. Cheap and Best Men's Salon, Jafferkhanpet</div>
+          <div class="lead-info">📞 <strong>Phone:</strong> 080151 98597</div>
+          <div class="lead-info">📍 <strong>Address:</strong> 31/1 V M, Balakrishnan St, Sathyamurthy Block, West Jafferkhanpet, Chennai, Tamil Nadu 600083, India</div>
+          <a class="btn" href="https://wa.me/918015198597?text=Hi%20Cheap%20and%20Best%20Men's%20Salon%2C%20Jafferkhanpet%2C%0A%0AI%E2%80%99m%20Anand%2C%20an%20AI%20%26%20Web%20Developer.%20I%20noticed%20your%20business%20and%20saw%20that%20there%20isn%E2%80%99t%20a%20dedicated%20website%20yet.%0A%0AI%20help%20businesses%20create%20modern%20websites%20to%20attract%20more%20customers.%0A%0AI%20can%20also%20create%20a%20sample%20homepage%20for%20your%20business%20for%20free.%0A%0AMy%20work%3A%0Ahttps%3A%2F%2Fnexcrafttechtest.vercel.app%2F%0A%0ALet%20me%20know%20if%20you're%20interested." target="_blank" onclick="markVisited(this)">💬 Open WhatsApp</a>
+        </div>
+      
+        <div class="lead-card">
+          <div class="lead-name">6. Sana’s unisex salon</div>
+          <div class="lead-info">📞 <strong>Phone:</strong> 093638 91261</div>
+          <div class="lead-info">📍 <strong>Address:</strong> x, 8/1, 12th Ave, Mettuppalayam, Ashok Nagar, Chennai, Tamil Nadu 600083, India</div>
+          <a class="btn" href="https://wa.me/919363891261?text=Hi%20Sana%E2%80%99s%20unisex%20salon%2C%0A%0AI%E2%80%99m%20Anand%2C%20an%20AI%20%26%20Web%20Developer.%20I%20noticed%20your%20business%20and%20saw%20that%20there%20isn%E2%80%99t%20a%20dedicated%20website%20yet.%0A%0AI%20help%20businesses%20create%20modern%20websites%20to%20attract%20more%20customers.%0A%0AI%20can%20also%20create%20a%20sample%20homepage%20for%20your%20business%20for%20free.%0A%0AMy%20work%3A%0Ahttps%3A%2F%2Fnexcrafttechtest.vercel.app%2F%0A%0ALet%20me%20know%20if%20you're%20interested." target="_blank" onclick="markVisited(this)">💬 Open WhatsApp</a>
+        </div>
+      
+        <div class="lead-card">
+          <div class="lead-name">7. Cheap and Best Men's Salon, Kodambakkam</div>
+          <div class="lead-info">📞 <strong>Phone:</strong> 078459 04216</div>
+          <div class="lead-info">📍 <strong>Address:</strong> NO:21, 3rd St, Kamaraj Colony, Kodambakkam, Chennai, Tamil Nadu 600024, India</div>
+          <a class="btn" href="https://wa.me/917845904216?text=Hi%20Cheap%20and%20Best%20Men's%20Salon%2C%20Kodambakkam%2C%0A%0AI%E2%80%99m%20Anand%2C%20an%20AI%20%26%20Web%20Developer.%20I%20noticed%20your%20business%20and%20saw%20that%20there%20isn%E2%80%99t%20a%20dedicated%20website%20yet.%0A%0AI%20help%20businesses%20create%20modern%20websites%20to%20attract%20more%20customers.%0A%0AI%20can%20also%20create%20a%20sample%20homepage%20for%20your%20business%20for%20free.%0A%0AMy%20work%3A%0Ahttps%3A%2F%2Fnexcrafttechtest.vercel.app%2F%0A%0ALet%20me%20know%20if%20you're%20interested." target="_blank" onclick="markVisited(this)">💬 Open WhatsApp</a>
+        </div>
+      
+        <div class="lead-card">
+          <div class="lead-name">8. MANDA BATHRAM MENS SALON</div>
+          <div class="lead-info">📞 <strong>Phone:</strong> 096001 66550</div>
+          <div class="lead-info">📍 <strong>Address:</strong> 8, Pachaiyappan St, Choolaipallam, MGR Nagar, Nesapakkam, Chennai, Tamil Nadu 600078, India</div>
+          <a class="btn" href="https://wa.me/919600166550?text=Hi%20MANDA%20BATHRAM%20MENS%20SALON%2C%0A%0AI%E2%80%99m%20Anand%2C%20an%20AI%20%26%20Web%20Developer.%20I%20noticed%20your%20business%20and%20saw%20that%20there%20isn%E2%80%99t%20a%20dedicated%20website%20yet.%0A%0AI%20help%20businesses%20create%20modern%20websites%20to%20attract%20more%20customers.%0A%0AI%20can%20also%20create%20a%20sample%20homepage%20for%20your%20business%20for%20free.%0A%0AMy%20work%3A%0Ahttps%3A%2F%2Fnexcrafttechtest.vercel.app%2F%0A%0ALet%20me%20know%20if%20you're%20interested." target="_blank" onclick="markVisited(this)">💬 Open WhatsApp</a>
+        </div>
+      
+        <div class="lead-card">
+          <div class="lead-name">9. VIBE UNISEX SALON</div>
+          <div class="lead-info">📞 <strong>Phone:</strong> 093427 95928</div>
+          <div class="lead-info">📍 <strong>Address:</strong> 28, Dhandapani St, T. Nagar, Chennai, Tamil Nadu 600017, India</div>
+          <a class="btn" href="https://wa.me/919342795928?text=Hi%20VIBE%20UNISEX%20SALON%2C%0A%0AI%E2%80%99m%20Anand%2C%20an%20AI%20%26%20Web%20Developer.%20I%20noticed%20your%20business%20and%20saw%20that%20there%20isn%E2%80%99t%20a%20dedicated%20website%20yet.%0A%0AI%20help%20businesses%20create%20modern%20websites%20to%20attract%20more%20customers.%0A%0AI%20can%20also%20create%20a%20sample%20homepage%20for%20your%20business%20for%20free.%0A%0AMy%20work%3A%0Ahttps%3A%2F%2Fnexcrafttechtest.vercel.app%2F%0A%0ALet%20me%20know%20if%20you're%20interested." target="_blank" onclick="markVisited(this)">💬 Open WhatsApp</a>
+        </div>
+      
+        <div class="lead-card">
+          <div class="lead-name">10. Rapture Salon</div>
+          <div class="lead-info">📞 <strong>Phone:</strong> 099994 85031</div>
+          <div class="lead-info">📍 <strong>Address:</strong> Rapture men slaon, 227/297, MKN Rd, Ramapuram, Alandur, Chennai, Tamil Nadu 600016, India</div>
+          <a class="btn" href="https://wa.me/919999485031?text=Hi%20Rapture%20Salon%2C%0A%0AI%E2%80%99m%20Anand%2C%20an%20AI%20%26%20Web%20Developer.%20I%20noticed%20your%20business%20and%20saw%20that%20there%20isn%E2%80%99t%20a%20dedicated%20website%20yet.%0A%0AI%20help%20businesses%20create%20modern%20websites%20to%20attract%20more%20customers.%0A%0AI%20can%20also%20create%20a%20sample%20homepage%20for%20your%20business%20for%20free.%0A%0AMy%20work%3A%0Ahttps%3A%2F%2Fnexcrafttechtest.vercel.app%2F%0A%0ALet%20me%20know%20if%20you're%20interested." target="_blank" onclick="markVisited(this)">💬 Open WhatsApp</a>
+        </div>
+      
+        <div class="lead-card">
+          <div class="lead-name">11. Infinity Salon Hair & Tattoo Studio UNISEX</div>
+          <div class="lead-info">📞 <strong>Phone:</strong> 090032 10143</div>
+          <div class="lead-info">📍 <strong>Address:</strong> 3, Kodambakkam Rd, Subramania Salai, Karpaga Vinayaka Nagar, Saidapet, Chennai, Tamil Nadu 600015, India</div>
+          <a class="btn" href="https://wa.me/919003210143?text=Hi%20Infinity%20Salon%20Hair%20%26%20Tattoo%20Studio%20UNISEX%2C%0A%0AI%E2%80%99m%20Anand%2C%20an%20AI%20%26%20Web%20Developer.%20I%20noticed%20your%20business%20and%20saw%20that%20there%20isn%E2%80%99t%20a%20dedicated%20website%20yet.%0A%0AI%20help%20businesses%20create%20modern%20websites%20to%20attract%20more%20customers.%0A%0AI%20can%20also%20create%20a%20sample%20homepage%20for%20your%20business%20for%20free.%0A%0AMy%20work%3A%0Ahttps%3A%2F%2Fnexcrafttechtest.vercel.app%2F%0A%0ALet%20me%20know%20if%20you're%20interested." target="_blank" onclick="markVisited(this)">💬 Open WhatsApp</a>
+        </div>
+      
+        <div class="lead-card">
+          <div class="lead-name">12. The Chennai Salon</div>
+          <div class="lead-info">📞 <strong>Phone:</strong> 072008 69777</div>
+          <div class="lead-info">📍 <strong>Address:</strong> 2, Golden George Rathnam Salai, Golden George Nagar, Mogappair East, Chennai, Tamil Nadu 600107, India</div>
+          <a class="btn" href="https://wa.me/917200869777?text=Hi%20The%20Chennai%20Salon%2C%0A%0AI%E2%80%99m%20Anand%2C%20an%20AI%20%26%20Web%20Developer.%20I%20noticed%20your%20business%20and%20saw%20that%20there%20isn%E2%80%99t%20a%20dedicated%20website%20yet.%0A%0AI%20help%20businesses%20create%20modern%20websites%20to%20attract%20more%20customers.%0A%0AI%20can%20also%20create%20a%20sample%20homepage%20for%20your%20business%20for%20free.%0A%0AMy%20work%3A%0Ahttps%3A%2F%2Fnexcrafttechtest.vercel.app%2F%0A%0ALet%20me%20know%20if%20you're%20interested." target="_blank" onclick="markVisited(this)">💬 Open WhatsApp</a>
+        </div>
+      
+        <div class="lead-card">
+          <div class="lead-name">13. THE HAIR PROFESSIONALS VELACHERY family salon & Bridal studio</div>
+          <div class="lead-info">📞 <strong>Phone:</strong> 090038 88099</div>
+          <div class="lead-info">📍 <strong>Address:</strong> Floor, 1st, 12/18, 1st Main Rd, Vijaya Nagar, Velachery, Chennai, Tamil Nadu 600042, India</div>
+          <a class="btn" href="https://wa.me/919003888099?text=Hi%20THE%20HAIR%20PROFESSIONALS%20VELACHERY%20family%20salon%20%26%20Bridal%20studio%2C%0A%0AI%E2%80%99m%20Anand%2C%20an%20AI%20%26%20Web%20Developer.%20I%20noticed%20your%20business%20and%20saw%20that%20there%20isn%E2%80%99t%20a%20dedicated%20website%20yet.%0A%0AI%20help%20businesses%20create%20modern%20websites%20to%20attract%20more%20customers.%0A%0AI%20can%20also%20create%20a%20sample%20homepage%20for%20your%20business%20for%20free.%0A%0AMy%20work%3A%0Ahttps%3A%2F%2Fnexcrafttechtest.vercel.app%2F%0A%0ALet%20me%20know%20if%20you're%20interested." target="_blank" onclick="markVisited(this)">💬 Open WhatsApp</a>
+        </div>
+      
+        <div class="lead-card">
+          <div class="lead-name">14. Debonair Style Sense unisex Saloon</div>
+          <div class="lead-info">📞 <strong>Phone:</strong> 098841 84215</div>
+          <div class="lead-info">📍 <strong>Address:</strong> 54/15, Indira Gandhi Rd, nearby Surya Mahal, Alwartirunagar, Valasaravakkam, Chennai, Tamil Nadu 600087, India</div>
+          <a class="btn" href="https://wa.me/919884184215?text=Hi%20Debonair%20Style%20Sense%20unisex%20Saloon%2C%0A%0AI%E2%80%99m%20Anand%2C%20an%20AI%20%26%20Web%20Developer.%20I%20noticed%20your%20business%20and%20saw%20that%20there%20isn%E2%80%99t%20a%20dedicated%20website%20yet.%0A%0AI%20help%20businesses%20create%20modern%20websites%20to%20attract%20more%20customers.%0A%0AI%20can%20also%20create%20a%20sample%20homepage%20for%20your%20business%20for%20free.%0A%0AMy%20work%3A%0Ahttps%3A%2F%2Fnexcrafttechtest.vercel.app%2F%0A%0ALet%20me%20know%20if%20you're%20interested." target="_blank" onclick="markVisited(this)">💬 Open WhatsApp</a>
+        </div>
+      
+        <div class="lead-card">
+          <div class="lead-name">15. New Avalon Unisex Salon</div>
+          <div class="lead-info">📞 <strong>Phone:</strong> 096005 33162</div>
+          <div class="lead-info">📍 <strong>Address:</strong> new, 35, 12th Ave, Mettuppalayam, Ashok Nagar, Chennai, Tamil Nadu 600083, India</div>
+          <a class="btn" href="https://wa.me/919600533162?text=Hi%20New%20Avalon%20Unisex%20Salon%2C%0A%0AI%E2%80%99m%20Anand%2C%20an%20AI%20%26%20Web%20Developer.%20I%20noticed%20your%20business%20and%20saw%20that%20there%20isn%E2%80%99t%20a%20dedicated%20website%20yet.%0A%0AI%20help%20businesses%20create%20modern%20websites%20to%20attract%20more%20customers.%0A%0AI%20can%20also%20create%20a%20sample%20homepage%20for%20your%20business%20for%20free.%0A%0AMy%20work%3A%0Ahttps%3A%2F%2Fnexcrafttechtest.vercel.app%2F%0A%0ALet%20me%20know%20if%20you're%20interested." target="_blank" onclick="markVisited(this)">💬 Open WhatsApp</a>
+        </div>
+      
+        <div class="lead-card">
+          <div class="lead-name">16. CHEAP & BEST - Affordable Men's Salon -Madhavaram High Road, Perambur</div>
+          <div class="lead-info">📞 <strong>Phone:</strong> 078069 69001</div>
+          <div class="lead-info">📍 <strong>Address:</strong> 94/20, Madhavaram High Rd, Bunder Garden, Perambur, Chennai, Tamil Nadu 600011, India</div>
+          <a class="btn" href="https://wa.me/917806969001?text=Hi%20CHEAP%20%26%20BEST%20-%20Affordable%20Men's%20Salon%20-Madhavaram%20High%20Road%2C%20Perambur%2C%0A%0AI%E2%80%99m%20Anand%2C%20an%20AI%20%26%20Web%20Developer.%20I%20noticed%20your%20business%20and%20saw%20that%20there%20isn%E2%80%99t%20a%20dedicated%20website%20yet.%0A%0AI%20help%20businesses%20create%20modern%20websites%20to%20attract%20more%20customers.%0A%0AI%20can%20also%20create%20a%20sample%20homepage%20for%20your%20business%20for%20free.%0A%0AMy%20work%3A%0Ahttps%3A%2F%2Fnexcrafttechtest.vercel.app%2F%0A%0ALet%20me%20know%20if%20you're%20interested." target="_blank" onclick="markVisited(this)">💬 Open WhatsApp</a>
+        </div>
+      
+        <div class="lead-card">
+          <div class="lead-name">17. LASHINE Unisex salon</div>
+          <div class="lead-info">📞 <strong>Phone:</strong> 073055 25424</div>
+          <div class="lead-info">📍 <strong>Address:</strong> 34/29, Parthasarathy Nagar, Manapakkam, Chennai, Tamil Nadu 600089, India</div>
+          <a class="btn" href="https://wa.me/917305525424?text=Hi%20LASHINE%20Unisex%20salon%2C%0A%0AI%E2%80%99m%20Anand%2C%20an%20AI%20%26%20Web%20Developer.%20I%20noticed%20your%20business%20and%20saw%20that%20there%20isn%E2%80%99t%20a%20dedicated%20website%20yet.%0A%0AI%20help%20businesses%20create%20modern%20websites%20to%20attract%20more%20customers.%0A%0AI%20can%20also%20create%20a%20sample%20homepage%20for%20your%20business%20for%20free.%0A%0AMy%20work%3A%0Ahttps%3A%2F%2Fnexcrafttechtest.vercel.app%2F%0A%0ALet%20me%20know%20if%20you're%20interested." target="_blank" onclick="markVisited(this)">💬 Open WhatsApp</a>
+        </div>
+      
+        <div class="lead-card">
+          <div class="lead-name">18. The Chennai Beauty Salon</div>
+          <div class="lead-info">📞 <strong>Phone:</strong> 094453 27878</div>
+          <div class="lead-info">📍 <strong>Address:</strong> Ramar Koil St, Chennai, Nandambakkam, Tamil Nadu 600089, India</div>
+          <a class="btn" href="https://wa.me/919445327878?text=Hi%20The%20Chennai%20Beauty%20Salon%2C%0A%0AI%E2%80%99m%20Anand%2C%20an%20AI%20%26%20Web%20Developer.%20I%20noticed%20your%20business%20and%20saw%20that%20there%20isn%E2%80%99t%20a%20dedicated%20website%20yet.%0A%0AI%20help%20businesses%20create%20modern%20websites%20to%20attract%20more%20customers.%0A%0AI%20can%20also%20create%20a%20sample%20homepage%20for%20your%20business%20for%20free.%0A%0AMy%20work%3A%0Ahttps%3A%2F%2Fnexcrafttechtest.vercel.app%2F%0A%0ALet%20me%20know%20if%20you're%20interested." target="_blank" onclick="markVisited(this)">💬 Open WhatsApp</a>
+        </div>
+      
+        <div class="lead-card">
+          <div class="lead-name">19. SCISSORS PRIME SALON (UNISEX)</div>
+          <div class="lead-info">📞 <strong>Phone:</strong> 044 4359 4058</div>
+          <div class="lead-info">📍 <strong>Address:</strong> 61/56, Kamarajar Salai, Kanniyappan Nagar, SCB Quarters, Kalinga Colony, Ashok Nagar, Chennai, Tamil Nadu 600078, India</div>
+          <a class="btn" href="https://wa.me/914443594058?text=Hi%20SCISSORS%20PRIME%20SALON%20(UNISEX)%2C%0A%0AI%E2%80%99m%20Anand%2C%20an%20AI%20%26%20Web%20Developer.%20I%20noticed%20your%20business%20and%20saw%20that%20there%20isn%E2%80%99t%20a%20dedicated%20website%20yet.%0A%0AI%20help%20businesses%20create%20modern%20websites%20to%20attract%20more%20customers.%0A%0AI%20can%20also%20create%20a%20sample%20homepage%20for%20your%20business%20for%20free.%0A%0AMy%20work%3A%0Ahttps%3A%2F%2Fnexcrafttechtest.vercel.app%2F%0A%0ALet%20me%20know%20if%20you're%20interested." target="_blank" onclick="markVisited(this)">💬 Open WhatsApp</a>
+        </div>
+      
+        <div class="lead-card">
+          <div class="lead-name">20. Headlines Salon</div>
+          <div class="lead-info">📞 <strong>Phone:</strong> 088382 81421</div>
+          <div class="lead-info">📍 <strong>Address:</strong> 2, 11, Rajambal St, Sekar Nagar, West Saidapet, West Jafferkhanpet, Chennai, Tamil Nadu 600083, India</div>
+          <a class="btn" href="https://wa.me/918838281421?text=Hi%20Headlines%20Salon%2C%0A%0AI%E2%80%99m%20Anand%2C%20an%20AI%20%26%20Web%20Developer.%20I%20noticed%20your%20business%20and%20saw%20that%20there%20isn%E2%80%99t%20a%20dedicated%20website%20yet.%0A%0AI%20help%20businesses%20create%20modern%20websites%20to%20attract%20more%20customers.%0A%0AI%20can%20also%20create%20a%20sample%20homepage%20for%20your%20business%20for%20free.%0A%0AMy%20work%3A%0Ahttps%3A%2F%2Fnexcrafttechtest.vercel.app%2F%0A%0ALet%20me%20know%20if%20you're%20interested." target="_blank" onclick="markVisited(this)">💬 Open WhatsApp</a>
+        </div>
+      
+        <div class="lead-card">
+          <div class="lead-name">21. Thenmanam Restaurant | Anna Nagar</div>
+          <div class="lead-info">📞 <strong>Phone:</strong> 098887 93337</div>
+          <div class="lead-info">📍 <strong>Address:</strong> Plot 88, 5th Ave, V Block, Anna Nagar, Chennai, Tamil Nadu 600040, India</div>
+          <a class="btn" href="https://wa.me/919888793337?text=Hi%20Thenmanam%20Restaurant%20%7C%20Anna%20Nagar%2C%0A%0AI%E2%80%99m%20Anand%2C%20an%20AI%20%26%20Web%20Developer.%20I%20noticed%20your%20business%20and%20saw%20that%20there%20isn%E2%80%99t%20a%20dedicated%20website%20yet.%0A%0AI%20help%20businesses%20create%20modern%20websites%20to%20attract%20more%20customers.%0A%0AI%20can%20also%20create%20a%20sample%20homepage%20for%20your%20business%20for%20free.%0A%0AMy%20work%3A%0Ahttps%3A%2F%2Fnexcrafttechtest.vercel.app%2F%0A%0ALet%20me%20know%20if%20you're%20interested." target="_blank" onclick="markVisited(this)">💬 Open WhatsApp</a>
+        </div>
+      
+        <div class="lead-card">
+          <div class="lead-name">22. Padmam Veg Restaurant</div>
+          <div class="lead-info">📞 <strong>Phone:</strong> 078248 81557</div>
+          <div class="lead-info">📍 <strong>Address:</strong> 18/54, Venkatanarayana Rd, T. Nagar, Chennai, Tamil Nadu 600017, India</div>
+          <a class="btn" href="https://wa.me/917824881557?text=Hi%20Padmam%20Veg%20Restaurant%2C%0A%0AI%E2%80%99m%20Anand%2C%20an%20AI%20%26%20Web%20Developer.%20I%20noticed%20your%20business%20and%20saw%20that%20there%20isn%E2%80%99t%20a%20dedicated%20website%20yet.%0A%0AI%20help%20businesses%20create%20modern%20websites%20to%20attract%20more%20customers.%0A%0AI%20can%20also%20create%20a%20sample%20homepage%20for%20your%20business%20for%20free.%0A%0AMy%20work%3A%0Ahttps%3A%2F%2Fnexcrafttechtest.vercel.app%2F%0A%0ALet%20me%20know%20if%20you're%20interested." target="_blank" onclick="markVisited(this)">💬 Open WhatsApp</a>
+        </div>
+      
+        <div class="lead-card">
+          <div class="lead-name">23. Meen Satti - Seafood Restaurant (Ekkatuthangal)</div>
+          <div class="lead-info">📞 <strong>Phone:</strong> 093429 51596</div>
+          <div class="lead-info">📍 <strong>Address:</strong> 7-A, Jawaharlal Nehru Salai, Ambal Nagar, Ekkatuthangal, Chennai, Tamil Nadu 600032, India</div>
+          <a class="btn" href="https://wa.me/919342951596?text=Hi%20Meen%20Satti%20-%20Seafood%20Restaurant%20(Ekkatuthangal)%2C%0A%0AI%E2%80%99m%20Anand%2C%20an%20AI%20%26%20Web%20Developer.%20I%20noticed%20your%20business%20and%20saw%20that%20there%20isn%E2%80%99t%20a%20dedicated%20website%20yet.%0A%0AI%20help%20businesses%20create%20modern%20websites%20to%20attract%20more%20customers.%0A%0AI%20can%20also%20create%20a%20sample%20homepage%20for%20your%20business%20for%20free.%0A%0AMy%20work%3A%0Ahttps%3A%2F%2Fnexcrafttechtest.vercel.app%2F%0A%0ALet%20me%20know%20if%20you're%20interested." target="_blank" onclick="markVisited(this)">💬 Open WhatsApp</a>
+        </div>
+      
+        <div class="lead-card">
+          <div class="lead-name">24. Ayna</div>
+          <div class="lead-info">📞 <strong>Phone:</strong> 044 2225 5700</div>
+          <div class="lead-info">📍 <strong>Address:</strong> Guindy 124/1, J.N. Salai, Poomagal Nagar, Gandhi Nagar, Chennai, Tamil Nadu 600032, India</div>
+          <a class="btn" href="https://wa.me/914422255700?text=Hi%20Ayna%2C%0A%0AI%E2%80%99m%20Anand%2C%20an%20AI%20%26%20Web%20Developer.%20I%20noticed%20your%20business%20and%20saw%20that%20there%20isn%E2%80%99t%20a%20dedicated%20website%20yet.%0A%0AI%20help%20businesses%20create%20modern%20websites%20to%20attract%20more%20customers.%0A%0AI%20can%20also%20create%20a%20sample%20homepage%20for%20your%20business%20for%20free.%0A%0AMy%20work%3A%0Ahttps%3A%2F%2Fnexcrafttechtest.vercel.app%2F%0A%0ALet%20me%20know%20if%20you're%20interested." target="_blank" onclick="markVisited(this)">💬 Open WhatsApp</a>
+        </div>
+      
+        <div class="lead-card">
+          <div class="lead-name">25. Basil With a Twist</div>
+          <div class="lead-info">📞 <strong>Phone:</strong> 098410 85611</div>
+          <div class="lead-info">📍 <strong>Address:</strong> 58 A, Habibullah Rd, near Vidyodaya School, Gangai Karai Puram, T. Nagar, Chennai, Tamil Nadu 600017, India</div>
+          <a class="btn" href="https://wa.me/919841085611?text=Hi%20Basil%20With%20a%20Twist%2C%0A%0AI%E2%80%99m%20Anand%2C%20an%20AI%20%26%20Web%20Developer.%20I%20noticed%20your%20business%20and%20saw%20that%20there%20isn%E2%80%99t%20a%20dedicated%20website%20yet.%0A%0AI%20help%20businesses%20create%20modern%20websites%20to%20attract%20more%20customers.%0A%0AI%20can%20also%20create%20a%20sample%20homepage%20for%20your%20business%20for%20free.%0A%0AMy%20work%3A%0Ahttps%3A%2F%2Fnexcrafttechtest.vercel.app%2F%0A%0ALet%20me%20know%20if%20you're%20interested." target="_blank" onclick="markVisited(this)">💬 Open WhatsApp</a>
+        </div>
+      
+        <div class="lead-card">
+          <div class="lead-name">26. Punjabi Nation</div>
+          <div class="lead-info">📞 <strong>Phone:</strong> 098405 94433</div>
+          <div class="lead-info">📍 <strong>Address:</strong> No. 15, Grand Southern Trunk Rd, near Hablis Hotel, Ramapuram, Guindy, Chennai, Tamil Nadu 600032, India</div>
+          <a class="btn" href="https://wa.me/919840594433?text=Hi%20Punjabi%20Nation%2C%0A%0AI%E2%80%99m%20Anand%2C%20an%20AI%20%26%20Web%20Developer.%20I%20noticed%20your%20business%20and%20saw%20that%20there%20isn%E2%80%99t%20a%20dedicated%20website%20yet.%0A%0AI%20help%20businesses%20create%20modern%20websites%20to%20attract%20more%20customers.%0A%0AI%20can%20also%20create%20a%20sample%20homepage%20for%20your%20business%20for%20free.%0A%0AMy%20work%3A%0Ahttps%3A%2F%2Fnexcrafttechtest.vercel.app%2F%0A%0ALet%20me%20know%20if%20you're%20interested." target="_blank" onclick="markVisited(this)">💬 Open WhatsApp</a>
+        </div>
+      
+        <div class="lead-card">
+          <div class="lead-name">27. Yazhee World Restaurant</div>
+          <div class="lead-info">📞 <strong>Phone:</strong> 074016 71816</div>
+          <div class="lead-info">📍 <strong>Address:</strong> 5, 9, Arcot Rd, Devi Nagar, Porur, Chennai, Tamil Nadu 600116, India</div>
+          <a class="btn" href="https://wa.me/917401671816?text=Hi%20Yazhee%20World%20Restaurant%2C%0A%0AI%E2%80%99m%20Anand%2C%20an%20AI%20%26%20Web%20Developer.%20I%20noticed%20your%20business%20and%20saw%20that%20there%20isn%E2%80%99t%20a%20dedicated%20website%20yet.%0A%0AI%20help%20businesses%20create%20modern%20websites%20to%20attract%20more%20customers.%0A%0AI%20can%20also%20create%20a%20sample%20homepage%20for%20your%20business%20for%20free.%0A%0AMy%20work%3A%0Ahttps%3A%2F%2Fnexcrafttechtest.vercel.app%2F%0A%0ALet%20me%20know%20if%20you're%20interested." target="_blank" onclick="markVisited(this)">💬 Open WhatsApp</a>
+        </div>
+      
+        <div class="lead-card">
+          <div class="lead-name">28. Enoki Pan Asian Story</div>
+          <div class="lead-info">📞 <strong>Phone:</strong> 093449 12277</div>
+          <div class="lead-info">📍 <strong>Address:</strong> Fortel, No:3, Gandhi Irwin Rd, Ansari Estate, Egmore, Chennai, Tamil Nadu 600008, India</div>
+          <a class="btn" href="https://wa.me/919344912277?text=Hi%20Enoki%20Pan%20Asian%20Story%2C%0A%0AI%E2%80%99m%20Anand%2C%20an%20AI%20%26%20Web%20Developer.%20I%20noticed%20your%20business%20and%20saw%20that%20there%20isn%E2%80%99t%20a%20dedicated%20website%20yet.%0A%0AI%20help%20businesses%20create%20modern%20websites%20to%20attract%20more%20customers.%0A%0AI%20can%20also%20create%20a%20sample%20homepage%20for%20your%20business%20for%20free.%0A%0AMy%20work%3A%0Ahttps%3A%2F%2Fnexcrafttechtest.vercel.app%2F%0A%0ALet%20me%20know%20if%20you're%20interested." target="_blank" onclick="markVisited(this)">💬 Open WhatsApp</a>
+        </div>
+      
+        <div class="lead-card">
+          <div class="lead-name">29. Chilli Malli | South Indian Restaurant</div>
+          <div class="lead-info">📞 <strong>Phone:</strong> 044 6124 2424</div>
+          <div class="lead-info">📍 <strong>Address:</strong> 3, Gandhi Irwin Rd, next to Chennai Metropolitan Development Authority Tower 1, NKK Estate, Egmore, Chennai, Tamil Nadu 600008, India</div>
+          <a class="btn" href="https://wa.me/914461242424?text=Hi%20Chilli%20Malli%20%7C%20South%20Indian%20Restaurant%2C%0A%0AI%E2%80%99m%20Anand%2C%20an%20AI%20%26%20Web%20Developer.%20I%20noticed%20your%20business%20and%20saw%20that%20there%20isn%E2%80%99t%20a%20dedicated%20website%20yet.%0A%0AI%20help%20businesses%20create%20modern%20websites%20to%20attract%20more%20customers.%0A%0AI%20can%20also%20create%20a%20sample%20homepage%20for%20your%20business%20for%20free.%0A%0AMy%20work%3A%0Ahttps%3A%2F%2Fnexcrafttechtest.vercel.app%2F%0A%0ALet%20me%20know%20if%20you're%20interested." target="_blank" onclick="markVisited(this)">💬 Open WhatsApp</a>
+        </div>
+      
+        <div class="lead-card">
+          <div class="lead-name">30. Cake Paradise</div>
+          <div class="lead-info">📞 <strong>Phone:</strong> 095001 86832</div>
+          <div class="lead-info">📍 <strong>Address:</strong> 4/1, Valluvar Salai, Moogambigai Nagar, Ramapuram, Chennai, Tamil Nadu 600089, India</div>
+          <a class="btn" href="https://wa.me/919500186832?text=Hi%20Cake%20Paradise%2C%0A%0AI%E2%80%99m%20Anand%2C%20an%20AI%20%26%20Web%20Developer.%20I%20noticed%20your%20business%20and%20saw%20that%20there%20isn%E2%80%99t%20a%20dedicated%20website%20yet.%0A%0AI%20help%20businesses%20create%20modern%20websites%20to%20attract%20more%20customers.%0A%0AI%20can%20also%20create%20a%20sample%20homepage%20for%20your%20business%20for%20free.%0A%0AMy%20work%3A%0Ahttps%3A%2F%2Fnexcrafttechtest.vercel.app%2F%0A%0ALet%20me%20know%20if%20you're%20interested." target="_blank" onclick="markVisited(this)">💬 Open WhatsApp</a>
+        </div>
+      
+        <div class="lead-card">
+          <div class="lead-name">31. VICTORY BAKERY</div>
+          <div class="lead-info">📞 <strong>Phone:</strong> 094440 84740</div>
+          <div class="lead-info">📍 <strong>Address:</strong> 45, Gowdiamutt Rd, Ganapathy Colony, Royapettah, Chennai, Tamil Nadu 600014, India</div>
+          <a class="btn" href="https://wa.me/919444084740?text=Hi%20VICTORY%20BAKERY%2C%0A%0AI%E2%80%99m%20Anand%2C%20an%20AI%20%26%20Web%20Developer.%20I%20noticed%20your%20business%20and%20saw%20that%20there%20isn%E2%80%99t%20a%20dedicated%20website%20yet.%0A%0AI%20help%20businesses%20create%20modern%20websites%20to%20attract%20more%20customers.%0A%0AI%20can%20also%20create%20a%20sample%20homepage%20for%20your%20business%20for%20free.%0A%0AMy%20work%3A%0Ahttps%3A%2F%2Fnexcrafttechtest.vercel.app%2F%0A%0ALet%20me%20know%20if%20you're%20interested." target="_blank" onclick="markVisited(this)">💬 Open WhatsApp</a>
+        </div>
+      
+        <div class="lead-card">
+          <div class="lead-name">32. Bakery Garden</div>
+          <div class="lead-info">📞 <strong>Phone:</strong> 096770 07552</div>
+          <div class="lead-info">📍 <strong>Address:</strong> 1 47th Street, 5th Main Rd, Pazhavanthangal, Chennai, Tamil Nadu 600114, India</div>
+          <a class="btn" href="https://wa.me/919677007552?text=Hi%20Bakery%20Garden%2C%0A%0AI%E2%80%99m%20Anand%2C%20an%20AI%20%26%20Web%20Developer.%20I%20noticed%20your%20business%20and%20saw%20that%20there%20isn%E2%80%99t%20a%20dedicated%20website%20yet.%0A%0AI%20help%20businesses%20create%20modern%20websites%20to%20attract%20more%20customers.%0A%0AI%20can%20also%20create%20a%20sample%20homepage%20for%20your%20business%20for%20free.%0A%0AMy%20work%3A%0Ahttps%3A%2F%2Fnexcrafttechtest.vercel.app%2F%0A%0ALet%20me%20know%20if%20you're%20interested." target="_blank" onclick="markVisited(this)">💬 Open WhatsApp</a>
+        </div>
+      
+        <div class="lead-card">
+          <div class="lead-name">33. Bakery garden</div>
+          <div class="lead-info">📞 <strong>Phone:</strong> 084282 61234</div>
+          <div class="lead-info">📍 <strong>Address:</strong> Kumaran St, Pazhavanthangal, Chennai, Tamil Nadu 600061, India</div>
+          <a class="btn" href="https://wa.me/918428261234?text=Hi%20Bakery%20garden%2C%0A%0AI%E2%80%99m%20Anand%2C%20an%20AI%20%26%20Web%20Developer.%20I%20noticed%20your%20business%20and%20saw%20that%20there%20isn%E2%80%99t%20a%20dedicated%20website%20yet.%0A%0AI%20help%20businesses%20create%20modern%20websites%20to%20attract%20more%20customers.%0A%0AI%20can%20also%20create%20a%20sample%20homepage%20for%20your%20business%20for%20free.%0A%0AMy%20work%3A%0Ahttps%3A%2F%2Fnexcrafttechtest.vercel.app%2F%0A%0ALet%20me%20know%20if%20you're%20interested." target="_blank" onclick="markVisited(this)">💬 Open WhatsApp</a>
+        </div>
+      
+        <div class="lead-card">
+          <div class="lead-name">34. Truffle Delight (Jafferkhanpet) - The best cake shop in Chennai</div>
+          <div class="lead-info">📞 <strong>Phone:</strong> 098406 35692</div>
+          <div class="lead-info">📍 <strong>Address:</strong> 123, Pillaiyar Koil St, Thirunagar, West Jafferkhanpet, Chennai, Tamil Nadu 600083, India</div>
+          <a class="btn" href="https://wa.me/919840635692?text=Hi%20Truffle%20Delight%20(Jafferkhanpet)%20-%20The%20best%20cake%20shop%20in%20Chennai%2C%0A%0AI%E2%80%99m%20Anand%2C%20an%20AI%20%26%20Web%20Developer.%20I%20noticed%20your%20business%20and%20saw%20that%20there%20isn%E2%80%99t%20a%20dedicated%20website%20yet.%0A%0AI%20help%20businesses%20create%20modern%20websites%20to%20attract%20more%20customers.%0A%0AI%20can%20also%20create%20a%20sample%20homepage%20for%20your%20business%20for%20free.%0A%0AMy%20work%3A%0Ahttps%3A%2F%2Fnexcrafttechtest.vercel.app%2F%0A%0ALet%20me%20know%20if%20you're%20interested." target="_blank" onclick="markVisited(this)">💬 Open WhatsApp</a>
+        </div>
+      
+        <div class="lead-card">
+          <div class="lead-name">35. Unibic French Loaf Bakery and Cafe | Cake Shop in K K Nagar</div>
+          <div class="lead-info">📞 <strong>Phone:</strong> 076049 15019</div>
+          <div class="lead-info">📍 <strong>Address:</strong> No. 585, 23/587, Alagirisamy Salai, near PSBB school, Sector 4, K. K. Nagar, Chennai, Tamil Nadu 600078, India</div>
+          <a class="btn" href="https://wa.me/917604915019?text=Hi%20Unibic%20French%20Loaf%20Bakery%20and%20Cafe%20%7C%20Cake%20Shop%20in%20K%20K%20Nagar%2C%0A%0AI%E2%80%99m%20Anand%2C%20an%20AI%20%26%20Web%20Developer.%20I%20noticed%20your%20business%20and%20saw%20that%20there%20isn%E2%80%99t%20a%20dedicated%20website%20yet.%0A%0AI%20help%20businesses%20create%20modern%20websites%20to%20attract%20more%20customers.%0A%0AI%20can%20also%20create%20a%20sample%20homepage%20for%20your%20business%20for%20free.%0A%0AMy%20work%3A%0Ahttps%3A%2F%2Fnexcrafttechtest.vercel.app%2F%0A%0ALet%20me%20know%20if%20you're%20interested." target="_blank" onclick="markVisited(this)">💬 Open WhatsApp</a>
+        </div>
+      
+        <div class="lead-card">
+          <div class="lead-name">36. Cakeron Makeron | Bakery | Birthday Cakes in Chennai | Customized Cake | Wedding Cake | Party Orders</div>
+          <div class="lead-info">📞 <strong>Phone:</strong> 073580 72982</div>
+          <div class="lead-info">📍 <strong>Address:</strong> NO: 47, Velachery Main Rd, Little Mount, Saidapet, Chennai, Tamil Nadu 600015, India</div>
+          <a class="btn" href="https://wa.me/917358072982?text=Hi%20Cakeron%20Makeron%20%7C%20Bakery%20%7C%20Birthday%20Cakes%20in%20Chennai%20%7C%20Customized%20Cake%20%7C%20Wedding%20Cake%20%7C%20Party%20Orders%2C%0A%0AI%E2%80%99m%20Anand%2C%20an%20AI%20%26%20Web%20Developer.%20I%20noticed%20your%20business%20and%20saw%20that%20there%20isn%E2%80%99t%20a%20dedicated%20website%20yet.%0A%0AI%20help%20businesses%20create%20modern%20websites%20to%20attract%20more%20customers.%0A%0AI%20can%20also%20create%20a%20sample%20homepage%20for%20your%20business%20for%20free.%0A%0AMy%20work%3A%0Ahttps%3A%2F%2Fnexcrafttechtest.vercel.app%2F%0A%0ALet%20me%20know%20if%20you're%20interested." target="_blank" onclick="markVisited(this)">💬 Open WhatsApp</a>
+        </div>
+      
+        <div class="lead-card">
+          <div class="lead-name">37. La CakeBlock</div>
+          <div class="lead-info">📞 <strong>Phone:</strong> 073053 31112</div>
+          <div class="lead-info">📍 <strong>Address:</strong> 3/148, chinna kulandhai street, Anna Main Rd, Karumariamman Nagar, Kolapakkam, Chennai, Tamil Nadu 600128, India</div>
+          <a class="btn" href="https://wa.me/917305331112?text=Hi%20La%20CakeBlock%2C%0A%0AI%E2%80%99m%20Anand%2C%20an%20AI%20%26%20Web%20Developer.%20I%20noticed%20your%20business%20and%20saw%20that%20there%20isn%E2%80%99t%20a%20dedicated%20website%20yet.%0A%0AI%20help%20businesses%20create%20modern%20websites%20to%20attract%20more%20customers.%0A%0AI%20can%20also%20create%20a%20sample%20homepage%20for%20your%20business%20for%20free.%0A%0AMy%20work%3A%0Ahttps%3A%2F%2Fnexcrafttechtest.vercel.app%2F%0A%0ALet%20me%20know%20if%20you're%20interested." target="_blank" onclick="markVisited(this)">💬 Open WhatsApp</a>
+        </div>
+      
+        <div class="lead-card">
+          <div class="lead-name">38. Mom's oven - Homemade cakes</div>
+          <div class="lead-info">📞 <strong>Phone:</strong> 099400 43417</div>
+          <div class="lead-info">📍 <strong>Address:</strong> Sarvamangala Colony, Aruna Colony, Vadapalani, Chennai, Tamil Nadu 600026, India</div>
+          <a class="btn" href="https://wa.me/919940043417?text=Hi%20Mom's%20oven%20-%20Homemade%20cakes%2C%0A%0AI%E2%80%99m%20Anand%2C%20an%20AI%20%26%20Web%20Developer.%20I%20noticed%20your%20business%20and%20saw%20that%20there%20isn%E2%80%99t%20a%20dedicated%20website%20yet.%0A%0AI%20help%20businesses%20create%20modern%20websites%20to%20attract%20more%20customers.%0A%0AI%20can%20also%20create%20a%20sample%20homepage%20for%20your%20business%20for%20free.%0A%0AMy%20work%3A%0Ahttps%3A%2F%2Fnexcrafttechtest.vercel.app%2F%0A%0ALet%20me%20know%20if%20you're%20interested." target="_blank" onclick="markVisited(this)">💬 Open WhatsApp</a>
+        </div>
+      
+        <div class="lead-card">
+          <div class="lead-name">39. The cake boss</div>
+          <div class="lead-info">📞 <strong>Phone:</strong> 090435 55704</div>
+          <div class="lead-info">📍 <strong>Address:</strong> No 40a, dharani poongavanam building, Vijaya Nagar, Velachery, Chennai, Tamil Nadu 600042, India</div>
+          <a class="btn" href="https://wa.me/919043555704?text=Hi%20The%20cake%20boss%2C%0A%0AI%E2%80%99m%20Anand%2C%20an%20AI%20%26%20Web%20Developer.%20I%20noticed%20your%20business%20and%20saw%20that%20there%20isn%E2%80%99t%20a%20dedicated%20website%20yet.%0A%0AI%20help%20businesses%20create%20modern%20websites%20to%20attract%20more%20customers.%0A%0AI%20can%20also%20create%20a%20sample%20homepage%20for%20your%20business%20for%20free.%0A%0AMy%20work%3A%0Ahttps%3A%2F%2Fnexcrafttechtest.vercel.app%2F%0A%0ALet%20me%20know%20if%20you're%20interested." target="_blank" onclick="markVisited(this)">💬 Open WhatsApp</a>
+        </div>
+      
+        <div class="lead-card">
+          <div class="lead-name">40. DOU</div>
+          <div class="lead-info">📞 <strong>Phone:</strong> 099400 91849</div>
+          <div class="lead-info">📍 <strong>Address:</strong> 2nd Cross Street, 25, 11, Cenotaph Rd, Sri Ram Nagar, Alwarpet, Chennai, Tamil Nadu 600018, India</div>
+          <a class="btn" href="https://wa.me/919940091849?text=Hi%20DOU%2C%0A%0AI%E2%80%99m%20Anand%2C%20an%20AI%20%26%20Web%20Developer.%20I%20noticed%20your%20business%20and%20saw%20that%20there%20isn%E2%80%99t%20a%20dedicated%20website%20yet.%0A%0AI%20help%20businesses%20create%20modern%20websites%20to%20attract%20more%20customers.%0A%0AI%20can%20also%20create%20a%20sample%20homepage%20for%20your%20business%20for%20free.%0A%0AMy%20work%3A%0Ahttps%3A%2F%2Fnexcrafttechtest.vercel.app%2F%0A%0ALet%20me%20know%20if%20you're%20interested." target="_blank" onclick="markVisited(this)">💬 Open WhatsApp</a>
+        </div>
+      
+        <div class="lead-card">
+          <div class="lead-name">41. Unibic French Loaf Bakery and Cafe | Cake Shop - Kotturpuram, Chennai</div>
+          <div class="lead-info">📞 <strong>Phone:</strong> 076049 15020</div>
+          <div class="lead-info">📍 <strong>Address:</strong> Gandhi Mandapam Rd, Avvai Colony, Kotturpuram, Chennai, Tamil Nadu 600085, India</div>
+          <a class="btn" href="https://wa.me/917604915020?text=Hi%20Unibic%20French%20Loaf%20Bakery%20and%20Cafe%20%7C%20Cake%20Shop%20-%20Kotturpuram%2C%20Chennai%2C%0A%0AI%E2%80%99m%20Anand%2C%20an%20AI%20%26%20Web%20Developer.%20I%20noticed%20your%20business%20and%20saw%20that%20there%20isn%E2%80%99t%20a%20dedicated%20website%20yet.%0A%0AI%20help%20businesses%20create%20modern%20websites%20to%20attract%20more%20customers.%0A%0AI%20can%20also%20create%20a%20sample%20homepage%20for%20your%20business%20for%20free.%0A%0AMy%20work%3A%0Ahttps%3A%2F%2Fnexcrafttechtest.vercel.app%2F%0A%0ALet%20me%20know%20if%20you're%20interested." target="_blank" onclick="markVisited(this)">💬 Open WhatsApp</a>
+        </div>
+      
+        <div class="lead-card">
+          <div class="lead-name">42. Old Madras Baking Company (Nungabakkam)</div>
+          <div class="lead-info">📞 <strong>Phone:</strong> 063697 99664</div>
+          <div class="lead-info">📍 <strong>Address:</strong> 18, Khader Nawaz Khan Rd, Srirampuram, Thousand Lights West, Nungambakkam, Chennai, Poombukar Nagar, Tamil Nadu 600006, India</div>
+          <a class="btn" href="https://wa.me/916369799664?text=Hi%20Old%20Madras%20Baking%20Company%20(Nungabakkam)%2C%0A%0AI%E2%80%99m%20Anand%2C%20an%20AI%20%26%20Web%20Developer.%20I%20noticed%20your%20business%20and%20saw%20that%20there%20isn%E2%80%99t%20a%20dedicated%20website%20yet.%0A%0AI%20help%20businesses%20create%20modern%20websites%20to%20attract%20more%20customers.%0A%0AI%20can%20also%20create%20a%20sample%20homepage%20for%20your%20business%20for%20free.%0A%0AMy%20work%3A%0Ahttps%3A%2F%2Fnexcrafttechtest.vercel.app%2F%0A%0ALet%20me%20know%20if%20you're%20interested." target="_blank" onclick="markVisited(this)">💬 Open WhatsApp</a>
+        </div>
+      
+        <div class="lead-card">
+          <div class="lead-name">43. Nazeema Bakery</div>
+          <div class="lead-info">📞 <strong>Phone:</strong> 044 2231 1897</div>
+          <div class="lead-info">📍 <strong>Address:</strong> No. 102, Bazaar Rd, Ramapuram, Parangi Malai, St.Thomas Mount, Tamil Nadu 600016, India</div>
+          <a class="btn" href="https://wa.me/914422311897?text=Hi%20Nazeema%20Bakery%2C%0A%0AI%E2%80%99m%20Anand%2C%20an%20AI%20%26%20Web%20Developer.%20I%20noticed%20your%20business%20and%20saw%20that%20there%20isn%E2%80%99t%20a%20dedicated%20website%20yet.%0A%0AI%20help%20businesses%20create%20modern%20websites%20to%20attract%20more%20customers.%0A%0AI%20can%20also%20create%20a%20sample%20homepage%20for%20your%20business%20for%20free.%0A%0AMy%20work%3A%0Ahttps%3A%2F%2Fnexcrafttechtest.vercel.app%2F%0A%0ALet%20me%20know%20if%20you're%20interested." target="_blank" onclick="markVisited(this)">💬 Open WhatsApp</a>
+        </div>
+      
+        <div class="lead-card">
+          <div class="lead-name">44. Pastry Maniaa</div>
+          <div class="lead-info">📞 <strong>Phone:</strong> 098400 70505</div>
+          <div class="lead-info">📍 <strong>Address:</strong> Halls Rd, Kilpauk Garden Colony, Kilpauk, Chennai, Tamil Nadu 600010, India</div>
+          <a class="btn" href="https://wa.me/919840070505?text=Hi%20Pastry%20Maniaa%2C%0A%0AI%E2%80%99m%20Anand%2C%20an%20AI%20%26%20Web%20Developer.%20I%20noticed%20your%20business%20and%20saw%20that%20there%20isn%E2%80%99t%20a%20dedicated%20website%20yet.%0A%0AI%20help%20businesses%20create%20modern%20websites%20to%20attract%20more%20customers.%0A%0AI%20can%20also%20create%20a%20sample%20homepage%20for%20your%20business%20for%20free.%0A%0AMy%20work%3A%0Ahttps%3A%2F%2Fnexcrafttechtest.vercel.app%2F%0A%0ALet%20me%20know%20if%20you're%20interested." target="_blank" onclick="markVisited(this)">💬 Open WhatsApp</a>
+        </div>
+      
+        <div class="lead-card">
+          <div class="lead-name">45. Bakers Bell</div>
+          <div class="lead-info">📞 <strong>Phone:</strong> 080560 32938</div>
+          <div class="lead-info">📍 <strong>Address:</strong> 26/12, 10th Ave, Sarvamangala Colony, Indira Colony, Ashok Nagar, Chennai, Tamil Nadu 600083, India</div>
+          <a class="btn" href="https://wa.me/918056032938?text=Hi%20Bakers%20Bell%2C%0A%0AI%E2%80%99m%20Anand%2C%20an%20AI%20%26%20Web%20Developer.%20I%20noticed%20your%20business%20and%20saw%20that%20there%20isn%E2%80%99t%20a%20dedicated%20website%20yet.%0A%0AI%20help%20businesses%20create%20modern%20websites%20to%20attract%20more%20customers.%0A%0AI%20can%20also%20create%20a%20sample%20homepage%20for%20your%20business%20for%20free.%0A%0AMy%20work%3A%0Ahttps%3A%2F%2Fnexcrafttechtest.vercel.app%2F%0A%0ALet%20me%20know%20if%20you're%20interested." target="_blank" onclick="markVisited(this)">💬 Open WhatsApp</a>
+        </div>
+      
+        <div class="lead-card">
+          <div class="lead-name">46. NANDHU REAL ESTATE</div>
+          <div class="lead-info">📞 <strong>Phone:</strong> 074016 34397</div>
+          <div class="lead-info">📍 <strong>Address:</strong> 44, Poonamallee High Rd, near MGR University Road, Vishwas Nagar, Maduravoyal, Chennai, Tamil Nadu 600095, India</div>
+          <a class="btn" href="https://wa.me/917401634397?text=Hi%20NANDHU%20REAL%20ESTATE%2C%0A%0AI%E2%80%99m%20Anand%2C%20an%20AI%20%26%20Web%20Developer.%20I%20noticed%20your%20business%20and%20saw%20that%20there%20isn%E2%80%99t%20a%20dedicated%20website%20yet.%0A%0AI%20help%20businesses%20create%20modern%20websites%20to%20attract%20more%20customers.%0A%0AI%20can%20also%20create%20a%20sample%20homepage%20for%20your%20business%20for%20free.%0A%0AMy%20work%3A%0Ahttps%3A%2F%2Fnexcrafttechtest.vercel.app%2F%0A%0ALet%20me%20know%20if%20you're%20interested." target="_blank" onclick="markVisited(this)">💬 Open WhatsApp</a>
+        </div>
+      
+        <div class="lead-card">
+          <div class="lead-name">47. NVR Real Estate</div>
+          <div class="lead-info">📞 <strong>Phone:</strong> 088707 77774</div>
+          <div class="lead-info">📍 <strong>Address:</strong> No:391/b, School Rd, opposite ICICI Bank, D-Sector, Anna Nagar West Extension, Chennai, Tamil Nadu 600101, India</div>
+          <a class="btn" href="https://wa.me/918870777774?text=Hi%20NVR%20Real%20Estate%2C%0A%0AI%E2%80%99m%20Anand%2C%20an%20AI%20%26%20Web%20Developer.%20I%20noticed%20your%20business%20and%20saw%20that%20there%20isn%E2%80%99t%20a%20dedicated%20website%20yet.%0A%0AI%20help%20businesses%20create%20modern%20websites%20to%20attract%20more%20customers.%0A%0AI%20can%20also%20create%20a%20sample%20homepage%20for%20your%20business%20for%20free.%0A%0AMy%20work%3A%0Ahttps%3A%2F%2Fnexcrafttechtest.vercel.app%2F%0A%0ALet%20me%20know%20if%20you're%20interested." target="_blank" onclick="markVisited(this)">💬 Open WhatsApp</a>
+        </div>
+      
+        <div class="lead-card">
+          <div class="lead-name">48. SANKALP REALTY</div>
+          <div class="lead-info">📞 <strong>Phone:</strong> 098412 86879</div>
+          <div class="lead-info">📍 <strong>Address:</strong> No. 58, Vedachalam St, behind Kasi Theatre, Vasudevan Nagar, West Jafferkhanpet, Chennai, Tamil Nadu 600083, India</div>
+          <a class="btn" href="https://wa.me/919841286879?text=Hi%20SANKALP%20REALTY%2C%0A%0AI%E2%80%99m%20Anand%2C%20an%20AI%20%26%20Web%20Developer.%20I%20noticed%20your%20business%20and%20saw%20that%20there%20isn%E2%80%99t%20a%20dedicated%20website%20yet.%0A%0AI%20help%20businesses%20create%20modern%20websites%20to%20attract%20more%20customers.%0A%0AI%20can%20also%20create%20a%20sample%20homepage%20for%20your%20business%20for%20free.%0A%0AMy%20work%3A%0Ahttps%3A%2F%2Fnexcrafttechtest.vercel.app%2F%0A%0ALet%20me%20know%20if%20you're%20interested." target="_blank" onclick="markVisited(this)">💬 Open WhatsApp</a>
+        </div>
+      
+        <div class="lead-card">
+          <div class="lead-name">49. Sri Sai Baba Realty</div>
+          <div class="lead-info">📞 <strong>Phone:</strong> 098849 36686</div>
+          <div class="lead-info">📍 <strong>Address:</strong> E.S.Sai Ganesan No:25A, First Floor, Rangarajapuram Main Road, Karnan St, KG NTR Heritage, Murugesan Nagar, Kodambakkam, Chennai, Tamil Nadu 600024, India</div>
+          <a class="btn" href="https://wa.me/919884936686?text=Hi%20Sri%20Sai%20Baba%20Realty%2C%0A%0AI%E2%80%99m%20Anand%2C%20an%20AI%20%26%20Web%20Developer.%20I%20noticed%20your%20business%20and%20saw%20that%20there%20isn%E2%80%99t%20a%20dedicated%20website%20yet.%0A%0AI%20help%20businesses%20create%20modern%20websites%20to%20attract%20more%20customers.%0A%0AI%20can%20also%20create%20a%20sample%20homepage%20for%20your%20business%20for%20free.%0A%0AMy%20work%3A%0Ahttps%3A%2F%2Fnexcrafttechtest.vercel.app%2F%0A%0ALet%20me%20know%20if%20you're%20interested." target="_blank" onclick="markVisited(this)">💬 Open WhatsApp</a>
+        </div>
+      
+        <div class="lead-card">
+          <div class="lead-name">50. SURYA REAL ESTATE</div>
+          <div class="lead-info">📞 <strong>Phone:</strong> 099621 31305</div>
+          <div class="lead-info">📍 <strong>Address:</strong> 9/2, 1.5Th Street, Dr.Subbarayan Nagar, Dr.Subbaraya Nagar, Kodambakkam, Chennai, Tamil Nadu 600024, India</div>
+          <a class="btn" href="https://wa.me/919962131305?text=Hi%20SURYA%20REAL%20ESTATE%2C%0A%0AI%E2%80%99m%20Anand%2C%20an%20AI%20%26%20Web%20Developer.%20I%20noticed%20your%20business%20and%20saw%20that%20there%20isn%E2%80%99t%20a%20dedicated%20website%20yet.%0A%0AI%20help%20businesses%20create%20modern%20websites%20to%20attract%20more%20customers.%0A%0AI%20can%20also%20create%20a%20sample%20homepage%20for%20your%20business%20for%20free.%0A%0AMy%20work%3A%0Ahttps%3A%2F%2Fnexcrafttechtest.vercel.app%2F%0A%0ALet%20me%20know%20if%20you're%20interested." target="_blank" onclick="markVisited(this)">💬 Open WhatsApp</a>
+        </div>
+      
+        <div class="lead-card">
+          <div class="lead-name">51. Moon Realty project developer private limited Chennai</div>
+          <div class="lead-info">📞 <strong>Phone:</strong> 044 4265 4433</div>
+          <div class="lead-info">📍 <strong>Address:</strong> 26F4+692, Balaji Nagar, Ekkatuthangal, Chennai, Tamil Nadu 600032, India</div>
+          <a class="btn" href="https://wa.me/914442654433?text=Hi%20Moon%20Realty%20project%20developer%20private%20limited%20Chennai%2C%0A%0AI%E2%80%99m%20Anand%2C%20an%20AI%20%26%20Web%20Developer.%20I%20noticed%20your%20business%20and%20saw%20that%20there%20isn%E2%80%99t%20a%20dedicated%20website%20yet.%0A%0AI%20help%20businesses%20create%20modern%20websites%20to%20attract%20more%20customers.%0A%0AI%20can%20also%20create%20a%20sample%20homepage%20for%20your%20business%20for%20free.%0A%0AMy%20work%3A%0Ahttps%3A%2F%2Fnexcrafttechtest.vercel.app%2F%0A%0ALet%20me%20know%20if%20you're%20interested." target="_blank" onclick="markVisited(this)">💬 Open WhatsApp</a>
+        </div>
+      
+        <div class="lead-card">
+          <div class="lead-name">52. Smart Choice Infinity</div>
+          <div class="lead-info">📞 <strong>Phone:</strong> 086085 02269</div>
+          <div class="lead-info">📍 <strong>Address:</strong> No.4a, Kannabiran St, Murugesapuram, Old Pallavaram, Chennai, Tamil Nadu 600117, India</div>
+          <a class="btn" href="https://wa.me/918608502269?text=Hi%20Smart%20Choice%20Infinity%2C%0A%0AI%E2%80%99m%20Anand%2C%20an%20AI%20%26%20Web%20Developer.%20I%20noticed%20your%20business%20and%20saw%20that%20there%20isn%E2%80%99t%20a%20dedicated%20website%20yet.%0A%0AI%20help%20businesses%20create%20modern%20websites%20to%20attract%20more%20customers.%0A%0AI%20can%20also%20create%20a%20sample%20homepage%20for%20your%20business%20for%20free.%0A%0AMy%20work%3A%0Ahttps%3A%2F%2Fnexcrafttechtest.vercel.app%2F%0A%0ALet%20me%20know%20if%20you're%20interested." target="_blank" onclick="markVisited(this)">💬 Open WhatsApp</a>
+        </div>
+      
+        <div class="lead-card">
+          <div class="lead-name">53. Homes and Plots</div>
+          <div class="lead-info">📞 <strong>Phone:</strong> 099402 34543</div>
+          <div class="lead-info">📍 <strong>Address:</strong> No: 17/10, Subhiksha, 2nd St, Duraisamy Saalai, Vedachala Nagar, Vedachalam Nagar, Kodambakkam, Chennai, Tamil Nadu 600024, India</div>
+          <a class="btn" href="https://wa.me/919940234543?text=Hi%20Homes%20and%20Plots%2C%0A%0AI%E2%80%99m%20Anand%2C%20an%20AI%20%26%20Web%20Developer.%20I%20noticed%20your%20business%20and%20saw%20that%20there%20isn%E2%80%99t%20a%20dedicated%20website%20yet.%0A%0AI%20help%20businesses%20create%20modern%20websites%20to%20attract%20more%20customers.%0A%0AI%20can%20also%20create%20a%20sample%20homepage%20for%20your%20business%20for%20free.%0A%0AMy%20work%3A%0Ahttps%3A%2F%2Fnexcrafttechtest.vercel.app%2F%0A%0ALet%20me%20know%20if%20you're%20interested." target="_blank" onclick="markVisited(this)">💬 Open WhatsApp</a>
+        </div>
+      
+        <div class="lead-card">
+          <div class="lead-name">54. RK REAL ESTATES</div>
+          <div class="lead-info">📞 <strong>Phone:</strong> 087789 41439</div>
+          <div class="lead-info">📍 <strong>Address:</strong> 1, Avvaiyar St, Ambal Nagar, Gandhi Nagar, Chennai, Tamil Nadu 600032, India</div>
+          <a class="btn" href="https://wa.me/918778941439?text=Hi%20RK%20REAL%20ESTATES%2C%0A%0AI%E2%80%99m%20Anand%2C%20an%20AI%20%26%20Web%20Developer.%20I%20noticed%20your%20business%20and%20saw%20that%20there%20isn%E2%80%99t%20a%20dedicated%20website%20yet.%0A%0AI%20help%20businesses%20create%20modern%20websites%20to%20attract%20more%20customers.%0A%0AI%20can%20also%20create%20a%20sample%20homepage%20for%20your%20business%20for%20free.%0A%0AMy%20work%3A%0Ahttps%3A%2F%2Fnexcrafttechtest.vercel.app%2F%0A%0ALet%20me%20know%20if%20you're%20interested." target="_blank" onclick="markVisited(this)">💬 Open WhatsApp</a>
+        </div>
+      
+        <div class="lead-card">
+          <div class="lead-name">55. Buy / Sell / Rent Property in Chennai</div>
+          <div class="lead-info">📞 <strong>Phone:</strong> 073059 23888</div>
+          <div class="lead-info">📍 <strong>Address:</strong> Second Floor, 33, Baroda St, Ramakrishnapuram, West Mambalam, Chennai, Tamil Nadu 600033, India</div>
+          <a class="btn" href="https://wa.me/917305923888?text=Hi%20Buy%20%2F%20Sell%20%2F%20Rent%20Property%20in%20Chennai%2C%0A%0AI%E2%80%99m%20Anand%2C%20an%20AI%20%26%20Web%20Developer.%20I%20noticed%20your%20business%20and%20saw%20that%20there%20isn%E2%80%99t%20a%20dedicated%20website%20yet.%0A%0AI%20help%20businesses%20create%20modern%20websites%20to%20attract%20more%20customers.%0A%0AI%20can%20also%20create%20a%20sample%20homepage%20for%20your%20business%20for%20free.%0A%0AMy%20work%3A%0Ahttps%3A%2F%2Fnexcrafttechtest.vercel.app%2F%0A%0ALet%20me%20know%20if%20you're%20interested." target="_blank" onclick="markVisited(this)">💬 Open WhatsApp</a>
+        </div>
+      
+        <div class="lead-card">
+          <div class="lead-name">56. Supreme Multi Speciality Dental Centre</div>
+          <div class="lead-info">📞 <strong>Phone:</strong> 095511 18120</div>
+          <div class="lead-info">📍 <strong>Address:</strong> 1/5, Kodambakkam, Saidapet Rd, Sarvamangala Colony, Vadapalani, Chennai, Tamil Nadu 600026, India</div>
+          <a class="btn" href="https://wa.me/919551118120?text=Hi%20Supreme%20Multi%20Speciality%20Dental%20Centre%2C%0A%0AI%E2%80%99m%20Anand%2C%20an%20AI%20%26%20Web%20Developer.%20I%20noticed%20your%20business%20and%20saw%20that%20there%20isn%E2%80%99t%20a%20dedicated%20website%20yet.%0A%0AI%20help%20businesses%20create%20modern%20websites%20to%20attract%20more%20customers.%0A%0AI%20can%20also%20create%20a%20sample%20homepage%20for%20your%20business%20for%20free.%0A%0AMy%20work%3A%0Ahttps%3A%2F%2Fnexcrafttechtest.vercel.app%2F%0A%0ALet%20me%20know%20if%20you're%20interested." target="_blank" onclick="markVisited(this)">💬 Open WhatsApp</a>
+        </div>
+      
+        <div class="lead-card">
+          <div class="lead-name">57. Imperial Dental Clinic</div>
+          <div class="lead-info">📞 <strong>Phone:</strong> 087782 34785</div>
+          <div class="lead-info">📍 <strong>Address:</strong> No 29, Mount Poonamallee Road, Main Road, opposite to Chennai Trade Centre, Nandambakkam, Tamil Nadu 600089, India</div>
+          <a class="btn" href="https://wa.me/918778234785?text=Hi%20Imperial%20Dental%20Clinic%2C%0A%0AI%E2%80%99m%20Anand%2C%20an%20AI%20%26%20Web%20Developer.%20I%20noticed%20your%20business%20and%20saw%20that%20there%20isn%E2%80%99t%20a%20dedicated%20website%20yet.%0A%0AI%20help%20businesses%20create%20modern%20websites%20to%20attract%20more%20customers.%0A%0AI%20can%20also%20create%20a%20sample%20homepage%20for%20your%20business%20for%20free.%0A%0AMy%20work%3A%0Ahttps%3A%2F%2Fnexcrafttechtest.vercel.app%2F%0A%0ALet%20me%20know%20if%20you're%20interested." target="_blank" onclick="markVisited(this)">💬 Open WhatsApp</a>
+        </div>
+      
+        <div class="lead-card">
+          <div class="lead-name">58. LOTUS DENTAL CENTER</div>
+          <div class="lead-info">📞 <strong>Phone:</strong> 063745 08373</div>
+          <div class="lead-info">📍 <strong>Address:</strong> 16/27, Ambal Nagar Main Rd, Ambal Nagar, Ekkatuthangal, Chennai, Tamil Nadu 600032, India</div>
+          <a class="btn" href="https://wa.me/916374508373?text=Hi%20LOTUS%20DENTAL%20CENTER%2C%0A%0AI%E2%80%99m%20Anand%2C%20an%20AI%20%26%20Web%20Developer.%20I%20noticed%20your%20business%20and%20saw%20that%20there%20isn%E2%80%99t%20a%20dedicated%20website%20yet.%0A%0AI%20help%20businesses%20create%20modern%20websites%20to%20attract%20more%20customers.%0A%0AI%20can%20also%20create%20a%20sample%20homepage%20for%20your%20business%20for%20free.%0A%0AMy%20work%3A%0Ahttps%3A%2F%2Fnexcrafttechtest.vercel.app%2F%0A%0ALet%20me%20know%20if%20you're%20interested." target="_blank" onclick="markVisited(this)">💬 Open WhatsApp</a>
+        </div>
+      
+        <div class="lead-card">
+          <div class="lead-name">59. csk speciality dental clinic chennai /karaikudi</div>
+          <div class="lead-info">📞 <strong>Phone:</strong> 098843 50036</div>
+          <div class="lead-info">📍 <strong>Address:</strong> 18, Mariamman Kovil St, near Vani vidhyalaya school, Annaji Nagar, KK Nagar West, K. K. Nagar, Chennai, Tamil Nadu 600078, India</div>
+          <a class="btn" href="https://wa.me/919884350036?text=Hi%20csk%20speciality%20dental%20clinic%20chennai%20%2Fkaraikudi%2C%0A%0AI%E2%80%99m%20Anand%2C%20an%20AI%20%26%20Web%20Developer.%20I%20noticed%20your%20business%20and%20saw%20that%20there%20isn%E2%80%99t%20a%20dedicated%20website%20yet.%0A%0AI%20help%20businesses%20create%20modern%20websites%20to%20attract%20more%20customers.%0A%0AI%20can%20also%20create%20a%20sample%20homepage%20for%20your%20business%20for%20free.%0A%0AMy%20work%3A%0Ahttps%3A%2F%2Fnexcrafttechtest.vercel.app%2F%0A%0ALet%20me%20know%20if%20you're%20interested." target="_blank" onclick="markVisited(this)">💬 Open WhatsApp</a>
+        </div>
+      
+        <div class="lead-card">
+          <div class="lead-name">60. SHARVESH DENTAL CLINIC</div>
+          <div class="lead-info">📞 <strong>Phone:</strong> 080566 26657</div>
+          <div class="lead-info">📍 <strong>Address:</strong> 2/11, Reddy 2nd St, Labour Colony, SIDCO Industrial Estate, Ekkatuthangal, Chennai, Tamil Nadu 600032, India</div>
+          <a class="btn" href="https://wa.me/918056626657?text=Hi%20SHARVESH%20DENTAL%20CLINIC%2C%0A%0AI%E2%80%99m%20Anand%2C%20an%20AI%20%26%20Web%20Developer.%20I%20noticed%20your%20business%20and%20saw%20that%20there%20isn%E2%80%99t%20a%20dedicated%20website%20yet.%0A%0AI%20help%20businesses%20create%20modern%20websites%20to%20attract%20more%20customers.%0A%0AI%20can%20also%20create%20a%20sample%20homepage%20for%20your%20business%20for%20free.%0A%0AMy%20work%3A%0Ahttps%3A%2F%2Fnexcrafttechtest.vercel.app%2F%0A%0ALet%20me%20know%20if%20you're%20interested." target="_blank" onclick="markVisited(this)">💬 Open WhatsApp</a>
+        </div>
+      
+        <div class="lead-card">
+          <div class="lead-name">61. Beyond Smilz Multispeciality Dental Clinic</div>
+          <div class="lead-info">📞 <strong>Phone:</strong> 094443 33451</div>
+          <div class="lead-info">📍 <strong>Address:</strong> DR, PRAVEENA B. MOHANRAM, 17, Abdulla St, nearby AMMA HOSPITAL, Sriramapuram, Gangai Amman Koil Street - Boulevard, Thiruvalluvar Puram, Choolaimedu, Chennai, Tamil Nadu 600094, India</div>
+          <a class="btn" href="https://wa.me/919444333451?text=Hi%20Beyond%20Smilz%20Multispeciality%20Dental%20Clinic%2C%0A%0AI%E2%80%99m%20Anand%2C%20an%20AI%20%26%20Web%20Developer.%20I%20noticed%20your%20business%20and%20saw%20that%20there%20isn%E2%80%99t%20a%20dedicated%20website%20yet.%0A%0AI%20help%20businesses%20create%20modern%20websites%20to%20attract%20more%20customers.%0A%0AI%20can%20also%20create%20a%20sample%20homepage%20for%20your%20business%20for%20free.%0A%0AMy%20work%3A%0Ahttps%3A%2F%2Fnexcrafttechtest.vercel.app%2F%0A%0ALet%20me%20know%20if%20you're%20interested." target="_blank" onclick="markVisited(this)">💬 Open WhatsApp</a>
+        </div>
+      
+        <div class="lead-card">
+          <div class="lead-name">62. Dr.Raj's Advanced Dental & Medical Centre</div>
+          <div class="lead-info">📞 <strong>Phone:</strong> 097890 55848</div>
+          <div class="lead-info">📍 <strong>Address:</strong> Dental Clinic New No:-4,Old-22 Gandhi Road Behind Murugan super Market, 600106 Jagannatha Nagar, opp. to Bank of Baroda, Diagonally, Arumbakkam, Chennai, Tamil Nadu 600106, India</div>
+          <a class="btn" href="https://wa.me/919789055848?text=Hi%20Dr.Raj's%20Advanced%20Dental%20%26%20Medical%20Centre%2C%0A%0AI%E2%80%99m%20Anand%2C%20an%20AI%20%26%20Web%20Developer.%20I%20noticed%20your%20business%20and%20saw%20that%20there%20isn%E2%80%99t%20a%20dedicated%20website%20yet.%0A%0AI%20help%20businesses%20create%20modern%20websites%20to%20attract%20more%20customers.%0A%0AI%20can%20also%20create%20a%20sample%20homepage%20for%20your%20business%20for%20free.%0A%0AMy%20work%3A%0Ahttps%3A%2F%2Fnexcrafttechtest.vercel.app%2F%0A%0ALet%20me%20know%20if%20you're%20interested." target="_blank" onclick="markVisited(this)">💬 Open WhatsApp</a>
+        </div>
+      
+        <div class="lead-card">
+          <div class="lead-name">63. varsid dental clinic</div>
+          <div class="lead-info">📞 <strong>Phone:</strong> 098843 24557</div>
+          <div class="lead-info">📍 <strong>Address:</strong> Ground floor, sri murugan stores, 11/2, 100 feet road, Ambal Nagar, Ekkatuthangal, Chennai, Tamil Nadu 600032, India</div>
+          <a class="btn" href="https://wa.me/919884324557?text=Hi%20varsid%20dental%20clinic%2C%0A%0AI%E2%80%99m%20Anand%2C%20an%20AI%20%26%20Web%20Developer.%20I%20noticed%20your%20business%20and%20saw%20that%20there%20isn%E2%80%99t%20a%20dedicated%20website%20yet.%0A%0AI%20help%20businesses%20create%20modern%20websites%20to%20attract%20more%20customers.%0A%0AI%20can%20also%20create%20a%20sample%20homepage%20for%20your%20business%20for%20free.%0A%0AMy%20work%3A%0Ahttps%3A%2F%2Fnexcrafttechtest.vercel.app%2F%0A%0ALet%20me%20know%20if%20you're%20interested." target="_blank" onclick="markVisited(this)">💬 Open WhatsApp</a>
+        </div>
+      
+        <div class="lead-card">
+          <div class="lead-name">64. Manoj's Dental clinic</div>
+          <div class="lead-info">📞 <strong>Phone:</strong> 086675 46828</div>
+          <div class="lead-info">📍 <strong>Address:</strong> Nehru Nagar Main Rd, GR Nagar, M. A, Ramapuram, Chidambaram, Chennai, Tamil Nadu 600089, India</div>
+          <a class="btn" href="https://wa.me/918667546828?text=Hi%20Manoj's%20Dental%20clinic%2C%0A%0AI%E2%80%99m%20Anand%2C%20an%20AI%20%26%20Web%20Developer.%20I%20noticed%20your%20business%20and%20saw%20that%20there%20isn%E2%80%99t%20a%20dedicated%20website%20yet.%0A%0AI%20help%20businesses%20create%20modern%20websites%20to%20attract%20more%20customers.%0A%0AI%20can%20also%20create%20a%20sample%20homepage%20for%20your%20business%20for%20free.%0A%0AMy%20work%3A%0Ahttps%3A%2F%2Fnexcrafttechtest.vercel.app%2F%0A%0ALet%20me%20know%20if%20you're%20interested." target="_blank" onclick="markVisited(this)">💬 Open WhatsApp</a>
+        </div>
+      
+        <div class="lead-card">
+          <div class="lead-name">65. Jairagava Dental Clinic</div>
+          <div class="lead-info">📞 <strong>Phone:</strong> 097909 52239</div>
+          <div class="lead-info">📍 <strong>Address:</strong> No:9, Pachaiyappan St, Sanjaicolony, MGR Nagar, Nesapakkam, Chennai, Tamil Nadu 600078, India</div>
+          <a class="btn" href="https://wa.me/919790952239?text=Hi%20Jairagava%20Dental%20Clinic%2C%0A%0AI%E2%80%99m%20Anand%2C%20an%20AI%20%26%20Web%20Developer.%20I%20noticed%20your%20business%20and%20saw%20that%20there%20isn%E2%80%99t%20a%20dedicated%20website%20yet.%0A%0AI%20help%20businesses%20create%20modern%20websites%20to%20attract%20more%20customers.%0A%0AI%20can%20also%20create%20a%20sample%20homepage%20for%20your%20business%20for%20free.%0A%0AMy%20work%3A%0Ahttps%3A%2F%2Fnexcrafttechtest.vercel.app%2F%0A%0ALet%20me%20know%20if%20you're%20interested." target="_blank" onclick="markVisited(this)">💬 Open WhatsApp</a>
+        </div>
+      
+        <div class="lead-card">
+          <div class="lead-name">66. D Care Dental Clinic</div>
+          <div class="lead-info">📞 <strong>Phone:</strong> 098847 18819</div>
+          <div class="lead-info">📍 <strong>Address:</strong> 11, Veeraraghavan St, NCBS Colony, Nanganallur, Chennai, Tamil Nadu 600061, India</div>
+          <a class="btn" href="https://wa.me/919884718819?text=Hi%20D%20Care%20Dental%20Clinic%2C%0A%0AI%E2%80%99m%20Anand%2C%20an%20AI%20%26%20Web%20Developer.%20I%20noticed%20your%20business%20and%20saw%20that%20there%20isn%E2%80%99t%20a%20dedicated%20website%20yet.%0A%0AI%20help%20businesses%20create%20modern%20websites%20to%20attract%20more%20customers.%0A%0AI%20can%20also%20create%20a%20sample%20homepage%20for%20your%20business%20for%20free.%0A%0AMy%20work%3A%0Ahttps%3A%2F%2Fnexcrafttechtest.vercel.app%2F%0A%0ALet%20me%20know%20if%20you're%20interested." target="_blank" onclick="markVisited(this)">💬 Open WhatsApp</a>
+        </div>
+      
+        <div class="lead-card">
+          <div class="lead-name">67. SMILEVER DENTAL CENTRE</div>
+          <div class="lead-info">📞 <strong>Phone:</strong> 098408 88420</div>
+          <div class="lead-info">📍 <strong>Address:</strong> 7, AVM Ave 2nd Main Rd, AVM Avenue, Virugambakkam, Chennai, Tamil Nadu 600092, India</div>
+          <a class="btn" href="https://wa.me/919840888420?text=Hi%20SMILEVER%20DENTAL%20CENTRE%2C%0A%0AI%E2%80%99m%20Anand%2C%20an%20AI%20%26%20Web%20Developer.%20I%20noticed%20your%20business%20and%20saw%20that%20there%20isn%E2%80%99t%20a%20dedicated%20website%20yet.%0A%0AI%20help%20businesses%20create%20modern%20websites%20to%20attract%20more%20customers.%0A%0AI%20can%20also%20create%20a%20sample%20homepage%20for%20your%20business%20for%20free.%0A%0AMy%20work%3A%0Ahttps%3A%2F%2Fnexcrafttechtest.vercel.app%2F%0A%0ALet%20me%20know%20if%20you're%20interested." target="_blank" onclick="markVisited(this)">💬 Open WhatsApp</a>
+        </div>
+      
+        <div class="lead-card">
+          <div class="lead-name">68. Grace Dental Clinic</div>
+          <div class="lead-info">📞 <strong>Phone:</strong> 091502 72718</div>
+          <div class="lead-info">📍 <strong>Address:</strong> Mettu street, 3/37C, Butt Rd, Ramapuram, Parangi Malai, Chennai, St.Thomas Mount, Tamil Nadu 600016, India</div>
+          <a class="btn" href="https://wa.me/919150272718?text=Hi%20Grace%20Dental%20Clinic%2C%0A%0AI%E2%80%99m%20Anand%2C%20an%20AI%20%26%20Web%20Developer.%20I%20noticed%20your%20business%20and%20saw%20that%20there%20isn%E2%80%99t%20a%20dedicated%20website%20yet.%0A%0AI%20help%20businesses%20create%20modern%20websites%20to%20attract%20more%20customers.%0A%0AI%20can%20also%20create%20a%20sample%20homepage%20for%20your%20business%20for%20free.%0A%0AMy%20work%3A%0Ahttps%3A%2F%2Fnexcrafttechtest.vercel.app%2F%0A%0ALet%20me%20know%20if%20you're%20interested." target="_blank" onclick="markVisited(this)">💬 Open WhatsApp</a>
+        </div>
+      
+        <div class="lead-card">
+          <div class="lead-name">69. Thilagavathi’s Dental Care</div>
+          <div class="lead-info">📞 <strong>Phone:</strong> 080729 79692</div>
+          <div class="lead-info">📍 <strong>Address:</strong> No 20, Mosque St, Sadullakhan Nagar, Saidapet, Chennai, Tamil Nadu 600015, India</div>
+          <a class="btn" href="https://wa.me/918072979692?text=Hi%20Thilagavathi%E2%80%99s%20Dental%20Care%2C%0A%0AI%E2%80%99m%20Anand%2C%20an%20AI%20%26%20Web%20Developer.%20I%20noticed%20your%20business%20and%20saw%20that%20there%20isn%E2%80%99t%20a%20dedicated%20website%20yet.%0A%0AI%20help%20businesses%20create%20modern%20websites%20to%20attract%20more%20customers.%0A%0AI%20can%20also%20create%20a%20sample%20homepage%20for%20your%20business%20for%20free.%0A%0AMy%20work%3A%0Ahttps%3A%2F%2Fnexcrafttechtest.vercel.app%2F%0A%0ALet%20me%20know%20if%20you're%20interested." target="_blank" onclick="markVisited(this)">💬 Open WhatsApp</a>
+        </div>
+      
+        <div class="lead-card">
+          <div class="lead-name">70. Spa Pavilion</div>
+          <div class="lead-info">📞 <strong>Phone:</strong> 098403 85888</div>
+          <div class="lead-info">📍 <strong>Address:</strong> 180, Hotel Raj Park, TT Krishnamachari Road,Alwarpet., Parthasarathypuram, Teynampet, Chennai, Tamil Nadu 600018, India</div>
+          <a class="btn" href="https://wa.me/919840385888?text=Hi%20Spa%20Pavilion%2C%0A%0AI%E2%80%99m%20Anand%2C%20an%20AI%20%26%20Web%20Developer.%20I%20noticed%20your%20business%20and%20saw%20that%20there%20isn%E2%80%99t%20a%20dedicated%20website%20yet.%0A%0AI%20help%20businesses%20create%20modern%20websites%20to%20attract%20more%20customers.%0A%0AI%20can%20also%20create%20a%20sample%20homepage%20for%20your%20business%20for%20free.%0A%0AMy%20work%3A%0Ahttps%3A%2F%2Fnexcrafttechtest.vercel.app%2F%0A%0ALet%20me%20know%20if%20you're%20interested." target="_blank" onclick="markVisited(this)">💬 Open WhatsApp</a>
+        </div>
+      
+        <div class="lead-card">
+          <div class="lead-name">71. A4U Therapy</div>
+          <div class="lead-info">📞 <strong>Phone:</strong> 090920 85041</div>
+          <div class="lead-info">📍 <strong>Address:</strong> New No 8, Old 2, Nethaji Rd, Ramapuram, Ganesh Nagar, Guindy, Chennai, Tamil Nadu 600032, India</div>
+          <a class="btn" href="https://wa.me/919092085041?text=Hi%20A4U%20Therapy%2C%0A%0AI%E2%80%99m%20Anand%2C%20an%20AI%20%26%20Web%20Developer.%20I%20noticed%20your%20business%20and%20saw%20that%20there%20isn%E2%80%99t%20a%20dedicated%20website%20yet.%0A%0AI%20help%20businesses%20create%20modern%20websites%20to%20attract%20more%20customers.%0A%0AI%20can%20also%20create%20a%20sample%20homepage%20for%20your%20business%20for%20free.%0A%0AMy%20work%3A%0Ahttps%3A%2F%2Fnexcrafttechtest.vercel.app%2F%0A%0ALet%20me%20know%20if%20you're%20interested." target="_blank" onclick="markVisited(this)">💬 Open WhatsApp</a>
+        </div>
+      
+        <div class="lead-card">
+          <div class="lead-name">72. Elite Day Spa</div>
+          <div class="lead-info">📞 <strong>Phone:</strong> 096009 71128</div>
+          <div class="lead-info">📍 <strong>Address:</strong> No:5,Railway Colony 4th street, Nelson Manickam Rd, Railway Colony, Aminjikarai, Chennai, Tamil Nadu 600030, India</div>
+          <a class="btn" href="https://wa.me/919600971128?text=Hi%20Elite%20Day%20Spa%2C%0A%0AI%E2%80%99m%20Anand%2C%20an%20AI%20%26%20Web%20Developer.%20I%20noticed%20your%20business%20and%20saw%20that%20there%20isn%E2%80%99t%20a%20dedicated%20website%20yet.%0A%0AI%20help%20businesses%20create%20modern%20websites%20to%20attract%20more%20customers.%0A%0AI%20can%20also%20create%20a%20sample%20homepage%20for%20your%20business%20for%20free.%0A%0AMy%20work%3A%0Ahttps%3A%2F%2Fnexcrafttechtest.vercel.app%2F%0A%0ALet%20me%20know%20if%20you're%20interested." target="_blank" onclick="markVisited(this)">💬 Open WhatsApp</a>
+        </div>
+      
+        <div class="lead-card">
+          <div class="lead-name">73. DESSGLO ARCHITECTS</div>
+          <div class="lead-info">📞 <strong>Phone:</strong> 098408 12615</div>
+          <div class="lead-info">📍 <strong>Address:</strong> 16, Anna Main Rd, near Chennai Mobiles Showroom, MGR Nagar, K. K. Nagar, Chennai, Tamil Nadu 600078, India</div>
+          <a class="btn" href="https://wa.me/919840812615?text=Hi%20DESSGLO%20ARCHITECTS%2C%0A%0AI%E2%80%99m%20Anand%2C%20an%20AI%20%26%20Web%20Developer.%20I%20noticed%20your%20business%20and%20saw%20that%20there%20isn%E2%80%99t%20a%20dedicated%20website%20yet.%0A%0AI%20help%20businesses%20create%20modern%20websites%20to%20attract%20more%20customers.%0A%0AI%20can%20also%20create%20a%20sample%20homepage%20for%20your%20business%20for%20free.%0A%0AMy%20work%3A%0Ahttps%3A%2F%2Fnexcrafttechtest.vercel.app%2F%0A%0ALet%20me%20know%20if%20you're%20interested." target="_blank" onclick="markVisited(this)">💬 Open WhatsApp</a>
+        </div>
+      
+        <div class="lead-card">
+          <div class="lead-name">74. Arcturus Infrastructure</div>
+          <div class="lead-info">📞 <strong>Phone:</strong> 097910 91195</div>
+          <div class="lead-info">📍 <strong>Address:</strong> Arcturus, 2, 1, Duraisamy Street, Visalakshi Nagar, Jyothi Nagar, Ekkatuthangal, Chennai, Tamil Nadu 600032, India</div>
+          <a class="btn" href="https://wa.me/919791091195?text=Hi%20Arcturus%20Infrastructure%2C%0A%0AI%E2%80%99m%20Anand%2C%20an%20AI%20%26%20Web%20Developer.%20I%20noticed%20your%20business%20and%20saw%20that%20there%20isn%E2%80%99t%20a%20dedicated%20website%20yet.%0A%0AI%20help%20businesses%20create%20modern%20websites%20to%20attract%20more%20customers.%0A%0AI%20can%20also%20create%20a%20sample%20homepage%20for%20your%20business%20for%20free.%0A%0AMy%20work%3A%0Ahttps%3A%2F%2Fnexcrafttechtest.vercel.app%2F%0A%0ALet%20me%20know%20if%20you're%20interested." target="_blank" onclick="markVisited(this)">💬 Open WhatsApp</a>
+        </div>
+      
+        <div class="lead-card">
+          <div class="lead-name">75. plann A - Architecture and Interiors</div>
+          <div class="lead-info">📞 <strong>Phone:</strong> 096001 70080</div>
+          <div class="lead-info">📍 <strong>Address:</strong> 8/1, 1st St, Ashok Nagar, Chennai, Tamil Nadu 600083, India</div>
+          <a class="btn" href="https://wa.me/919600170080?text=Hi%20plann%20A%20-%20Architecture%20and%20Interiors%2C%0A%0AI%E2%80%99m%20Anand%2C%20an%20AI%20%26%20Web%20Developer.%20I%20noticed%20your%20business%20and%20saw%20that%20there%20isn%E2%80%99t%20a%20dedicated%20website%20yet.%0A%0AI%20help%20businesses%20create%20modern%20websites%20to%20attract%20more%20customers.%0A%0AI%20can%20also%20create%20a%20sample%20homepage%20for%20your%20business%20for%20free.%0A%0AMy%20work%3A%0Ahttps%3A%2F%2Fnexcrafttechtest.vercel.app%2F%0A%0ALet%20me%20know%20if%20you're%20interested." target="_blank" onclick="markVisited(this)">💬 Open WhatsApp</a>
+        </div>
+      
+        <div class="lead-card">
+          <div class="lead-name">76. Chennai Architects - Ar. Prabu Nagarajan</div>
+          <div class="lead-info">📞 <strong>Phone:</strong> 044 4773 3668</div>
+          <div class="lead-info">📍 <strong>Address:</strong> H2, Kaveri Apartments, Lattice Brg Rd, Chinmaya Nagar, Stage 1, Adyar, Chennai, Tamil Nadu 600020, India</div>
+          <a class="btn" href="https://wa.me/914447733668?text=Hi%20Chennai%20Architects%20-%20Ar.%20Prabu%20Nagarajan%2C%0A%0AI%E2%80%99m%20Anand%2C%20an%20AI%20%26%20Web%20Developer.%20I%20noticed%20your%20business%20and%20saw%20that%20there%20isn%E2%80%99t%20a%20dedicated%20website%20yet.%0A%0AI%20help%20businesses%20create%20modern%20websites%20to%20attract%20more%20customers.%0A%0AI%20can%20also%20create%20a%20sample%20homepage%20for%20your%20business%20for%20free.%0A%0AMy%20work%3A%0Ahttps%3A%2F%2Fnexcrafttechtest.vercel.app%2F%0A%0ALet%20me%20know%20if%20you're%20interested." target="_blank" onclick="markVisited(this)">💬 Open WhatsApp</a>
+        </div>
+      
+        <div class="lead-card">
+          <div class="lead-name">77. Design & Architecture Studio</div>
+          <div class="lead-info">📞 <strong>Phone:</strong> 044 2471 8935</div>
+          <div class="lead-info">📍 <strong>Address:</strong> 19/7a, Ground floor, MG, Chakrapani St, Sathya Garden, Saligramam, Chennai, Tamil Nadu 600093, India</div>
+          <a class="btn" href="https://wa.me/914424718935?text=Hi%20Design%20%26%20Architecture%20Studio%2C%0A%0AI%E2%80%99m%20Anand%2C%20an%20AI%20%26%20Web%20Developer.%20I%20noticed%20your%20business%20and%20saw%20that%20there%20isn%E2%80%99t%20a%20dedicated%20website%20yet.%0A%0AI%20help%20businesses%20create%20modern%20websites%20to%20attract%20more%20customers.%0A%0AI%20can%20also%20create%20a%20sample%20homepage%20for%20your%20business%20for%20free.%0A%0AMy%20work%3A%0Ahttps%3A%2F%2Fnexcrafttechtest.vercel.app%2F%0A%0ALet%20me%20know%20if%20you're%20interested." target="_blank" onclick="markVisited(this)">💬 Open WhatsApp</a>
+        </div>
+      
+        <div class="lead-card">
+          <div class="lead-name">78. Vision Architects & Interior Designers</div>
+          <div class="lead-info">📞 <strong>Phone:</strong> 044 4230 0992</div>
+          <div class="lead-info">📍 <strong>Address:</strong> Flat No.5, Amirthavanam, Apartment, 11, Temple Avenue, Srinagar Colony, Little Mount, Saidapet, Chennai, Tamil Nadu 600015, India</div>
+          <a class="btn" href="https://wa.me/914442300992?text=Hi%20Vision%20Architects%20%26%20Interior%20Designers%2C%0A%0AI%E2%80%99m%20Anand%2C%20an%20AI%20%26%20Web%20Developer.%20I%20noticed%20your%20business%20and%20saw%20that%20there%20isn%E2%80%99t%20a%20dedicated%20website%20yet.%0A%0AI%20help%20businesses%20create%20modern%20websites%20to%20attract%20more%20customers.%0A%0AI%20can%20also%20create%20a%20sample%20homepage%20for%20your%20business%20for%20free.%0A%0AMy%20work%3A%0Ahttps%3A%2F%2Fnexcrafttechtest.vercel.app%2F%0A%0ALet%20me%20know%20if%20you're%20interested." target="_blank" onclick="markVisited(this)">💬 Open WhatsApp</a>
+        </div>
+      
+        <div class="lead-card">
+          <div class="lead-name">79. Unique Angle Architecture and Interior Design</div>
+          <div class="lead-info">📞 <strong>Phone:</strong> 070920 36628</div>
+          <div class="lead-info">📍 <strong>Address:</strong> New No.18, J-Block, 1st Street, 13th Main Rd, Bharathi Colony, Saptagiri Colony, Anna Nagar, Chennai, Tamil Nadu 600040, India</div>
+          <a class="btn" href="https://wa.me/917092036628?text=Hi%20Unique%20Angle%20Architecture%20and%20Interior%20Design%2C%0A%0AI%E2%80%99m%20Anand%2C%20an%20AI%20%26%20Web%20Developer.%20I%20noticed%20your%20business%20and%20saw%20that%20there%20isn%E2%80%99t%20a%20dedicated%20website%20yet.%0A%0AI%20help%20businesses%20create%20modern%20websites%20to%20attract%20more%20customers.%0A%0AI%20can%20also%20create%20a%20sample%20homepage%20for%20your%20business%20for%20free.%0A%0AMy%20work%3A%0Ahttps%3A%2F%2Fnexcrafttechtest.vercel.app%2F%0A%0ALet%20me%20know%20if%20you're%20interested." target="_blank" onclick="markVisited(this)">💬 Open WhatsApp</a>
+        </div>
+      
+      </div>
+    </body>
+    </html>
+    
