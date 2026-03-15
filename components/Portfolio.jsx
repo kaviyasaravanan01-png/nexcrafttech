@@ -16,6 +16,7 @@ const projects = [
     desc: "Interactive website with modern animations & bold visual identity.",
     tags: ["Next.js", "Framer Motion", "Tailwind"],
     url: "https://spacecraftsfurniture.in/",
+    image: "/project/spacecraftsfuniture.png",
     color: "#6366f1",
   },
   {
@@ -25,6 +26,7 @@ const projects = [
     desc: "Premium eCommerce for a leading Australian fireplace brand.",
     tags: ["eCommerce", "Custom Build", "SEO"],
     url: "https://www.livingfire.com.au/",
+    image: "/project/livingfire.png",
     color: "#f97316",
   },
   {
@@ -34,6 +36,7 @@ const projects = [
     desc: "Elegant fashion storefront with smooth browsing experience.",
     tags: ["Next.js", "Supabase", "Responsive"],
     url: "https://blendoracollections.com/",
+    image: "/project/blendoracollections.png",
     color: "#ec4899",
   },
   {
@@ -43,6 +46,7 @@ const projects = [
     desc: "SaaS platform for pre-visualization & project planning.",
     tags: ["React", "Cloud", "Real-time"],
     url: "https://www.previzz.com/",
+    image: "/project/previz.png",
     color: "#06b6d4",
   },
   {
@@ -52,6 +56,7 @@ const projects = [
     desc: "Industrial services website with portfolio & enquiry system.",
     tags: ["Custom Build", "SEO", "Lead Gen"],
     url: "https://sparkmetalfabrications.com.au/",
+    image: "/project/sparkmetalfabrications.png",
     color: "#eab308",
   },
   {
@@ -61,6 +66,7 @@ const projects = [
     desc: "Interior design studio with immersive visual storytelling.",
     tags: ["Next.js", "Tailwind", "Design"],
     url: "https://ableinteriorsdigitalwebsite.vercel.app/",
+    image: "/project/ableinteriors.png",
     color: "#22c55e",
   },
   {
@@ -70,6 +76,7 @@ const projects = [
     desc: "AI prompt marketplace for Midjourney, ChatGPT, Veo, Gemini & more. Trusted by 400,000+ users.",
     tags: ["Marketplace", "AI Prompts", "Video Tutorials", "Next.js", "SEO"],
     url: "https://promptslibrary-nine.vercel.app/",
+    image: "/project/promptlibrary.png",
     color: "#4f46e5",
   },
 ];
@@ -94,6 +101,16 @@ export default function Portfolio() {
   const isInView = useInView(sectionRef, { once: true, margin: "-60px" });
   const [activeIdx, setActiveIdx] = useState(0);
   const [dragConstraint, setDragConstraint] = useState(0);
+  const [paused, setPaused] = useState(false);
+
+  // Auto-slide every 4 seconds, pause on hover/drag
+  useEffect(() => {
+    if (paused) return;
+    const timer = setInterval(() => {
+      setActiveIdx((prev) => (prev >= projects.length - 1 ? 0 : prev + 1));
+    }, 4000);
+    return () => clearInterval(timer);
+  }, [paused]);
 
   // Calculate drag boundaries
   useEffect(() => {
@@ -245,7 +262,11 @@ export default function Portfolio() {
         />
 
         {/* Project Carousel */}
-        <div style={{ position: "relative" }}>
+        <div
+          style={{ position: "relative" }}
+          onMouseEnter={() => setPaused(true)}
+          onMouseLeave={() => setPaused(false)}
+        >
           {/* Nav arrows */}
           <div className="portfolio-arrows" style={{ position: "absolute", top: "50%", left: -48, transform: "translateY(-50%)", zIndex: 3 }}>
             <motion.button
@@ -289,6 +310,7 @@ export default function Portfolio() {
               drag="x"
               dragConstraints={{ left: dragConstraint, right: 0 }}
               dragElastic={0.1}
+              onDragStart={() => setPaused(true)}
               onDragEnd={(e, info) => {
                 const cardW = trackRef.current?.firstChild?.offsetWidth || 340;
                 const swipeThreshold = cardW / 3;
@@ -297,6 +319,7 @@ export default function Portfolio() {
                 } else if (info.offset.x > swipeThreshold) {
                   scrollTo(Math.max(0, activeIdx - 1));
                 }
+                setPaused(false);
               }}
               animate={{ x: -(activeIdx * (340 + 20)) }}
               transition={{ type: "spring", stiffness: 300, damping: 30 }}
@@ -353,6 +376,31 @@ export default function Portfolio() {
                     pointerEvents: "none",
                   }}
                 />
+
+                {/* Project Screenshot */}
+                {project.image && (
+                  <div style={{
+                    width: "100%",
+                    aspectRatio: "16/9",
+                    overflow: "hidden",
+                    position: "relative",
+                    background: `linear-gradient(145deg, ${project.color}15, rgba(17,17,20,0.8))`,
+                  }}>
+                    <img
+                      src={project.image}
+                      alt={`${project.title} — ${project.tagline}`}
+                      loading="lazy"
+                      style={{
+                        width: "100%",
+                        height: "100%",
+                        objectFit: "cover",
+                        objectPosition: "top",
+                        transition: "transform 0.5s ease",
+                      }}
+                      className="portfolio-card-img"
+                    />
+                  </div>
+                )}
 
                 {/* Content */}
                 <div style={{ padding: "1.25rem 1.5rem" }}>

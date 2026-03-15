@@ -181,6 +181,33 @@ export default function PortfolioDetailClient({ project, slug }) {
           </motion.a>
         </motion.div>
 
+        {/* Project Screenshot */}
+        {project.image && (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.2 }}
+            style={{
+              marginBottom: "3rem",
+              borderRadius: 16,
+              overflow: "hidden",
+              border: "1px solid rgba(255,255,255,0.08)",
+              background: `linear-gradient(145deg, ${project.color}10, rgba(17,17,20,0.8))`,
+            }}
+          >
+            <img
+              src={project.image}
+              alt={`${project.title} — ${project.tagline}`}
+              style={{
+                width: "100%",
+                height: "auto",
+                display: "block",
+                objectFit: "cover",
+              }}
+            />
+          </motion.div>
+        )}
+
         {/* Divider */}
         <div
           className="detail-line"
