@@ -18,7 +18,7 @@ const services = [
       </svg>
     ),
     title: "Website Development",
-    desc: "Fast, responsive websites — from landing pages to full eCommerce.",
+    desc: "We build fast, responsive websites — from landing pages to full eCommerce stores for your business.",
     price: "₹6,999",
     lottieType: "globe",
   },
@@ -29,7 +29,7 @@ const services = [
       </svg>
     ),
     title: "SEO & Marketing",
-    desc: "Get found on Google. Ads, SEO, and content that drives traffic.",
+    desc: "Get your business found on Google with SEO, ads, and content strategies that grow traffic.",
     price: "₹4,000/mo",
     lottieType: "chart",
   },

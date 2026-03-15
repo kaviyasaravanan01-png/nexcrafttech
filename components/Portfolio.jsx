@@ -242,7 +242,7 @@ export default function Portfolio() {
               fontWeight: 300,
             }}
           >
-            Real projects. Real results. Click to visit live.
+            Websites we have built for real businesses — browse live examples and see the results.
           </p>
         </motion.div>
 

@@ -24,7 +24,7 @@ const cardVariants = {
 const plans = [
   {
     name: "Starter",
-    desc: "Professional online presence for small businesses.",
+    desc: "A professional website to build an online presence for your small business.",
     priceINR: "₹6,999",
     priceUSD: "$85",
     period: "one-time",
@@ -62,7 +62,7 @@ const plans = [
   },
   {
     name: "Business / Advanced",
-    desc: "For serious businesses.",
+    desc: "For serious businesses that need a powerful website built to grow.",
     priceINR: "₹29,999+",
     priceUSD: "$349+",
     period: "project based",
@@ -214,7 +214,7 @@ export default function Pricing() {
               fontWeight: 300,
             }}
           >
-            No hidden fees. Pick a plan or get a custom quote.
+            No hidden fees — pick the right plan to build a website that helps your business grow.
           </p>
 
           {/* Special Launch Offer heading */}

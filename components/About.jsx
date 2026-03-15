@@ -67,7 +67,7 @@ const values = [
       </svg>
     ),
     title: "No Hidden Costs",
-    desc: "Clear, detailed quotes upfront. You know exactly what you're paying.",
+    desc: "Clear, upfront quotes for every website we build — your business always knows exactly what it is paying.",
   },
   {
     icon: (
@@ -77,7 +77,7 @@ const values = [
       </svg>
     ),
     title: "Built to Scale",
-    desc: "Modern tech like Next.js & React — fast today, scalable tomorrow.",
+    desc: "We build websites with Next.js and React so your business can grow from day one.",
   },
   {
     icon: (
@@ -86,7 +86,7 @@ const values = [
       </svg>
     ),
     title: "End-to-End Delivery",
-    desc: "Design to deployment and beyond — we handle the tech, you grow.",
+    desc: "From design to deployment and beyond — we build and maintain your website while your business grows.",
   },
 ];
 
