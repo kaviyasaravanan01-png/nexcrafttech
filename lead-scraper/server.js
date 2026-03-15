@@ -37,6 +37,11 @@ const server = http.createServer((req, res) => {
     pathname = 'leads_dashboard.html';
   }
 
+  // Serve favicon from SVG
+  if (pathname === 'favicon.ico') {
+    pathname = 'favicon.svg';
+  }
+
   const filePath = path.join(SCRIPT_DIR, pathname);
   console.log(`📄 Requested: ${req.url} → File: ${filePath}`);
 
@@ -74,6 +79,7 @@ const server = http.createServer((req, res) => {
       '.jpg': 'image/jpeg',
       '.gif': 'image/gif',
       '.ico': 'image/x-icon',
+      '.svg': 'image/svg+xml',
     };
 
     if (mimeTypes[ext]) {
@@ -83,7 +89,8 @@ const server = http.createServer((req, res) => {
     res.writeHead(200, {
       'Content-Type': contentType,
       'Access-Control-Allow-Origin': '*',
-      'Cache-Control': 'no-cache'
+      'Cache-Control': 'no-cache',
+      'ngrok-skip-browser-warning': 'true'
     });
     res.end(data);
   });
