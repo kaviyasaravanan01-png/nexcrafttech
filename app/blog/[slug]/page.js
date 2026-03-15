@@ -15,11 +15,20 @@ export async function generateMetadata({ params }) {
   return {
     title: `${post.title} — NexCraft Technologies Blog`,
     description: post.excerpt,
+    alternates: { canonical: `https://nexcrafttech.com/blog/${slug}` },
     openGraph: {
       title: post.title,
       description: post.excerpt,
       type: "article",
+      url: `https://nexcrafttech.com/blog/${slug}`,
       publishedTime: post.date,
+      authors: ["NexCraft Technologies"],
+      section: post.category,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: post.title,
+      description: post.excerpt,
     },
   };
 }

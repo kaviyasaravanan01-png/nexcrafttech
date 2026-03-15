@@ -195,7 +195,7 @@ export default function Footer() {
                   flexShrink: 0,
                 }}
               >
-                <svg width="14" height="14" viewBox="0 0 21 21" fill="none">
+                <svg width="14" height="14" viewBox="0 0 21 21" fill="none" aria-hidden="true">
                   <path d="M2 10.5L7.5 2L13 10.5L7.5 19L2 10.5Z" fill="url(#fg1)" />
                   <path d="M9 10.5L14.5 2L20 10.5L14.5 19L9 10.5Z" fill="url(#fg2)" />
                   <defs>

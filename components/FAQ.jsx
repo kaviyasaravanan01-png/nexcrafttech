@@ -18,7 +18,7 @@ const faqs = [
   },
   {
     q: "Do you offer post-launch support?",
-    a: "Yes! We offer maintenance plans starting at ₹5,000/mo that include bug fixes, security patches, performance monitoring, and content updates. We don't disappear after launch.",
+    a: "Absolutely! All our packages come with lifetime support — we never disappear after launch. Bug fixes, security patches, and content guidance are always covered. SEO maintenance is included for the first 6–12 months depending on your plan, and can be extended on a monthly basis after that.",
   },
   {
     q: "Can you redesign my existing website?",
@@ -34,7 +34,7 @@ const faqs = [
   },
   {
     q: "How does your pricing work?",
-    a: "We offer transparent, fixed-price packages starting at ₹6,000 for websites. No hidden fees. You get a detailed quote before we start, and payment is milestone-based so you only pay for completed work.",
+    a: "We offer transparent, fixed-price packages starting at ₹6,999 ($85) for websites. No hidden fees. You get a detailed quote before we start, and payment is milestone-based so you only pay for completed work.",
   },
   {
     q: "Can you integrate AI chatbots into my website?",

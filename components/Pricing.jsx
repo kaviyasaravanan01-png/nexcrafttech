@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
 import { motion, useInView } from "framer-motion";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -22,72 +22,21 @@ const cardVariants = {
 };
 
 const plans = [
-  // --- Original Pricing Plans (commented for later use) ---
-  /*
-  const plans = [
-    {
-      name: "Starter",
-      desc: "Professional online presence for small businesses.",
-      price: "₹15,000",
-      period: "one-time",
-      features: [
-        "Up to 5 pages",
-        "Mobile responsive",
-        "Basic SEO setup",
-        "Contact form",
-        "1 month support",
-        "Vercel / Netlify hosting",
-      ],
-      highlight: false,
-    },
-    {
-      name: "Growth",
-      desc: "Scale with custom features & ongoing support.",
-      price: "₹45,000",
-      period: "one-time",
-      features: [
-        "Up to 15 pages",
-        "Custom design & animations",
-        "Advanced SEO & analytics",
-        "CMS / Admin panel",
-        "3 months support",
-        "Performance optimized",
-        "WhatsApp integration",
-      ],
-      highlight: true,
-    },
-    {
-      name: "Enterprise",
-      desc: "Full-scale solutions with AI, cloud & dedicated support.",
-      price: "₹1,50,000+",
-      period: "project-based",
-      features: [
-        "Unlimited pages",
-        "AI chatbot integration",
-        "Custom cloud backend",
-        "eCommerce / SaaS features",
-        "12 months priority support",
-        "Dedicated project manager",
-        "CI/CD & staging setup",
-      ],
-      highlight: false,
-    },
-  ];
-  */
-
-  // --- Special Launch Offer – Limited Time Pricing ---
   {
     name: "Starter",
     desc: "Professional online presence for small businesses.",
-    price: "₹6,999",
+    priceINR: "₹6,999",
+    priceUSD: "$85",
     period: "one-time",
     features: [
       "Up to 4 pages",
       "Mobile responsive",
-      "Basic SEO setup",
+      "Custom design & animations",
+      "SEO setup",
+      "SEO maintenance (12 months)",
       "Contact form",
       "WhatsApp chat integration",
-      "1 month support",
+      "Lifetime support",
       "Vercel / Netlify hosting",
       "Speed optimization"
     ],
@@ -96,23 +45,26 @@ const plans = [
   {
     name: "Growth",
     desc: "Scale with custom features & ongoing support. Best for startups and growing businesses.",
-    price: "₹14,999",
+    priceINR: "₹14,999",
+    priceUSD: "$179",
     period: "one-time",
     features: [
       "Up to 10 pages",
       "Custom design & animations",
       "SEO setup + analytics",
+      "SEO maintenance (12 months)",
       "WhatsApp integration",
       "Admin content update option",
       "Performance optimized",
-      "3 month support",
+      "Lifetime support",
     ],
     highlight: true,
   },
   {
     name: "Business / Advanced",
     desc: "For serious businesses.",
-    price: "₹29,999+",
+    priceINR: "₹29,999+",
+    priceUSD: "$349+",
     period: "project based",
     features: [
       "Up to 20 pages",
@@ -120,8 +72,10 @@ const plans = [
       "AI chatbot integration",
       "Custom cloud backend",
       "CMS / Admin panel",
+      "SEO setup + analytics",
+      "SEO maintenance (24 months)",
       "Performance optimization",
-      "6 months support",
+      "Lifetime support",
       "CI/CD & staging setup"
     ],
     highlight: false,
@@ -131,6 +85,21 @@ const plans = [
 export default function Pricing() {
   const sectionRef = useRef(null);
   const isInView = useInView(sectionRef, { once: true, margin: "-60px" });
+  const [currency, setCurrency] = useState("INR"); // default INR
+
+  // Detect user location via API
+  useEffect(() => {
+    let cancelled = false;
+    fetch("/api/geo")
+      .then((r) => r.json())
+      .then((data) => {
+        if (!cancelled && data.country && data.country !== "IN") {
+          setCurrency("USD");
+        }
+      })
+      .catch(() => {});
+    return () => { cancelled = true; };
+  }, []);
 
   useEffect(() => {
     if (!sectionRef.current) return;
@@ -265,6 +234,55 @@ export default function Pricing() {
             </span>
           </div>
 
+          {/* Currency Toggle */}
+          <div style={{ display: "flex", justifyContent: "center", marginTop: "0.75rem" }}>
+            <div style={{
+              display: "inline-flex",
+              borderRadius: 10,
+              border: "1px solid rgba(255,255,255,0.08)",
+              background: "rgba(255,255,255,0.03)",
+              padding: 3,
+              gap: 2,
+            }}>
+              <button
+                onClick={() => setCurrency("INR")}
+                style={{
+                  padding: "6px 16px",
+                  borderRadius: 8,
+                  fontSize: 12,
+                  fontWeight: 600,
+                  border: "none",
+                  cursor: "pointer",
+                  transition: "all 0.3s",
+                  background: currency === "INR"
+                    ? "linear-gradient(135deg, #c9a96e, #d4b883)"
+                    : "transparent",
+                  color: currency === "INR" ? "#09090b" : "rgba(255,255,255,0.4)",
+                }}
+              >
+                ₹ INR
+              </button>
+              <button
+                onClick={() => setCurrency("USD")}
+                style={{
+                  padding: "6px 16px",
+                  borderRadius: 8,
+                  fontSize: 12,
+                  fontWeight: 600,
+                  border: "none",
+                  cursor: "pointer",
+                  transition: "all 0.3s",
+                  background: currency === "USD"
+                    ? "linear-gradient(135deg, #c9a96e, #d4b883)"
+                    : "transparent",
+                  color: currency === "USD" ? "#09090b" : "rgba(255,255,255,0.4)",
+                }}
+              >
+                $ USD
+              </button>
+            </div>
+          </div>
+
           {/* Trust line */}
           {/* <div style={{
             display: "flex",
@@ -375,26 +393,50 @@ export default function Pricing() {
 
                 {/* Price */}
                 <div style={{ marginBottom: "1.25rem" }}>
-                  <span
-                    style={{
-                      fontSize: "clamp(1.75rem, 3vw, 2.25rem)",
-                      fontWeight: 800,
-                      background: "linear-gradient(135deg, #c9a96e, #e8d5b0)",
-                      WebkitBackgroundClip: "text",
-                      WebkitTextFillColor: "transparent",
-                    }}
-                  >
-                    {plan.price}
-                  </span>
-                  <span
-                    style={{
-                      fontSize: 12,
-                      color: "rgba(255,255,255,0.25)",
-                      marginLeft: 6,
-                    }}
-                  >
-                    / {plan.period}
-                  </span>
+                  <div style={{ display: "flex", alignItems: "baseline", flexWrap: "wrap", gap: 4 }}>
+                    <span
+                      style={{
+                        fontSize: "clamp(2rem, 4vw, 2.75rem)",
+                        fontWeight: 900,
+                        letterSpacing: "-0.02em",
+                        background: "linear-gradient(135deg, #e8d5b0, #c9a96e 50%, #d4b883)",
+                        WebkitBackgroundClip: "text",
+                        WebkitTextFillColor: "transparent",
+                        lineHeight: 1.1,
+                      }}
+                    >
+                      {currency === "INR" ? plan.priceINR : plan.priceUSD}
+                    </span>
+                    <span
+                      style={{
+                        fontSize: 12,
+                        color: "rgba(255,255,255,0.25)",
+                        marginLeft: 4,
+                        fontWeight: 500,
+                      }}
+                    >
+                      / {plan.period}
+                    </span>
+                  </div>
+                  {/* Alternate currency */}
+                  <div style={{
+                    marginTop: 6,
+                    display: "inline-flex",
+                    alignItems: "center",
+                    gap: 5,
+                    padding: "3px 10px",
+                    borderRadius: 6,
+                    background: "rgba(201,169,110,0.06)",
+                    border: "1px solid rgba(201,169,110,0.08)",
+                  }}>
+                    <span style={{
+                      fontSize: 11,
+                      color: "rgba(201,169,110,0.5)",
+                      fontWeight: 600,
+                    }}>
+                      ≈ {currency === "INR" ? plan.priceUSD : plan.priceINR}
+                    </span>
+                  </div>
                 </div>
 
                 {/* Features */}

@@ -15,7 +15,7 @@ const services3D = [
     id: "web",
     title: "Website Development",
     desc: "Fast, responsive websites built with Next.js, React, and Tailwind. From landing pages to complex platforms.",
-    price: "₹6,000",
+    price: "₹6,999",
     color: "#6366f1",
     icon: "globe",
     features: ["Next.js / React", "Responsive Design", "SEO Optimized", "Fast Loading"],

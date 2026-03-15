@@ -19,7 +19,7 @@ const services = [
     ),
     title: "Website Development",
     desc: "Fast, responsive websites — from landing pages to full eCommerce.",
-    price: "₹6,000",
+    price: "₹6,999",
     lottieType: "globe",
   },
   {

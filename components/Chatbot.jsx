@@ -13,7 +13,7 @@ const COMPANY_INFO = {
 };
 
 const SERVICES = [
-  { name: "Website Development", price: "From ₹6,000", desc: "Fast, responsive websites — landing pages to full eCommerce." },
+  { name: "Website Development", price: "From ₹6,999 ($85)", desc: "Fast, responsive websites — landing pages to full eCommerce." },
   { name: "SEO & Marketing", price: "From ₹3,000/mo", desc: "Get found on Google. Ads, SEO, and content that drives traffic." },
   { name: "AI Chatbots", price: "From ₹5,000", desc: "WhatsApp & website bots that automate support and generate leads." },
   { name: "Cloud & AI Solutions", price: "From ₹40,000", desc: "Cloud infra, data pipelines, and AI-powered workflows." },
@@ -22,9 +22,9 @@ const SERVICES = [
 ];
 
 const PRICING = [
-  { name: "Starter", price: "₹6,000 (one-time)", features: "Up to 5 pages, mobile responsive, basic SEO, contact form, 1 month support" },
-  { name: "Growth", price: "₹14,000 (one-time)", features: "Up to 15 pages, custom design & animations, CMS, advanced SEO, 3 months support, WhatsApp integration" },
-  { name: "Enterprise", price: "₹29,000+ (project-based)", features: "Unlimited pages, AI chatbot, custom cloud backend, eCommerce/SaaS, 12 months priority support, dedicated PM" },
+  { name: "Starter", price: "₹6,999 / $85 (one-time)", features: "Up to 4 pages, mobile responsive, custom design & animations, SEO setup + 12 months maintenance, contact form, WhatsApp chat, lifetime support" },
+  { name: "Growth", price: "₹14,999 / $179 (one-time)", features: "Up to 10 pages, custom design & animations, SEO + analytics (12 months maintenance), lifetime support, WhatsApp integration" },
+  { name: "Business / Advanced", price: "₹29,999+ / $349+ (project-based)", features: "Up to 20 pages, AI chatbot, custom cloud backend, CMS/Admin panel, SEO + analytics (24 months maintenance), lifetime support" },
 ];
 
 const QUICK_REPLIES = [
@@ -54,7 +54,7 @@ function getResponse(input) {
 
   // Individual services
   if (/website|web\s?dev|landing\s?page|ecommerce|e-commerce/.test(q)) {
-    return `🌐 **Website Development** — From ₹6,000\n\nWe build fast, responsive websites from landing pages to full eCommerce stores using Next.js, React, and modern tech.\n\nIncludes: Custom design, mobile responsive, SEO-ready, fast loading.\n\n👉 Want a free quote? Contact us at ${COMPANY_INFO.email}`;
+    return `🌐 **Website Development** — From ₹6,999 ($85)\n\nWe build fast, responsive websites from landing pages to full eCommerce stores using Next.js, React, and modern tech.\n\nIncludes: Custom design, mobile responsive, SEO-ready, fast loading.\n\n👉 Want a free quote? Contact us at ${COMPANY_INFO.email}`;
   }
   if (/seo|marketing|google|ads|traffic|digital marketing/.test(q)) {
     return `📈 **SEO & Digital Marketing** — From ₹4,000/mo\n\nGet found on Google with our SEO, content marketing, and paid ads management.\n\nIncludes: Keyword research, on-page/off-page SEO, Google Ads, analytics.\n\n👉 Contact: ${COMPANY_INFO.email}`;
