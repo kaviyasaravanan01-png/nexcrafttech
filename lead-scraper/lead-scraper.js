@@ -143,7 +143,7 @@
 // run();
 
 
-require("dotenv").config();
+// require("dotenv").config();
 const axios = require("axios");
 const { createObjectCsvWriter } = require("csv-writer");
 
