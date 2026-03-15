@@ -147,7 +147,7 @@ require("dotenv").config();
 const axios = require("axios");
 const { createObjectCsvWriter } = require("csv-writer");
 
-const API_KEY = process.env.GOOGLE_API_KEY;
+const API_KEY = "AIzaSyA4RtWTm6xPXUurvb2sqREEP4rxRIEWu_g";
 
 const delay = ms => new Promise(r => setTimeout(r, ms));
 
@@ -221,16 +221,18 @@ function createWhatsAppLink(name, phone) {
 
   const message = `Hi ${name},
 
-I’m Anand, an AI & Web Developer. I noticed your business and saw that there isn’t a dedicated website yet.
+I'm Anand, an AI & Web Developer specializing in custom web solutions.
 
-I help businesses create modern websites to attract more customers.
+I noticed your business doesn't have a dedicated online presence yet. A professional website can significantly help attract more customers and establish credibility.
 
-I can also create a sample homepage for your business for free.
+I've successfully built and currently manage multiple client projects, including portfolio sites, service platforms, and e-commerce solutions.
 
-My work:
-https://nexcrafttechtest.vercel.app/
+Check out my work and completed projects:
+https://nexcrafttech.com/
 
-Let me know if you're interested.`;
+I can create a custom, modern website tailored to your business needs. I also offer a free consultation to understand your requirements.
+
+Looking forward to working with you!`;
 
   const encoded = encodeURIComponent(message);
 

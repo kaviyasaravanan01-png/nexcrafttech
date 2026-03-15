@@ -15,7 +15,7 @@ const projects = [
     slug: "spacecrafts",
     desc: "Interactive website with modern animations & bold visual identity.",
     tags: ["Next.js", "Framer Motion", "Tailwind"],
-    url: "https://spacecraftswebsite.vercel.app/",
+    url: "https://spacecraftsfurniture.com/",
     color: "#6366f1",
   },
   {
