@@ -1,12 +1,10 @@
 import { Geist, Geist_Mono } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import CustomCursor from "@/components/CustomCursor";
-import WhatsAppButton from "@/components/WhatsAppButton";
-import Chatbot from "@/components/Chatbot";
+import ClientExtras from "@/components/ClientExtras";
 import PageTransition from "@/components/PageTransition";
-import SplashScreen from "@/components/SplashScreen";
 import ScrollProgress from "@/components/ScrollProgress";
 import BackToTop from "@/components/BackToTop";
 import SearchProvider from "@/components/SearchProvider";
@@ -21,14 +19,20 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+export const viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 5,
+};
+
 export const metadata = {
   metadataBase: new URL("https://nexcrafttech.com"),
   title: {
-    default: "NexCraft Technologies — Web Development, AI Chatbots & SEO Agency in India",
+    default: "NexCraft Tech — Web Dev, AI & SEO Agency India",
     template: "%s | NexCraft Technologies",
   },
   description:
-    "NexCraft Technologies is a full-service web development & digital agency in Chennai, India. We build fast Next.js websites, AI chatbots, SEO, and digital marketing solutions. Pricing from ₹6,999 ($85).",
+    "Web development, AI chatbots & SEO agency in Chennai, India. Fast Next.js sites & digital marketing. Pricing from ₹6,999.",
   keywords: [
     "NexCraft Technologies",
     "web development India",
@@ -77,6 +81,9 @@ export const metadata = {
   },
   alternates: {
     canonical: "https://nexcrafttech.com",
+    languages: {
+      "en": "https://nexcrafttech.com",
+    },
   },
   category: "technology",
   verification: {
@@ -87,14 +94,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className="scroll-smooth">
-      <head>
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-JJSGBLLT8R" />
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-JJSGBLLT8R');`,
-          }}
-        />
-      </head>
+      <head />
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-background text-foreground`}
       >
@@ -120,7 +120,13 @@ export default function RootLayout({ children }) {
                 postalCode: "600078",
                 addressCountry: "IN",
               },
-              sameAs: [],
+              sameAs: [
+                "https://www.facebook.com/nexcrafttech",
+                "https://www.instagram.com/nexcrafttech",
+                "https://www.linkedin.com/company/nexcrafttech",
+                "https://x.com/nexcrafttech",
+                "https://www.youtube.com/@nexcrafttech",
+              ],
               contactPoint: {
                 "@type": "ContactPoint",
                 telephone: "+918778585263",
@@ -175,15 +181,19 @@ export default function RootLayout({ children }) {
             }),
           }}
         />
-        <CustomCursor />
-        <SplashScreen />
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-JJSGBLLT8R"
+          strategy="afterInteractive"
+        />
+        <Script id="gtag-init" strategy="afterInteractive">
+          {`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-JJSGBLLT8R');`}
+        </Script>
+        <ClientExtras />
         <ScrollProgress />
         <Navbar />
         <main><PageTransition>{children}</PageTransition></main>
         <Footer />
         <BackToTop />
-        <WhatsAppButton />
-        <Chatbot />
         <SearchProvider />
       </body>
     </html>

@@ -11,9 +11,9 @@ import Contact from "@/components/Contact";
 import Map from "@/components/Map";
 
 export const metadata = {
-  title: "NexCraft Technologies — Web Development, AI Chatbots & SEO Agency in Chennai, India",
+  title: "NexCraft Tech — Web Dev, AI Chatbots & SEO | Chennai",
   description:
-    "NexCraft Technologies builds fast Next.js websites, AI chatbots, and delivers SEO & digital marketing for startups and growing businesses. Transparent pricing from ₹6,999 ($85). Free consultation.",
+    "Fast Next.js websites, AI chatbots & SEO for startups. Transparent pricing from ₹6,999. Free consultation.",
   alternates: { canonical: "https://nexcrafttech.com" },
 };
 
