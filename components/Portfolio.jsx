@@ -379,8 +379,7 @@ export default function Portfolio() {
 
                 {/* Project Screenshot */}
                 {project.image && (
-                  <div style={{
-                    width: "100%",
+                  <Link href={`/portfolio/${project.slug}`} style={{ display: "block", width: "100%",
                     aspectRatio: "16/9",
                     overflow: "hidden",
                     position: "relative",
@@ -399,7 +398,7 @@ export default function Portfolio() {
                       }}
                       className="portfolio-card-img"
                     />
-                  </div>
+                  </Link>
                 )}
 
                 {/* Content */}

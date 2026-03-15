@@ -120,6 +120,9 @@ export default function Process() {
           <h2 className="text-3xl sm:text-4xl font-bold leading-[1.15] text-white">
             Simple <span className="gradient-text">4-Step</span> Process
           </h2>
+          <p className="font-light leading-relaxed" style={{ color: "rgba(255,255,255,0.4)", fontSize: "1.05rem", maxWidth: "36rem", marginLeft: "auto", marginRight: "auto", marginTop: "1rem" }}>
+            From discovery to launch, we build your website with a clear, structured workflow that keeps your business goals at the centre of every decision.
+          </p>
         </motion.div>
 
         {/* Divider */}

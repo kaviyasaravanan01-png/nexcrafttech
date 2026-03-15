@@ -306,7 +306,7 @@ export default function Contact() {
               fontWeight: 300,
             }}
           >
-            Tell us about your project. Free quote within 24 hours.
+            Tell us about your project and let us build the right website or digital solution to help your business grow — free quote within 24 hours.
           </p>
         </motion.div>
 

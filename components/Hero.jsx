@@ -174,8 +174,7 @@ export default function Hero() {
           className="leading-relaxed font-light"
           style={{ color: "rgba(255,255,255,0.55)", fontSize: "1.18rem", maxWidth: "42rem", marginLeft: "auto", marginRight: "auto", textAlign: "center", marginTop: "1rem" }}
         >
-          From custom websites and SEO to AI-powered chatbots — we deliver
-          real results at startup-friendly prices. No fluff. No hidden costs.
+          We build custom websites, handle SEO, and develop AI-powered chatbots that help your business grow online with real, measurable results — all at startup-friendly prices with no hidden costs.
         </motion.p>
 
         {/* Services pills */}

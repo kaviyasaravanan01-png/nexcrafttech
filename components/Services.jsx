@@ -130,7 +130,7 @@ export default function Services() {
             What We <span className="gradient-text">Offer</span>
           </h2>
           <p className="font-light leading-relaxed" style={{ color: "rgba(255,255,255,0.4)", fontSize: "1.05rem", maxWidth: "32rem", marginLeft: "auto", marginRight: "auto", marginTop: "1rem" }}>
-            Everything to build, grow, and maintain your online presence.
+            Everything your business needs to build high-performing websites, grow your audience, and maintain a strong online presence that converts visitors into customers.
           </p>
         </motion.div>
 
