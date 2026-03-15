@@ -25,19 +25,20 @@ const SCRIPT_DIR = __dirname;
 // Serve files
 const server = http.createServer((req, res) => {
   const parsedUrl = url.parse(req.url, true);
-  let pathname = path.normalize(parsedUrl.pathname);
+  let pathname = parsedUrl.pathname;
 
   // Remove leading slash
   if (pathname.startsWith('/')) {
     pathname = pathname.slice(1);
   }
 
-  // Default to index.html
-  if (pathname === '' || pathname === '/') {
+  // Default to index.html if empty
+  if (!pathname || pathname === '') {
     pathname = 'leads_dashboard.html';
   }
 
   const filePath = path.join(SCRIPT_DIR, pathname);
+  console.log(`📄 Requested: ${req.url} → File: ${filePath}`);
 
   // Security: prevent path traversal
   if (!filePath.startsWith(SCRIPT_DIR)) {
@@ -49,12 +50,13 @@ const server = http.createServer((req, res) => {
   // Read and serve files
   fs.readFile(filePath, (err, data) => {
     if (err) {
+      console.error(`❌ Error reading ${filePath}:`, err.message);
       if (err.code === 'ENOENT') {
         res.writeHead(404, { 'Content-Type': 'text/plain' });
         res.end('404 - File Not Found');
       } else {
         res.writeHead(500, { 'Content-Type': 'text/plain' });
-        res.end('500 - Server Error');
+        res.end(`500 - Server Error: ${err.message}`);
       }
       return;
     }
@@ -93,7 +95,17 @@ server.listen(PORT, HOST, () => {
   console.log('\n================================================');
   console.log('🚀 WhatsApp Leads Dashboard Server Started');
   console.log('================================================\n');
-  console.log('📍 Local Access:');
+  console.log('� Server Directory:', SCRIPT_DIR);
+  
+  // Check if leads_dashboard.html exists
+  const dashboardPath = path.join(SCRIPT_DIR, 'leads_dashboard.html');
+  if (fs.existsSync(dashboardPath)) {
+    console.log('✅ leads_dashboard.html found at:', dashboardPath);
+  } else {
+    console.log('❌ ERROR: leads_dashboard.html NOT found at:', dashboardPath);
+  }
+  
+  console.log('\n�📍 Local Access:');
   console.log(`   http://localhost:${PORT}`);
   console.log(`   http://127.0.0.1:${PORT}\n`);
   console.log('🌐 Network Access (for other devices):');

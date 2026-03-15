@@ -221,16 +221,20 @@ function createWhatsAppLink(name, phone) {
 
   const message = `Hi ${name},
 
-I'm Anand, an AI & Web Developer specializing in custom web solutions.
+I'm Anand from NexCraftTech, an AI & Web Developer specializing in custom web solutions and AI chatbots.
 
-I noticed your business doesn't have a dedicated online presence yet. A professional website can significantly help attract more customers and establish credibility.
+I noticed your business doesn't have a dedicated online presence or AI automation yet. A professional website with AI bot integration can significantly help attract customers, automate support, and establish credibility.
 
-I've successfully built and currently manage multiple client projects, including portfolio sites, service platforms, and e-commerce solutions.
+I've successfully built and currently manage multiple client projects, including:
+✅ Portfolio sites
+✅ Service platforms
+✅ E-commerce solutions
+✅ AI chatbots & automation
 
-Check out my work and completed projects:
+Check out NexCraftTech and our completed projects:
 https://nexcrafttech.com/
 
-I can create a custom, modern website tailored to your business needs. I also offer a free consultation to understand your requirements.
+I can create a custom, modern website with AI bot automation tailored to your business needs. I also offer a free consultation to understand your requirements.
 
 Looking forward to working with you!`;
 

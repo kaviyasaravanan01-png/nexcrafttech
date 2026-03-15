@@ -46,11 +46,18 @@ export const metadata = {
     type: "website",
     url: "https://nexcrafttech.com",
     locale: "en_US",
+    images: [{
+      url: "https://nexcrafttech.com/nct-logo.svg",
+      width: 200,
+      height: 200,
+      alt: "NexCraft Technologies - NCT Logo",
+    }],
   },
   twitter: {
     card: "summary_large_image",
     title: "NexCraft Technologies — Websites, AI & SEO",
     description: "We build websites that grow your business. Transparent pricing from ₹6,000, fast delivery.",
+    image: "https://nexcrafttech.com/nct-logo.svg",
   },
   robots: {
     index: true,
