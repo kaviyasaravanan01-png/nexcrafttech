@@ -210,6 +210,11 @@ body {
 .card-lift {
   transition: transform 0.35s cubic-bezier(0.25, 0.1, 0, 1), box-shadow 0.35s ease;
 }
+
+/* Portfolio card image hover zoom */
+.portfolio-card-link:hover .portfolio-card-img {
+  transform: scale(1.05);
+}
 .card-lift:hover {
   transform: translateY(-4px);
   box-shadow: 0 8px 30px rgba(201,169,110,0.08), 0 2px 8px rgba(0,0,0,0.3);

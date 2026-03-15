@@ -18,8 +18,8 @@ const services = [
       </svg>
     ),
     title: "Website Development",
-    desc: "Fast, responsive websites — from landing pages to full eCommerce.",
-    price: "₹6,000",
+    desc: "We build fast, responsive websites — from landing pages to full eCommerce stores for your business.",
+    price: "₹6,999",
     lottieType: "globe",
   },
   {
@@ -29,7 +29,7 @@ const services = [
       </svg>
     ),
     title: "SEO & Marketing",
-    desc: "Get found on Google. Ads, SEO, and content that drives traffic.",
+    desc: "Get your business found on Google with SEO, ads, and content strategies that grow traffic.",
     price: "₹4,000/mo",
     lottieType: "chart",
   },
@@ -130,7 +130,7 @@ export default function Services() {
             What We <span className="gradient-text">Offer</span>
           </h2>
           <p className="font-light leading-relaxed" style={{ color: "rgba(255,255,255,0.4)", fontSize: "1.05rem", maxWidth: "32rem", marginLeft: "auto", marginRight: "auto", marginTop: "1rem" }}>
-            Everything to build, grow, and maintain your online presence.
+            Everything your business needs to build high-performing websites, grow your audience, and maintain a strong online presence that converts visitors into customers.
           </p>
         </motion.div>
 

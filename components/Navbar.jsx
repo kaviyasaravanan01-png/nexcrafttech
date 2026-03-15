@@ -131,7 +131,7 @@ export default function Navbar() {
               }}
               className="logo-icon-box"
             >
-              <svg width="21" height="21" viewBox="0 0 21 21" fill="none">
+              <svg width="21" height="21" viewBox="0 0 21 21" fill="none" aria-hidden="true">
                 <path d="M2 10.5L7.5 2L13 10.5L7.5 19L2 10.5Z" fill="url(#nc-g1)" />
                 <path d="M9 10.5L14.5 2L20 10.5L14.5 19L9 10.5Z" fill="url(#nc-g2)" />
                 <defs>

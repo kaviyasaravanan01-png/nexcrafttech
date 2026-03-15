@@ -141,6 +141,8 @@ export default function Contact() {
       });
       setStatus("success");
       setForm({ name: "", email: "", company: "", service: "", budget: "", message: "" });
+      setStep(0);
+      setDirection(-1);
 
       // Confetti celebration
       import("canvas-confetti").then((mod) => {
@@ -306,7 +308,7 @@ export default function Contact() {
               fontWeight: 300,
             }}
           >
-            Tell us about your project. Free quote within 24 hours.
+            Tell us about your project and let us build the right website or digital solution to help your business grow — free quote within 24 hours.
           </p>
         </motion.div>
 
@@ -616,21 +618,21 @@ export default function Contact() {
                 ) : (
                   <button
                     type="submit"
-                    disabled={status === "sending"}
+                    disabled={status === "sending" || !form.message.trim()}
                     className="btn-ripple"
                     style={{
                       padding: "0.7rem 2rem",
                       borderRadius: 10,
                       border: "none",
-                      background: "linear-gradient(135deg, #c9a96e, #d4b883)",
-                      color: "#09090b",
+                      background: (status === "sending" || !form.message.trim()) ? "rgba(255,255,255,0.06)" : "linear-gradient(135deg, #c9a96e, #d4b883)",
+                      color: (status === "sending" || !form.message.trim()) ? "rgba(255,255,255,0.2)" : "#09090b",
                       fontSize: 13,
                       fontWeight: 700,
                       letterSpacing: "0.02em",
-                      cursor: status === "sending" ? "not-allowed" : "pointer",
-                      opacity: status === "sending" ? 0.5 : 1,
+                      cursor: (status === "sending" || !form.message.trim()) ? "not-allowed" : "pointer",
+                      opacity: 1,
                       transition: "all 0.4s",
-                      boxShadow: "0 4px 16px rgba(201,169,110,0.2)",
+                      boxShadow: (status === "sending" || !form.message.trim()) ? "none" : "0 4px 16px rgba(201,169,110,0.2)",
                     }}
                   >
                     {status === "sending"

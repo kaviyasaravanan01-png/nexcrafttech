@@ -67,7 +67,7 @@ const values = [
       </svg>
     ),
     title: "No Hidden Costs",
-    desc: "Clear, detailed quotes upfront. You know exactly what you're paying.",
+    desc: "Clear, upfront quotes for every website we build — your business always knows exactly what it is paying.",
   },
   {
     icon: (
@@ -77,7 +77,7 @@ const values = [
       </svg>
     ),
     title: "Built to Scale",
-    desc: "Modern tech like Next.js & React — fast today, scalable tomorrow.",
+    desc: "We build websites with Next.js and React so your business can grow from day one.",
   },
   {
     icon: (
@@ -86,7 +86,7 @@ const values = [
       </svg>
     ),
     title: "End-to-End Delivery",
-    desc: "Design to deployment and beyond — we handle the tech, you grow.",
+    desc: "From design to deployment and beyond — we build and maintain your website while your business grows.",
   },
 ];
 
@@ -185,7 +185,7 @@ export default function About() {
             <span className="gradient-text">Choose NexCraft</span>
           </h2>
           <p className="font-light leading-relaxed" style={{ color: "rgba(255,255,255,0.4)", fontSize: "1.05rem", maxWidth: "36rem", marginLeft: "auto", marginRight: "auto", marginTop: "1rem" }}>
-            Small team. Fast delivery. Honest pricing. No corporate overhead.
+            We are a small, focused team that builds websites and digital products with fast delivery, honest pricing, and zero corporate overhead — so your business can grow without breaking the budget.
           </p>
         </motion.div>
 
