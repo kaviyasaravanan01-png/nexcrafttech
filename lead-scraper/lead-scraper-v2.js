@@ -439,11 +439,95 @@ async function appendLeadToCSV(filename, lead, existingPhones) {
   return true; // Successfully added
 }
 
-function createWhatsAppLink(name, phone) {
+// Country code mapping
+const COUNTRY_CODES = {
+  "India": "91",
+  "Australia": "61",
+  "USA": "1",
+  "United States": "1",
+  "UK": "44",
+  "United Kingdom": "44",
+  "Canada": "1",
+  "UAE": "971",
+  "United Arab Emirates": "971",
+  "Singapore": "65",
+};
+
+// Function to detect country from address
+function detectCountry(address) {
+  if (!address) return "India"; // Default to India
+  
+  const upperAddress = address.toUpperCase();
+  
+  if (upperAddress.includes("AUSTRALIA") || upperAddress.includes("VIC") || upperAddress.includes("NSW") || upperAddress.includes("QLD")) {
+    return "Australia";
+  } else if (upperAddress.includes("USA") || upperAddress.includes("UNITED STATES") || upperAddress.includes("NEW YORK") || upperAddress.includes("LOS ANGELES")) {
+    return "USA";
+  } else if (upperAddress.includes("UK") || upperAddress.includes("UNITED KINGDOM") || upperAddress.includes("LONDON")) {
+    return "UK";
+  } else if (upperAddress.includes("CANADA")) {
+    return "Canada";
+  } else if (upperAddress.includes("UAE") || upperAddress.includes("DUBAI") || upperAddress.includes("ABU DHABI")) {
+    return "UAE";
+  } else if (upperAddress.includes("SINGAPORE")) {
+    return "Singapore";
+  }
+  
+  return "India"; // Default
+}
+
+function getCountryCode(country) {
+  return COUNTRY_CODES[country] || COUNTRY_CODES["India"];
+}
+
+function formatPhoneNumber(phone, country) {
   if (!phone) return "";
+
   let cleaned = phone.replace(/\D/g, "");
-  if (cleaned.length === 10) cleaned = "91" + cleaned;
-  else if (cleaned.startsWith("0")) cleaned = "91" + cleaned.substring(1);
+  const countryCode = getCountryCode(country);
+  
+  // If number already starts with country code, use it as-is
+  if (cleaned.startsWith(countryCode)) {
+    return cleaned;
+  }
+  
+  // If it starts with 0, remove it and add country code
+  if (cleaned.startsWith("0")) {
+    cleaned = countryCode + cleaned.substring(1);
+    return cleaned;
+  }
+  
+  // For Australia: if it's 10 digits, add country code
+  if (country === "Australia" && cleaned.length === 10) {
+    cleaned = countryCode + cleaned;
+    return cleaned;
+  }
+  
+  // For India: if it's 10 digits, add country code
+  if (country === "India" && cleaned.length === 10) {
+    cleaned = countryCode + cleaned;
+    return cleaned;
+  }
+  
+  // For USA/Canada: if it's 10 digits, add country code
+  if ((country === "USA" || country === "Canada") && cleaned.length === 10) {
+    cleaned = countryCode + cleaned;
+    return cleaned;
+  }
+  
+  // Default: add country code if not already present
+  if (!cleaned.startsWith(countryCode)) {
+    cleaned = countryCode + cleaned;
+  }
+  
+  return cleaned;
+}
+
+function createWhatsAppLink(name, phone, address) {
+  if (!phone) return "";
+
+  const country = detectCountry(address);
+  const cleaned = formatPhoneNumber(phone, country);
 
   const message = `Hi ${name},
 
@@ -499,7 +583,7 @@ async function searchPlaces(keyword, cityName, existingPhones) {
           if (details.business_status === "CLOSED_PERMANENTLY") continue;
 
           if (!details.website) {
-            const wa = createWhatsAppLink(details.name, details.formatted_phone_number);
+            const wa = createWhatsAppLink(details.name, details.formatted_phone_number, details.formatted_address);
             const lead = {
               name: details.name || "",
               phone: details.formatted_phone_number || "",
