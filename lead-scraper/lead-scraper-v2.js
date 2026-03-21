@@ -16,7 +16,7 @@ const delay = ms => new Promise(r => setTimeout(r, ms));
 const ENABLED_CITIES = {
   "india": {
     // Tier 1 - Major Metro Cities
-    "chennai": true,
+    "chennai": false,
     "bangalore": false,
     "delhi": false,
     "mumbai": false,
@@ -128,7 +128,7 @@ const ENABLED_CITIES = {
   "australia": {
     // Major Australian Cities
     "sydney": false,
-    "melbourne": false,
+    "melbourne": true,
     "brisbane": false,
     "perth": false,
     "adelaide": false,
