@@ -14,6 +14,7 @@ const sitemapData = [
     ),
     links: [
       { label: "Home", href: "/" },
+      { label: "Products", href: "/products" },
       { label: "Blog", href: "/blog" },
       { label: "Terms of Service", href: "/terms" },
       { label: "Privacy Policy", href: "/privacy" },
@@ -34,11 +35,24 @@ const sitemapData = [
       { label: "Services", href: "/#services" },
       { label: "3D Service Showcase", href: "/#service-showcase" },
       { label: "Our Process", href: "/#process" },
+      { label: "Products", href: "/#products" },
       { label: "Portfolio", href: "/#portfolio" },
       { label: "Testimonials", href: "/#testimonials" },
       { label: "Pricing", href: "/#pricing" },
       { label: "FAQ", href: "/#faq" },
       { label: "Contact", href: "/#contact" },
+    ],
+  },
+  {
+    title: "Our Products",
+    icon: (
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M12 2L2 7l10 5 10-5-10-5z" /><path d="M2 17l10 5 10-5" /><path d="M2 12l10 5 10-5" />
+      </svg>
+    ),
+    links: [
+      { label: "All Products", href: "/products" },
+      { label: "CamToCode", href: "/products/camtocode" },
     ],
   },
   {
@@ -67,6 +81,7 @@ const sitemapData = [
     ),
     links: [
       { label: "Why Next.js Is Best in 2026", href: "/blog/why-nextjs-best-framework-2026" },
+      { label: "Introducing CamToCode", href: "/blog/introducing-camtocode-ai-code-scanner" },
       { label: "AI Chatbots for Small Business", href: "/blog/ai-chatbots-small-business-guide" },
       { label: "SEO Strategies That Work", href: "/blog/seo-strategies-that-actually-work-2026" },
       { label: "Website vs Social Media", href: "/blog/website-vs-social-media-presence" },

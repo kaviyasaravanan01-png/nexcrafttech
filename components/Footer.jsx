@@ -13,6 +13,8 @@ const footerLinks = [
     links: [
       { label: "About Us", href: "#about" },
       { label: "Services", href: "#services" },
+      { label: "Products", href: "/products" },
+      { label: "CamToCode", href: "/products/camtocode" },
       { label: "Portfolio", href: "#portfolio" },
       { label: "Pricing", href: "#pricing" },
       { label: "Contact", href: "#contact" },

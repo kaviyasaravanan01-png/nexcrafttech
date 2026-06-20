@@ -5,6 +5,7 @@ import SearchModal from "./SearchModal";
 
 // Import blog and portfolio data directly for the client-side search
 const blogPosts = [
+  { slug: "introducing-camtocode-ai-code-scanner", title: "Introducing CamToCode: Turn Your Phone Camera Into a Code Scanner", excerpt: "CamToCode uses AI Vision OCR to capture clean, copy-ready source code from any screen.", category: "AI & Automation" },
   { slug: "why-nextjs-best-framework-2026", title: "Why Next.js Is the Best Framework for Business Websites in 2026", excerpt: "From server components to built-in SEO — here's why Next.js dominates modern web development.", category: "Web Development" },
   { slug: "ai-chatbots-small-business-guide", title: "AI Chatbots for Small Businesses: A Practical Guide", excerpt: "How AI chatbots can automate 70% of customer queries and generate leads.", category: "AI & Automation" },
   { slug: "seo-strategies-that-actually-work-2026", title: "SEO Strategies That Actually Work in 2026", excerpt: "Actionable SEO strategies for ranking higher on Google.", category: "SEO" },
@@ -20,6 +21,10 @@ const portfolioProjects = [
   { slug: "spark-metal-fabrications", title: "Spark Metal Fabrications", tagline: "Industrial fabrication showcase" },
   { slug: "deliverease", title: "DeliverEase", tagline: "Smart delivery management platform" },
   { slug: "pixelforge-studio", title: "PixelForge Studio", tagline: "Creative agency portfolio" },
+];
+
+const productItems = [
+  { slug: "camtocode", title: "CamToCode", tagline: "Camera to Code with AI Vision OCR — scan code from any screen" },
 ];
 
 export default function SearchProvider() {
@@ -51,6 +56,7 @@ export default function SearchProvider() {
       onClose={handleClose}
       blogPosts={blogPosts}
       portfolioProjects={portfolioProjects}
+      productItems={productItems}
     />
   );
 }

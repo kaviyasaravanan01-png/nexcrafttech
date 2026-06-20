@@ -16,6 +16,8 @@ const servicesData = [
 
 const pageData = [
   { title: "Home", description: "NexCraft Technologies main page", type: "page", href: "/" },
+  { title: "Products", description: "SaaS tools built by NexCraft", type: "page", href: "/products" },
+  { title: "CamToCode", description: "AI-powered camera to code scanner for developers", type: "page", href: "/products/camtocode" },
   { title: "Blog", description: "Insights, tutorials, and industry news", type: "page", href: "/blog" },
   { title: "Terms of Service", description: "Our terms and conditions", type: "page", href: "/terms" },
   { title: "Privacy Policy", description: "How we handle your data", type: "page", href: "/privacy" },
@@ -37,6 +39,11 @@ const typeIcons = {
   portfolio: (
     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
       <path d="M22 19a2 2 0 01-2 2H4a2 2 0 01-2-2V5a2 2 0 012-2h5l2 3h9a2 2 0 012 2z" />
+    </svg>
+  ),
+  product: (
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M12 2L2 7l10 5 10-5-10-5z" /><path d="M2 17l10 5 10-5" /><path d="M2 12l10 5 10-5" />
     </svg>
   ),
   service: (
@@ -62,12 +69,13 @@ const typeIcons = {
 const typeLabels = {
   blog: "Blog",
   portfolio: "Project",
+  product: "Product",
   service: "Service",
   page: "Page",
   section: "Section",
 };
 
-export default function SearchModal({ isOpen, onClose, blogPosts = [], portfolioProjects = [] }) {
+export default function SearchModal({ isOpen, onClose, blogPosts = [], portfolioProjects = [], productItems = [] }) {
   const [query, setQuery] = useState("");
   const [selectedIdx, setSelectedIdx] = useState(0);
   const inputRef = useRef(null);
@@ -90,8 +98,15 @@ export default function SearchModal({ isOpen, onClose, blogPosts = [], portfolio
       href: `/portfolio/${p.slug}`,
     }));
 
-    return [...blogItems, ...portfolioItems, ...servicesData, ...pageData];
-  }, [blogPosts, portfolioProjects]);
+    const products = productItems.map((p) => ({
+      title: p.title,
+      description: p.tagline || "",
+      type: "product",
+      href: `/products/${p.slug}`,
+    }));
+
+    return [...blogItems, ...products, ...portfolioItems, ...servicesData, ...pageData];
+  }, [blogPosts, portfolioProjects, productItems]);
 
   const results = useMemo(() => {
     if (!query.trim()) return [];

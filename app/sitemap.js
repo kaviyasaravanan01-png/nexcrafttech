@@ -1,14 +1,17 @@
 import { getAllPortfolioSlugs } from "@/lib/portfolioData";
 import { getAllBlogSlugs } from "@/lib/blogData";
+import { getAllProductSlugs } from "@/lib/productsData";
 
 const BASE_URL = "https://nexcrafttech.com";
 
 export default function sitemap() {
   const portfolioSlugs = getAllPortfolioSlugs();
   const blogSlugs = getAllBlogSlugs();
+  const productSlugs = getAllProductSlugs();
 
   const staticPages = [
     { url: BASE_URL, lastModified: new Date(), changeFrequency: "weekly", priority: 1 },
+    { url: `${BASE_URL}/products`, lastModified: new Date(), changeFrequency: "weekly", priority: 0.85 },
     { url: `${BASE_URL}/blog`, lastModified: new Date(), changeFrequency: "weekly", priority: 0.8 },
     { url: `${BASE_URL}/team`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.7 },
     { url: `${BASE_URL}/terms`, lastModified: new Date(), changeFrequency: "yearly", priority: 0.3 },
@@ -30,5 +33,12 @@ export default function sitemap() {
     priority: 0.6,
   }));
 
-  return [...staticPages, ...portfolioPages, ...blogPages];
+  const productPages = productSlugs.map((slug) => ({
+    url: `${BASE_URL}/products/${slug}`,
+    lastModified: new Date(),
+    changeFrequency: "monthly",
+    priority: 0.8,
+  }));
+
+  return [...staticPages, ...productPages, ...portfolioPages, ...blogPages];
 }
