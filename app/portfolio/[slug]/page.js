@@ -11,7 +11,7 @@ export async function generateMetadata({ params }) {
   const project = getPortfolioBySlug(slug);
   if (!project) return { title: "Project Not Found" };
   return {
-    title: `${project.title} — Portfolio | NexCraft Technologies`,
+    title: `${project.title} — Portfolio`,
     description: `${project.tagline} Built with ${project.tags?.join(", ") || "modern technologies"}.`,
     alternates: { canonical: `https://nexcrafttech.com/portfolio/${slug}` },
     openGraph: {

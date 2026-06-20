@@ -14,8 +14,31 @@ import Map from "@/components/Map";
 export const metadata = {
   title: "NexCraft Tech — Web Dev, AI Chatbots & SEO | Chennai",
   description:
-    "Fast Next.js websites, AI chatbots & SEO for startups. Transparent pricing from ₹6,999. Free consultation.",
+    "Fast Next.js websites, AI chatbots & SEO for startups. Makers of CamToCode — AI camera-to-code scanner. Transparent pricing from ₹6,999. Free consultation.",
+  keywords: [
+    "NexCraft Technologies",
+    "web development Chennai",
+    "AI chatbot development",
+    "SEO services India",
+    "CamToCode",
+    "camera to code",
+    "AI OCR scanner",
+    "developer tools",
+  ],
   alternates: { canonical: "https://nexcrafttech.com" },
+  openGraph: {
+    title: "NexCraft Technologies — Web Dev, AI & SaaS Products",
+    description:
+      "We build fast websites, AI chatbots & SEO — plus our own SaaS products like CamToCode, the AI-powered code scanner for developers.",
+    url: "https://nexcrafttech.com",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "NexCraft Technologies — Web Dev, AI & SaaS Products",
+    description:
+      "Fast Next.js websites, AI chatbots & SEO. Explore CamToCode — scan code from any screen with your phone.",
+  },
 };
 
 export default function Home() {

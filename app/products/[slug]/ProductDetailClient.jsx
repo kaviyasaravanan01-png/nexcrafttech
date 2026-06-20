@@ -183,9 +183,14 @@ export default function ProductDetailClient({ product, slug }) {
             }}
           >
             <video
+              id="demo-video"
               src={product.video}
               controls
               playsInline
+              preload="metadata"
+              poster={product.videoMeta?.thumbnailUrl}
+              title={product.videoMeta?.title ?? `${product.name} demo`}
+              aria-label={product.videoMeta?.description ?? `${product.name} product demo video`}
               style={{ width: "100%", height: "auto", display: "block" }}
             />
           </motion.div>

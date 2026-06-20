@@ -12,9 +12,14 @@ export async function generateMetadata({ params }) {
   const { slug } = await params;
   const post = getBlogBySlug(slug);
   if (!post) return { title: "Post Not Found" };
+  const keywords = post.keywords
+    ? post.keywords.split(",").map((k) => k.trim())
+    : undefined;
+
   return {
-    title: `${post.title} — NexCraft Technologies Blog`,
+    title: post.title,
     description: post.excerpt,
+    ...(keywords && { keywords }),
     alternates: { canonical: `https://nexcrafttech.com/blog/${slug}` },
     openGraph: {
       title: post.title,
@@ -24,11 +29,13 @@ export async function generateMetadata({ params }) {
       publishedTime: post.date,
       authors: ["NexCraft Technologies"],
       section: post.category,
+      images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: post.title }],
     },
     twitter: {
       card: "summary_large_image",
       title: post.title,
       description: post.excerpt,
+      images: ["/twitter-image"],
     },
   };
 }

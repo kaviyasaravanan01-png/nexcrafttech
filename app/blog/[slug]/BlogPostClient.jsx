@@ -234,8 +234,18 @@ export default function BlogPostClient({ post }) {
     headline: post.title,
     description: post.excerpt,
     datePublished: post.date,
-    author: { "@type": "Organization", name: "NexCraft Technologies" },
-    publisher: { "@type": "Organization", name: "NexCraft Technologies" },
+    author: { "@type": "Organization", name: "NexCraft Technologies", url: "https://nexcrafttech.com" },
+    publisher: {
+      "@type": "Organization",
+      name: "NexCraft Technologies",
+      url: "https://nexcrafttech.com",
+      logo: { "@type": "ImageObject", url: "https://nexcrafttech.com/nct-logo.svg" },
+    },
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": `https://nexcrafttech.com/blog/${post.slug}`,
+    },
+    ...(post.keywords && { keywords: post.keywords }),
   };
 
   function formatDate(dateStr) {
