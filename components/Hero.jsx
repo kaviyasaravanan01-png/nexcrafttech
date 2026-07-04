@@ -216,7 +216,7 @@ export default function Hero() {
           <a
             href="#contact"
             className="px-8 py-4 rounded-full bg-[#c9a96e] text-[#09090b] font-semibold text-sm tracking-wide hover:bg-[#d4b883] transition-all duration-500"
-            style={{ boxShadow: "0 0 24px rgba(201,169,110,0.25)" }}
+            style={{ boxShadow: "0 0 24px rgba(201,169,110,0.25)", padding: "8px" }}
           >
             Start Your Project &rarr;
           </a>
