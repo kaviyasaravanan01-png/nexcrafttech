@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
 import { useWACRMAuth } from "@/lib/whatsapp-crm/useAuth";
-import { getContacts, createCampaign } from "@/lib/whatsapp-crm/supabase";
+import { getContacts, createCampaign, uploadAttachment } from "@/lib/whatsapp-crm/supabase";
 import { queueCampaign } from "@/lib/whatsapp-crm/api";
 
 const EMOJIS = ["😊", "👋", "🎉", "💯", "✅", "🔥", "💬", "📱", "🙏", "❤️", "⭐", "🎁"];
@@ -57,15 +57,21 @@ export default function NewCampaignPage() {
     setTimeout(() => { el.focus(); el.setSelectionRange(start + v.length, start + v.length); }, 0);
   };
 
-  const handleFileUpload = (e) => {
+  const handleFileUpload = async (e) => {
     const files = Array.from(e.target.files || []);
-    files.forEach((file) => {
-      const reader = new FileReader();
-      reader.onload = (ev) => {
-        setAttachments((a) => [...a, { name: file.name, type: file.type.split("/")[0], url: ev.target.result, size: file.size }]);
-      };
-      reader.readAsDataURL(file);
-    });
+    for (const file of files) {
+      const tempId = `${Date.now()}_${file.name}`;
+      // Show loading placeholder immediately
+      setAttachments((a) => [...a, { tempId, name: file.name, type: file.type.split("/")[0], mimetype: file.type, size: file.size, uploading: true }]);
+      try {
+        const { url } = await uploadAttachment(user.id, file);
+        setAttachments((a) => a.map((x) => x.tempId === tempId ? { ...x, url, uploading: false } : x));
+      } catch (err) {
+        setAttachments((a) => a.filter((x) => x.tempId !== tempId));
+        alert(`Upload failed for ${file.name}: ${err.message}`);
+      }
+    }
+    e.target.value = "";
   };
 
   async function handleSubmit() {
@@ -76,6 +82,7 @@ export default function NewCampaignPage() {
     if (delayMin > delayMax) { setError("Min delay must be ≤ max delay."); return; }
     if (scheduleType === "later" && !scheduledAt) { setError("Please select a date and time for scheduling."); return; }
     if (scheduleType === "later" && new Date(scheduledAt) <= new Date()) { setError("Scheduled time must be in the future."); return; }
+    if (attachments.some((a) => a.uploading)) { setError("Please wait for all file uploads to complete."); return; }
 
     setSubmitting(true);
     try {
@@ -91,7 +98,7 @@ export default function NewCampaignPage() {
         typing_sim: typingEnabled,
         scheduled_at: scheduleType === "later" ? new Date(scheduledAt).toISOString() : null,
         status: "draft",
-        attachments: attachments.map((a) => ({ type: a.type, name: a.name })),
+        attachments: attachments.filter((a) => a.url).map((a) => ({ type: a.type, name: a.name, url: a.url, mimetype: a.mimetype })),
       });
 
       // Always queue to Railway — BullMQ uses scheduled_at to delay the job automatically
@@ -271,10 +278,14 @@ export default function NewCampaignPage() {
             ) : (
               <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
                 {attachments.map((a, i) => (
-                  <div key={i} style={{ padding: "6px 12px", borderRadius: 8, background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.1)", display: "flex", alignItems: "center", gap: 8 }}>
-                    <span style={{ fontSize: 16 }}>{a.type === "image" ? "🖼️" : a.type === "video" ? "🎬" : "📄"}</span>
-                    <span style={{ fontSize: 12, color: "rgba(255,255,255,0.7)", maxWidth: 120, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{a.name}</span>
-                    <button onClick={() => setAttachments((x) => x.filter((_, j) => j !== i))} style={{ background: "none", border: "none", color: "rgba(255,255,255,0.3)", cursor: "pointer", fontSize: 14, padding: 0 }}>×</button>
+                  <div key={a.tempId || i} style={{ padding: "6px 12px", borderRadius: 8, background: a.uploading ? "rgba(245,158,11,0.08)" : "rgba(255,255,255,0.05)", border: `1px solid ${a.uploading ? "rgba(245,158,11,0.2)" : "rgba(255,255,255,0.1)"}`, display: "flex", alignItems: "center", gap: 8 }}>
+                    <span style={{ fontSize: 16 }}>{a.uploading ? "⏳" : a.type === "image" ? "🖼️" : a.type === "video" ? "🎬" : "📄"}</span>
+                    <span style={{ fontSize: 12, color: a.uploading ? "#f59e0b" : "rgba(255,255,255,0.7)", maxWidth: 120, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
+                      {a.uploading ? `Uploading ${a.name}…` : a.name}
+                    </span>
+                    {!a.uploading && (
+                      <button onClick={() => setAttachments((x) => x.filter((_, j) => j !== i))} style={{ background: "none", border: "none", color: "rgba(255,255,255,0.3)", cursor: "pointer", fontSize: 14, padding: 0 }}>×</button>
+                    )}
                   </div>
                 ))}
               </div>

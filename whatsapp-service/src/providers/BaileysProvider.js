@@ -92,6 +92,28 @@ class BaileysProvider extends IWhatsAppProvider {
     return { id: result.key.id };
   }
 
+  /**
+   * Send image / video / document from a public URL.
+   * Baileys fetches the URL and sends as native media message.
+   */
+  async sendMedia(phone, { type, url, mimetype, name, caption }) {
+    if (!this.sock || this.status !== "connected") throw new Error("Not connected");
+    const jid = `${phone}@s.whatsapp.net`;
+    if (type === "image") {
+      return this.sock.sendMessage(jid, { image: { url }, caption: caption || "" });
+    }
+    if (type === "video") {
+      return this.sock.sendMessage(jid, { video: { url }, caption: caption || "" });
+    }
+    // document / audio / pdf / other
+    return this.sock.sendMessage(jid, {
+      document: { url },
+      mimetype: mimetype || "application/octet-stream",
+      fileName: name || "attachment",
+      caption: caption || "",
+    });
+  }
+
   async sendTyping(phone, durationMs = 2000) {
     if (!this.sock || this.status !== "connected") return;
     const jid = `${phone}@s.whatsapp.net`;

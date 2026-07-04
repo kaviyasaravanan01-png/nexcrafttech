@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef } from "react";
 import { useRouter, useParams } from "next/navigation";
 import { useWACRMAuth } from "@/lib/whatsapp-crm/useAuth";
-import { getContacts, updateCampaign } from "@/lib/whatsapp-crm/supabase";
+import { getContacts, updateCampaign, uploadAttachment } from "@/lib/whatsapp-crm/supabase";
 
 const EMOJIS = ["😊", "👋", "🎉", "💯", "✅", "🔥", "💬", "📱", "🙏", "❤️", "⭐", "🎁"];
 
@@ -55,12 +55,14 @@ export default function EditCampaignPage() {
   const [delayMax, setDelayMax]             = useState(8);
   const [spinEnabled, setSpin]              = useState(true);
   const [typingEnabled, setTyping]          = useState(true);
+  const [attachments, setAttachments]       = useState([]);
   const [showEmoji, setShowEmoji]           = useState(false);
   const [saving, setSaving]                 = useState(false);
   const [loading, setLoading]               = useState(true);
   const [error, setError]                   = useState("");
   const [originalStatus, setOriginalStatus] = useState("draft");
   const textareaRef = useRef(null);
+  const fileRef     = useRef(null);
 
   // Load campaign + contacts
   useEffect(() => {
@@ -84,6 +86,7 @@ export default function EditCampaignPage() {
       setSpin(campaign.spin_enabled ?? true);
       setTyping(campaign.typing_sim ?? true);
       setOriginalStatus(campaign.status);
+      setAttachments(campaign.attachments ?? []);
       setSelected(new Set(campaign.contact_ids ?? []));
       setContacts(allContacts);
       setLoading(false);
@@ -108,12 +111,29 @@ export default function EditCampaignPage() {
     setTimeout(() => { el.focus(); el.setSelectionRange(start + v.length, start + v.length); }, 0);
   };
 
+  const handleFileUpload = async (e) => {
+    const files = Array.from(e.target.files || []);
+    for (const file of files) {
+      const tempId = `${Date.now()}_${file.name}`;
+      setAttachments((a) => [...a, { tempId, name: file.name, type: file.type.split("/")[0], mimetype: file.type, size: file.size, uploading: true }]);
+      try {
+        const { url } = await uploadAttachment(user.id, file);
+        setAttachments((a) => a.map((x) => x.tempId === tempId ? { ...x, url, uploading: false } : x));
+      } catch (err) {
+        setAttachments((a) => a.filter((x) => x.tempId !== tempId));
+        alert(`Upload failed: ${err.message}`);
+      }
+    }
+    e.target.value = "";
+  };
+
   async function handleSave() {
     setError("");
     if (!campaignName.trim()) { setError("Campaign name is required."); return; }
     if (selectedContacts.size === 0) { setError("Select at least one contact."); return; }
     if (!message.trim()) { setError("Message cannot be empty."); return; }
     if (delayMin > delayMax) { setError("Min delay must be ≤ max delay."); return; }
+    if (attachments.some((a) => a.uploading)) { setError("Please wait for all uploads to complete."); return; }
 
     setSaving(true);
     try {
@@ -127,6 +147,7 @@ export default function EditCampaignPage() {
         delay_max_sec: delayMax,
         spin_enabled: spinEnabled,
         typing_sim: typingEnabled,
+        attachments: attachments.filter((a) => a.url).map((a) => ({ type: a.type, name: a.name, url: a.url, mimetype: a.mimetype })),
         // Reset to draft if it was failed/cancelled so it can be re-run
         status: ["failed", "cancelled", "completed"].includes(originalStatus) ? "draft" : originalStatus,
         sent_count: ["failed", "cancelled", "completed"].includes(originalStatus) ? 0 : undefined,
@@ -265,6 +286,41 @@ export default function EditCampaignPage() {
         <div style={{ fontSize: 11.5, color: "rgba(255,255,255,0.25)", marginTop: 6 }}>
           {message.length} chars · {selectedContacts.size} recipients
         </div>
+      </div>
+
+      {/* Attachments */}
+      <div style={cardStyle}>
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "0.875rem" }}>
+          <div>
+            <label style={labelStyle}>Attachments <span style={{ textTransform: "none", fontWeight: 400, color: "rgba(255,255,255,0.25)" }}>optional</span></label>
+            <p style={{ fontSize: 11.5, color: "rgba(255,255,255,0.3)", margin: 0 }}>Images, PDFs, or videos to send with each message</p>
+          </div>
+          <button
+            type="button"
+            onClick={() => fileRef.current?.click()}
+            style={{ padding: "7px 14px", borderRadius: 8, background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.1)", color: "rgba(255,255,255,0.6)", fontSize: 12, cursor: "pointer" }}
+          >
+            + Add file
+          </button>
+          <input ref={fileRef} type="file" accept="image/*,.pdf,video/*" multiple onChange={handleFileUpload} style={{ display: "none" }} />
+        </div>
+        {attachments.length === 0 ? (
+          <p style={{ fontSize: 12.5, color: "rgba(255,255,255,0.25)", margin: 0 }}>No attachments. Click "Add file" to upload.</p>
+        ) : (
+          <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
+            {attachments.map((a, i) => (
+              <div key={a.tempId || i} style={{ padding: "6px 12px", borderRadius: 8, background: a.uploading ? "rgba(245,158,11,0.08)" : "rgba(255,255,255,0.05)", border: `1px solid ${a.uploading ? "rgba(245,158,11,0.2)" : "rgba(255,255,255,0.1)"}`, display: "flex", alignItems: "center", gap: 8 }}>
+                <span style={{ fontSize: 16 }}>{a.uploading ? "⏳" : a.type === "image" ? "🖼️" : a.type === "video" ? "🎬" : "📄"}</span>
+                <span style={{ fontSize: 12, color: a.uploading ? "#f59e0b" : "rgba(255,255,255,0.7)", maxWidth: 130, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
+                  {a.uploading ? `Uploading…` : a.name}
+                </span>
+                {!a.uploading && (
+                  <button onClick={() => setAttachments((x) => x.filter((_, j) => j !== i))} style={{ background: "none", border: "none", color: "rgba(255,255,255,0.3)", cursor: "pointer", fontSize: 14, padding: 0 }}>×</button>
+                )}
+              </div>
+            ))}
+          </div>
+        )}
       </div>
 
       {/* Settings */}

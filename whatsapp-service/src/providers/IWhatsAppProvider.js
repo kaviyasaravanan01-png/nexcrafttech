@@ -29,6 +29,15 @@ class IWhatsAppProvider {
   }
 
   /**
+   * Send a media message (image / video / document).
+   * @param {string} phone
+   * @param {{ type: string, url: string, mimetype?: string, name?: string, caption?: string }} media
+   */
+  async sendMedia(phone, media) {
+    // Optional — providers that don't support media fall back to text only
+  }
+
+  /**
    * Send typing indicator before message.
    * @param {string} phone
    * @param {number} durationMs

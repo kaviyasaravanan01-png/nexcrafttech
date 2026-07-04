@@ -78,15 +78,57 @@ async function sendCampaign({ campaignId, userId, io, onAbort }) {
 
   if (!contacts?.length) throw new Error("No contacts found for campaign");
 
+  // ── Daily limit check ───────────────────────────────────────────────────
+  const { data: sub } = await supabase
+    .from("wa_subscriptions")
+    .select("wa_plans(msg_per_day, name)")
+    .eq("user_id", userId)
+    .maybeSingle();
+  const dailyLimit = sub?.wa_plans?.msg_per_day ?? 50;
+
+  const todayStart = new Date();
+  todayStart.setHours(0, 0, 0, 0);
+  const { count: todaySentCount } = await supabase
+    .from("wa_message_logs")
+    .select("id", { count: "exact", head: true })
+    .eq("user_id", userId)
+    .eq("status", "sent")
+    .gte("sent_at", todayStart.toISOString());
+
+  let remainingToday = dailyLimit === -1 ? Infinity : Math.max(0, dailyLimit - (todaySentCount ?? 0));
+
+  if (remainingToday <= 0) {
+    await supabase.from("wa_campaigns").update({
+      status: "paused",
+      error_message: `Daily limit of ${dailyLimit} messages reached. Re-run tomorrow.`,
+      updated_at: new Date().toISOString(),
+    }).eq("id", campaignId);
+    emit("campaign:error", { campaignId, message: `Daily limit reached (${dailyLimit} msgs/day on ${sub?.wa_plans?.name || "Free"} plan). Campaign paused.` });
+    return;
+  }
+  // ────────────────────────────────────────────────────────────────────────
+
   // Update status to running
   await supabase.from("wa_campaigns").update({ status: "running", started_at: new Date().toISOString(), updated_at: new Date().toISOString() }).eq("id", campaignId);
 
-  emit("campaign:started", { campaignId, total: contacts.length });
+  emit("campaign:started", { campaignId, total: contacts.length, dailyLimit, remainingToday });
 
   let sent = 0, failed = 0;
+  const attachments = campaign.attachments || [];
 
   for (const contact of contacts) {
     if (onAbort?.()) break;
+
+    // Re-check daily limit each iteration
+    if (remainingToday <= 0) {
+      await supabase.from("wa_campaigns").update({
+        status: "paused",
+        error_message: `Daily limit of ${dailyLimit} messages reached. Re-run tomorrow.`,
+        updated_at: new Date().toISOString(),
+      }).eq("id", campaignId);
+      emit("campaign:error", { campaignId, message: `Daily limit reached (${dailyLimit}/day). Campaign paused — re-run tomorrow.` });
+      break;
+    }
 
     let provider;
     try {
@@ -132,9 +174,29 @@ async function sendCampaign({ campaignId, userId, io, onAbort }) {
         await provider.sendTyping(contact.phone, Math.min(delayMs * 0.3, 3000));
       }
 
-      await provider.sendText(contact.phone, msg);
+      if (attachments.length > 0) {
+        // Send first attachment with text as caption, rest as plain media
+        for (let i = 0; i < attachments.length; i++) {
+          const att = attachments[i];
+          if (att.url) {
+            await provider.sendMedia(contact.phone, {
+              type: att.type || "document",
+              url: att.url,
+              mimetype: att.mimetype,
+              name: att.name,
+              caption: i === 0 ? msg : undefined, // caption only on first attachment
+            });
+          }
+        }
+        // If no valid URL attachments were sent, fall back to text
+        const hasUrl = attachments.some((a) => a.url);
+        if (!hasUrl) await provider.sendText(contact.phone, msg);
+      } else {
+        await provider.sendText(contact.phone, msg);
+      }
 
       sent++;
+      remainingToday = Math.max(0, remainingToday - 1);
       await supabase.from("wa_message_logs").update({ status: "sent", sent_at: new Date().toISOString(), delay_used: delayMs }).eq("id", logEntry?.id);
       await supabase.from("wa_campaigns").update({ sent_count: sent, updated_at: new Date().toISOString() }).eq("id", campaignId);
 

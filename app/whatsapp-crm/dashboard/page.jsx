@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { useWACRMAuth } from "@/lib/whatsapp-crm/useAuth";
-import { getCampaigns, getContacts, getWASession, getUserSubscription } from "@/lib/whatsapp-crm/supabase";
+import { getCampaigns, getContacts, getWASession, getUserSubscription, getTodaySentCount } from "@/lib/whatsapp-crm/supabase";
 
 const STAT_CONFIG = [
   { key: "contacts", label: "Total Contacts", icon: "👥", color: "#6366f1" },
@@ -107,7 +107,7 @@ function CampaignRow({ campaign }) {
 
 export default function DashboardPage() {
   const { user } = useWACRMAuth();
-  const [data, setData] = useState({ contacts: [], campaigns: [], waSession: null, subscription: null });
+  const [data, setData] = useState({ contacts: [], campaigns: [], waSession: null, subscription: null, todayUsage: null });
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -117,8 +117,9 @@ export default function DashboardPage() {
       getCampaigns(user.id),
       getWASession(user.id),
       getUserSubscription(user.id),
-    ]).then(([contacts, campaigns, waSession, subscription]) => {
-      setData({ contacts, campaigns, waSession, subscription });
+      getTodaySentCount(user.id),
+    ]).then(([contacts, campaigns, waSession, subscription, todayUsage]) => {
+      setData({ contacts, campaigns, waSession, subscription, todayUsage });
     }).finally(() => setLoading(false));
   }, [user]);
 
@@ -306,39 +307,65 @@ export default function DashboardPage() {
         </div>
       </div>
 
-      {/* Plan info */}
-      {!loading && data.subscription && (
+      {/* Today's Usage + Plan */}
+      {!loading && data.todayUsage && (
         <div style={{
           marginTop: "1.5rem",
-          padding: "1rem 1.5rem",
-          borderRadius: "0.875rem",
-          background: "rgba(201,169,110,0.05)",
-          border: "1px solid rgba(201,169,110,0.15)",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between",
-          gap: "1rem",
-          flexWrap: "wrap",
+          borderRadius: "1rem",
+          background: "linear-gradient(145deg,rgba(255,255,255,0.03),rgba(255,255,255,0.008))",
+          border: "1px solid rgba(255,255,255,0.07)",
+          overflow: "hidden",
         }}>
-          <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-            <span style={{ fontSize: 18 }}>💎</span>
-            <div>
-              <span style={{ fontSize: 13, fontWeight: 600, color: "#c9a96e" }}>
-                {data.subscription.wa_plans?.name || "Free"} Plan
-              </span>
-              <span style={{ fontSize: 12, color: "rgba(255,255,255,0.35)", marginLeft: 8 }}>
-                {data.subscription.wa_plans?.msg_per_day === -1 ? "Unlimited" : `${data.subscription.wa_plans?.msg_per_day} msgs/day`}
+          <div style={{ padding: "1rem 1.5rem", borderBottom: "1px solid rgba(255,255,255,0.05)", display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: "0.5rem" }}>
+            <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+              <span style={{ fontSize: 18 }}>💎</span>
+              <div>
+                <span style={{ fontSize: 13.5, fontWeight: 700, color: "#c9a96e" }}>
+                  {data.todayUsage.planName} Plan
+                </span>
+                <span style={{ fontSize: 12, color: "rgba(255,255,255,0.35)", marginLeft: 8 }}>
+                  {data.todayUsage.limit === -1 ? "Unlimited messages" : `${data.todayUsage.limit} messages/day`}
+                </span>
+              </div>
+            </div>
+            <Link href="/whatsapp-crm/settings#billing" style={{ fontSize: 12, color: "#c9a96e", textDecoration: "none", fontWeight: 600 }}>
+              Upgrade plan →
+            </Link>
+          </div>
+
+          <div style={{ padding: "1.25rem 1.5rem" }}>
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", marginBottom: "0.625rem" }}>
+              <span style={{ fontSize: 13, fontWeight: 600, color: "rgba(255,255,255,0.7)" }}>Today's Usage</span>
+              <span style={{ fontSize: 13, fontWeight: 700, color: (() => {
+                if (data.todayUsage.limit === -1) return "#25D366";
+                const pct = data.todayUsage.sent / data.todayUsage.limit;
+                return pct >= 0.9 ? "#ef4444" : pct >= 0.7 ? "#f59e0b" : "#25D366";
+              })() }}>
+                {data.todayUsage.sent}
+                {data.todayUsage.limit !== -1 && ` / ${data.todayUsage.limit}`}
+                {" "}<span style={{ fontSize: 11, fontWeight: 400, color: "rgba(255,255,255,0.35)" }}>messages sent today</span>
               </span>
             </div>
+            {data.todayUsage.limit !== -1 && (() => {
+              const pct = Math.min(100, Math.round((data.todayUsage.sent / data.todayUsage.limit) * 100));
+              const barColor = pct >= 90 ? "#ef4444" : pct >= 70 ? "#f59e0b" : "#25D366";
+              return (
+                <div>
+                  <div style={{ height: 6, borderRadius: 100, background: "rgba(255,255,255,0.06)", overflow: "hidden" }}>
+                    <div style={{ width: `${pct}%`, height: "100%", borderRadius: 100, background: barColor, transition: "width 0.5s ease" }} />
+                  </div>
+                  <div style={{ display: "flex", justifyContent: "space-between", marginTop: 6 }}>
+                    <span style={{ fontSize: 11, color: "rgba(255,255,255,0.3)" }}>
+                      {data.todayUsage.limit - data.todayUsage.sent > 0
+                        ? `${data.todayUsage.limit - data.todayUsage.sent} remaining today`
+                        : "Daily limit reached — resets at midnight"}
+                    </span>
+                    <span style={{ fontSize: 11, color: "rgba(255,255,255,0.3)" }}>{pct}%</span>
+                  </div>
+                </div>
+              );
+            })()}
           </div>
-          <Link
-            href="/whatsapp-crm/settings#billing"
-            style={{
-              fontSize: 12, color: "#c9a96e", textDecoration: "none", fontWeight: 500,
-            }}
-          >
-            Upgrade plan →
-          </Link>
         </div>
       )}
     </div>
