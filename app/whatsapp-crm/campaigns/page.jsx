@@ -164,6 +164,22 @@ export default function CampaignsPage() {
     finally { setActionLoading(null); }
   }
 
+  async function handleDelete(campaign) {
+    if (!confirm(`Delete "${campaign.name}"? This will also delete all message logs for this campaign.`)) return;
+    setActionLoading(campaign.id + "_delete");
+    try {
+      const { getSupabase } = await import("@/lib/whatsapp-crm/supabase");
+      const sb = getSupabase();
+      // Delete logs first (FK constraint), then campaign
+      await sb.from("wa_message_logs").delete().eq("campaign_id", campaign.id);
+      const { error } = await sb.from("wa_campaigns").delete().eq("id", campaign.id);
+      if (error) throw new Error(error.message);
+      setCampaigns((prev) => prev.filter((c) => c.id !== campaign.id));
+      if (activeCampaign?.id === campaign.id) { setActive(null); setLogs([]); }
+    } catch (err) { alert("Delete failed: " + err.message); }
+    finally { setActionLoading(null); }
+  }
+
   const BtnStyle = (color, bg) => ({
     padding: "6px 14px", borderRadius: 8, fontSize: 11.5, fontWeight: 600,
     color, background: bg, border: `1px solid ${color}30`,
@@ -388,6 +404,24 @@ export default function CampaignsPage() {
                     <Link href={`/whatsapp-crm/history`} style={BtnStyle("rgba(255,255,255,0.4)", "rgba(255,255,255,0.04)")}>
                       📋 Logs
                     </Link>
+
+                    {/* Delete — only for non-active campaigns */}
+                    {!["running", "queued"].includes(c.status) && (
+                      <button
+                        onClick={() => handleDelete(c)}
+                        disabled={al === c.id + "_delete"}
+                        title="Delete campaign"
+                        style={{
+                          padding: "6px 10px", borderRadius: 8, fontSize: 13,
+                          color: "rgba(239,68,68,0.6)", background: "rgba(239,68,68,0.06)",
+                          border: "1px solid rgba(239,68,68,0.15)",
+                          cursor: "pointer", transition: "all 0.15s",
+                          display: "flex", alignItems: "center",
+                        }}
+                      >
+                        {al === c.id + "_delete" ? "⏳" : "🗑"}
+                      </button>
+                    )}
                   </div>
                 </div>
               </div>
