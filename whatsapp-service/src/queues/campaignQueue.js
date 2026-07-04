@@ -88,7 +88,7 @@ async function enqueueCampaign(campaignId, userId, scheduledAt) {
       attempts: 1,
       removeOnComplete: true,
       removeOnFail: 100,
-      jobId: `campaign:${campaignId}`,
+      jobId: `campaign_${campaignId}`,
     }
   );
 

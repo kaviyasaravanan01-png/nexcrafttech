@@ -94,12 +94,18 @@ export default function NewCampaignPage() {
       if (scheduleType === "now" && token) {
         try {
           await queueCampaign(token, campaign.id);
-        } catch {
-          // Railway might not be running in dev — campaign saved, will queue manually
+        } catch (queueErr) {
+          // Campaign saved in DB but failed to enqueue — show warning then still navigate
+          console.warn("[Campaign] Queue error:", queueErr.message);
+          setError(`Campaign saved but could not be queued: ${queueErr.message}. You can start it manually from the Campaigns page.`);
+          setSubmitting(false);
+          // Give user a moment to read the error, then navigate
+          setTimeout(() => router.push("/whatsapp-crm/campaigns"), 3000);
+          return;
         }
       }
 
-      router.push("/whatsapp-crm/history");
+      router.push("/whatsapp-crm/campaigns");
     } catch (err) {
       setError(err.message || "Failed to create campaign.");
       setSubmitting(false);
