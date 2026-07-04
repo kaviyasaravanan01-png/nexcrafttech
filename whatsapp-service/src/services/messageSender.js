@@ -1,6 +1,6 @@
 const pino = require("pino");
 const { supabase } = require("../middleware/auth");
-const { getActiveProvider } = require("../providers/WhatsAppFactory");
+const { getOrRestoreProvider } = require("../providers/WhatsAppFactory");
 
 const log = pino({ transport: { target: "pino-pretty" } });
 
@@ -90,10 +90,10 @@ async function sendCampaign({ campaignId, userId, io, onAbort }) {
 
     let provider;
     try {
-      provider = getActiveProvider(userId);
+      provider = await getOrRestoreProvider(userId, io);
     } catch {
       await supabase.from("wa_campaigns").update({ status: "failed", error_message: "WhatsApp not connected", updated_at: new Date().toISOString() }).eq("id", campaignId);
-      emit("campaign:error", { campaignId, message: "WhatsApp session disconnected" });
+      emit("campaign:error", { campaignId, message: "WhatsApp session disconnected — please reconnect on the Connect page" });
       return;
     }
 

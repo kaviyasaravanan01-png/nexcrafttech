@@ -9,6 +9,7 @@ const sessionRoutes = require("./routes/session.routes");
 const campaignRoutes = require("./routes/campaign.routes");
 const { initQueues } = require("./queues/campaignQueue");
 const { authMiddleware } = require("./middleware/auth");
+const { restoreAllSessions } = require("./providers/WhatsAppFactory");
 
 const log = pino({ transport: { target: "pino-pretty", options: { colorize: true } } });
 const PORT = process.env.PORT || 8080;
@@ -60,6 +61,13 @@ initQueues(io).catch((err) => log.error(err, "Failed to init queues"));
 
 httpServer.listen(PORT, () => {
   log.info(`WhatsApp service running on http://localhost:${PORT}`);
+  // Restore any previously connected WhatsApp sessions from Supabase
+  // Small delay so the server is fully ready before opening WA sockets
+  setTimeout(() => {
+    restoreAllSessions(io).catch((err) =>
+      log.error(err, "Failed to restore sessions on startup")
+    );
+  }, 3000);
 });
 
 module.exports = { app, io };

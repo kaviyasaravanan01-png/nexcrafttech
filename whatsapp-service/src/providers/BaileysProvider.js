@@ -1,16 +1,14 @@
 const {
   default: makeWASocket,
-  useMultiFileAuthState,
   DisconnectReason,
   fetchLatestBaileysVersion,
 } = require("@whiskeysockets/baileys");
 const qrcode = require("qrcode");
-const path = require("path");
-const fs = require("fs");
 const pino = require("pino");
 const IWhatsAppProvider = require("./IWhatsAppProvider");
+const { useSupabaseAuthState } = require("./useSupabaseAuthState");
+const { supabase } = require("../middleware/auth");
 
-const SESSION_DIR = path.resolve(__dirname, "../../sessions/baileys");
 const log = pino({ transport: { target: "pino-pretty" } });
 
 class BaileysProvider extends IWhatsAppProvider {
@@ -19,12 +17,20 @@ class BaileysProvider extends IWhatsAppProvider {
     this.name = "baileys";
     this.sock = null;
     this.status = "disconnected";
-    this._sessionPath = path.join(SESSION_DIR, userId);
   }
 
+  /**
+   * Initialise the WhatsApp socket.
+   * Uses Supabase-backed auth state so sessions survive Railway restarts.
+   *
+   * @param {Function} [onQR]          - called with QR data-URL
+   * @param {Function} [onReady]       - called with Baileys user info when connected
+   * @param {Function} [onDisconnected] - called with reason string on disconnect
+   */
   async init(onQR, onReady, onDisconnected) {
-    fs.mkdirSync(this._sessionPath, { recursive: true });
-    const { state, saveCreds } = await useMultiFileAuthState(this._sessionPath);
+    // Load / create credentials from Supabase
+    const { state, saveCreds } = await useSupabaseAuthState(supabase, this.userId);
+
     const { version } = await fetchLatestBaileysVersion();
 
     this.sock = makeWASocket({
@@ -35,12 +41,14 @@ class BaileysProvider extends IWhatsAppProvider {
       browser: ["NexCraft WA CRM", "Chrome", "130.0"],
     });
 
+    // Persist credentials on every update
     this.sock.ev.on("creds.update", saveCreds);
 
     this.sock.ev.on("connection.update", async ({ connection, lastDisconnect, qr }) => {
       if (qr) {
         const qrDataUrl = await qrcode.toDataURL(qr);
         this.status = "qr_pending";
+        log.info(`[Baileys] QR ready for user ${this.userId}`);
         onQR?.(qrDataUrl);
       }
 
@@ -51,14 +59,22 @@ class BaileysProvider extends IWhatsAppProvider {
       }
 
       if (connection === "close") {
-        const shouldReconnect =
-          lastDisconnect?.error?.output?.statusCode !== DisconnectReason.loggedOut;
+        const code = lastDisconnect?.error?.output?.statusCode;
+        const shouldReconnect = code !== DisconnectReason.loggedOut;
         this.status = shouldReconnect ? "reconnecting" : "disconnected";
-        log.warn(`[Baileys] Disconnected: ${this.userId} — shouldReconnect=${shouldReconnect}`);
+        log.warn(`[Baileys] Disconnected user=${this.userId} code=${code} reconnect=${shouldReconnect}`);
+
         if (!shouldReconnect) {
+          // Clear Supabase session data on logout
+          try {
+            await supabase
+              .from("wa_sessions")
+              .update({ session_data: null, status: "disconnected", updated_at: new Date().toISOString() })
+              .eq("user_id", this.userId);
+          } catch { /* ignore */ }
           onDisconnected?.("logged_out");
         } else {
-          // Auto-reconnect after 5s
+          // Auto-reconnect in 5 s using stored credentials (no new QR needed)
           setTimeout(() => this.init(onQR, onReady, onDisconnected), 5000);
         }
       }
@@ -90,7 +106,11 @@ class BaileysProvider extends IWhatsAppProvider {
     this.status = "disconnected";
     try {
       await this.sock?.logout();
-      fs.rmSync(this._sessionPath, { recursive: true, force: true });
+      // Clear stored credentials
+      await supabase
+        .from("wa_sessions")
+        .update({ session_data: null, status: "disconnected", updated_at: new Date().toISOString() })
+        .eq("user_id", this.userId);
     } catch { /* ignore */ }
     this.sock = null;
   }
