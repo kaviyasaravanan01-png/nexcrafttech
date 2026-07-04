@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef } from "react";
 import { useWACRMAuth } from "@/lib/whatsapp-crm/useAuth";
 import { getWASession } from "@/lib/whatsapp-crm/supabase";
-import { requestQRCode, disconnectSession, getSocketURL } from "@/lib/whatsapp-crm/api";
+import { requestQRCode, getSessionStatus, disconnectSession, getSocketURL } from "@/lib/whatsapp-crm/api";
 
 const PROVIDERS = [
   { id: "baileys",    name: "Baileys",    description: "Primary — lightweight, fast, multi-device", badge: "Recommended" },
@@ -30,28 +30,44 @@ export default function ConnectPage() {
   const [token, setToken]         = useState(null);
   const socketRef = useRef(null);
 
-  // Fetch Supabase access token
+  // Fetch Supabase access token (must run first)
   useEffect(() => {
-    const { getSupabase } = require("@/lib/whatsapp-crm/supabase");
-    getSupabase()?.auth.getSession().then(({ data }) => {
-      setToken(data?.session?.access_token ?? null);
+    import("@/lib/whatsapp-crm/supabase").then(({ getSupabase }) => {
+      getSupabase()?.auth.getSession().then(({ data }) => {
+        setToken(data?.session?.access_token ?? null);
+      });
     });
   }, []);
 
-  // Load existing DB session on mount
+  // Load status: first from Supabase DB, then confirm from Railway API
   useEffect(() => {
-    if (!user) return;
-    getWASession(user.id)
-      .then((s) => {
-        if (s) {
-          setSession(s);
-          setStatus(s.status || "disconnected");
+    if (!user || !token) return;
+
+    async function loadStatus() {
+      // 1. Read from Supabase DB first (fast)
+      try {
+        const s = await getWASession(user.id);
+        if (s?.status) {
+          setStatus(s.status);
           if (s.phone) setPhone(s.phone);
         }
-      })
-      .catch(() => {})
-      .finally(() => setLoadingSession(false));
-  }, [user]);
+      } catch { /* table may not exist yet */ }
+
+      // 2. Confirm with Railway live status (source of truth)
+      try {
+        const live = await getSessionStatus(token);
+        if (live?.status) {
+          setStatus(live.status);
+          if (live.phone) setPhone(live.phone);
+        }
+      } catch { /* Railway may be waking up */ }
+
+      setLoadingSession(false);
+    }
+
+    loadStatus();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [user?.id, token]);
 
   // Socket.IO — connect once and listen for events
   useEffect(() => {
@@ -59,7 +75,7 @@ export default function ConnectPage() {
 
     let io;
     async function connectSocket() {
-      const { io: socketIO } = await import("socket.io-client");
+      const [{ io: socketIO }] = await Promise.all([import("socket.io-client")]);
       const url = getSocketURL();
 
       io = socketIO(url, {

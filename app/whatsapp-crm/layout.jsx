@@ -26,12 +26,33 @@ function DashboardShell({ children }) {
     }
   }, [user, loading, isPublic, router]);
 
-  // Load WA session status
+  // Load WA session status from Railway (source of truth)
   useEffect(() => {
     if (!user) return;
-    getWASession(user.id)
-      .then((s) => { if (s?.status) setWAStatus(s.status); })
-      .catch(() => {});
+
+    async function fetchStatus() {
+      // Get token first
+      const { getSupabase } = await import("@/lib/whatsapp-crm/supabase");
+      const { data } = await getSupabase()?.auth.getSession() ?? {};
+      const token = data?.session?.access_token;
+      if (!token) return;
+
+      try {
+        const { getSessionStatus } = await import("@/lib/whatsapp-crm/api");
+        const live = await getSessionStatus(token);
+        if (live?.status) setWAStatus(live.status);
+      } catch {
+        // fallback to DB
+        getWASession(user.id)
+          .then((s) => { if (s?.status) setWAStatus(s.status); })
+          .catch(() => {});
+      }
+    }
+
+    fetchStatus();
+    // Refresh status every 30 seconds
+    const interval = setInterval(fetchStatus, 30000);
+    return () => clearInterval(interval);
   }, [user]);
 
   // Loading spinner
