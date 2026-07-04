@@ -17,6 +17,12 @@ export default function sitemap() {
     { url: `${BASE_URL}/terms`, lastModified: new Date(), changeFrequency: "yearly", priority: 0.3 },
     { url: `${BASE_URL}/privacy`, lastModified: new Date(), changeFrequency: "yearly", priority: 0.3 },
     { url: `${BASE_URL}/sitemap-page`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.4 },
+    // WhatsApp CRM — public landing pages
+    { url: `${BASE_URL}/products/whatsappcrm`, lastModified: new Date(), changeFrequency: "weekly", priority: 0.9 },
+    { url: `${BASE_URL}/whatsapp-crm/login`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.75 },
+    { url: `${BASE_URL}/whatsapp-crm/register`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.75 },
+    { url: `${BASE_URL}/whatsapp-crm/docs`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.7 },
+    { url: `${BASE_URL}/whatsapp-crm/support`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.65 },
   ];
 
   const portfolioPages = portfolioSlugs.map((slug) => ({

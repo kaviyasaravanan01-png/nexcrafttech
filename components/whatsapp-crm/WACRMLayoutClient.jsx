@@ -10,18 +10,17 @@ const PUBLIC_PATHS = ["/whatsapp-crm/login", "/whatsapp-crm/register"];
 
 function DashboardShell({ children }) {
   const { user, loading } = useWACRMAuth();
-  const router    = useRouter();
-  const pathname  = usePathname();
-  const [waStatus, setWAStatus]       = useState("disconnected");
+  const router = useRouter();
+  const pathname = usePathname();
+  const [waStatus, setWAStatus] = useState("disconnected");
   const [mobileSidebarOpen, setMobile] = useState(false);
   const isPublic = PUBLIC_PATHS.includes(pathname);
 
-  // Close mobile sidebar on route change
   useEffect(() => { setMobile(false); }, [pathname]);
 
   useEffect(() => {
     if (!loading && !user && !isPublic) router.replace("/whatsapp-crm/login");
-    if (!loading && user && isPublic)  router.replace("/whatsapp-crm/dashboard");
+    if (!loading && user && isPublic) router.replace("/whatsapp-crm/dashboard");
   }, [user, loading, isPublic, router]);
 
   useEffect(() => {
@@ -59,8 +58,6 @@ function DashboardShell({ children }) {
 
   return (
     <div style={{ display: "flex", minHeight: "100vh", background: "#0a0a0e" }}>
-
-      {/* Mobile overlay backdrop */}
       {mobileSidebarOpen && (
         <div
           onClick={() => setMobile(false)}
@@ -68,34 +65,26 @@ function DashboardShell({ children }) {
         />
       )}
 
-      {/* Sidebar — hidden on mobile unless open */}
       <div style={{
         position: "fixed", top: 0, left: 0, height: "100vh", zIndex: 50,
         transform: mobileSidebarOpen ? "translateX(0)" : "translateX(-100%)",
-        transition: "transform 0.25s ease",
-        display: "block",
+        transition: "transform 0.25s ease", display: "block",
       }} className="wa-sidebar-mobile">
         <Sidebar user={user} waStatus={waStatus} onClose={() => setMobile(false)} />
       </div>
 
-      {/* Sidebar — always visible on desktop */}
       <div className="wa-sidebar-desktop">
         <Sidebar user={user} waStatus={waStatus} />
       </div>
 
-      {/* Main area */}
       <div style={{ flex: 1, display: "flex", flexDirection: "column", minWidth: 0 }}>
-
-        {/* Top bar */}
         <header style={{
           height: 56, borderBottom: "1px solid rgba(255,255,255,0.05)",
           display: "flex", alignItems: "center", justifyContent: "space-between",
-          padding: "0 1rem 0 1rem",
-          background: "rgba(10,10,14,0.9)", backdropFilter: "blur(10px)", flexShrink: 0,
-          position: "sticky", top: 0, zIndex: 30,
+          padding: "0 1rem", background: "rgba(10,10,14,0.9)", backdropFilter: "blur(10px)",
+          flexShrink: 0, position: "sticky", top: 0, zIndex: 30,
         }}>
           <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-            {/* Hamburger — mobile only */}
             <button
               className="wa-hamburger"
               onClick={() => setMobile(true)}
@@ -105,7 +94,6 @@ function DashboardShell({ children }) {
                 <line x1="3" y1="6" x2="21" y2="6" /><line x1="3" y1="12" x2="21" y2="12" /><line x1="3" y1="18" x2="21" y2="18" />
               </svg>
             </button>
-
             <a href="/" style={{ fontSize: 11, color: "rgba(255,255,255,0.3)", textDecoration: "none", letterSpacing: "0.04em", display: "flex", alignItems: "center", gap: 5 }}>
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M19 12H5M12 5l-7 7 7 7" />
@@ -115,7 +103,6 @@ function DashboardShell({ children }) {
             <span style={{ color: "rgba(255,255,255,0.1)", fontSize: 11 }} className="wa-header-text">/</span>
             <span style={{ fontSize: 11, color: "rgba(255,255,255,0.3)", letterSpacing: "0.04em" }} className="wa-header-text">WhatsApp CRM</span>
           </div>
-
           <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
             <span style={{ padding: "3px 10px", borderRadius: 100, fontSize: 10, fontWeight: 600, color: "#25D366", background: "rgba(37,211,102,0.1)", border: "1px solid rgba(37,211,102,0.25)", letterSpacing: "0.05em", textTransform: "uppercase" }}>
               Beta
@@ -125,18 +112,13 @@ function DashboardShell({ children }) {
             </div>
           </div>
         </header>
-
-        {/* Page content */}
         <main style={{ flex: 1, overflow: "auto", padding: "clamp(1rem, 3vw, 1.75rem)" }}>
           {children}
         </main>
       </div>
-
       <style>{`
-        /* Desktop sidebar */
         .wa-sidebar-desktop { display: flex; flex-shrink: 0; }
         .wa-sidebar-mobile  { display: none !important; }
-
         @media (max-width: 768px) {
           .wa-sidebar-desktop { display: none !important; }
           .wa-sidebar-mobile  { display: block !important; }
@@ -149,7 +131,7 @@ function DashboardShell({ children }) {
   );
 }
 
-export default function WACRMLayout({ children }) {
+export default function WACRMLayoutClient({ children }) {
   return (
     <WACRMAuthProvider>
       <DashboardShell>{children}</DashboardShell>

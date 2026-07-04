@@ -44,7 +44,7 @@ export async function generateMetadata({ params }) {
     },
     twitter: {
       card: "summary_large_image",
-      title: `${product.name} — AI Code Scanner`,
+      title: `${product.name} — ${product.subtitle}`,
       description: product.tagline,
       images: ["/twitter-image"],
     },
@@ -52,13 +52,17 @@ export async function generateMetadata({ params }) {
 }
 
 function buildProductSchema(product, slug, pageUrl) {
+  const appUrl = product.url?.startsWith("http")
+    ? product.url
+    : `${SITE_URL}${product.url || `/products/${slug}`}`;
+
   return {
     "@type": "SoftwareApplication",
     "@id": `${pageUrl}#software`,
     name: product.name,
     description: product.tagline,
-    url: product.url,
-    applicationCategory: "DeveloperApplication",
+    url: appUrl,
+    applicationCategory: slug === "whatsappcrm" ? "BusinessApplication" : "DeveloperApplication",
     operatingSystem: "Web, iOS, Android",
     offers: product.pricing.map((tier) => ({
       "@type": "Offer",

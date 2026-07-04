@@ -1,6 +1,11 @@
 User-agent: *
 Allow: /
 Allow: /_next/static/
+Allow: /products/whatsappcrm
+Allow: /whatsapp-crm/login
+Allow: /whatsapp-crm/register
+Allow: /whatsapp-crm/docs
+Allow: /whatsapp-crm/support
 
 Sitemap: https://nexcrafttech.com/sitemap.xml
 
@@ -8,3 +13,11 @@ Sitemap: https://nexcrafttech.com/sitemap.xml
 Disallow: /api/
 Disallow: /_next/data/
 Disallow: /_next/image
+
+# WhatsApp CRM — private authenticated app pages
+Disallow: /whatsapp-crm/dashboard
+Disallow: /whatsapp-crm/connect
+Disallow: /whatsapp-crm/contacts
+Disallow: /whatsapp-crm/campaigns
+Disallow: /whatsapp-crm/history
+Disallow: /whatsapp-crm/settings

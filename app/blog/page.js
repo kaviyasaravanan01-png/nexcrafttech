@@ -5,11 +5,13 @@ export const revalidate = 3600; // ISR: revalidate every hour
 
 export const metadata = {
   title: "Blog & Insights — Web Development, AI & SEO Articles",
-  description: "Expert articles on web development, AI chatbots, SEO strategies, CamToCode, design trends, and digital growth for businesses in India and worldwide.",
+  description: "Expert articles on web development, AI chatbots, SEO strategies, WhatsApp CRM, CamToCode, design trends, and digital growth for businesses in India and worldwide.",
   keywords: [
     "web development blog",
     "AI automation",
     "SEO strategies",
+    "WhatsApp CRM",
+    "WhatsApp bulk messaging",
     "CamToCode",
     "developer tools",
     "NexCraft blog",

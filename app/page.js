@@ -14,13 +14,16 @@ import Map from "@/components/Map";
 export const metadata = {
   title: "NexCraft Tech — Web Dev, AI Chatbots & SEO | Chennai",
   description:
-    "Fast Next.js websites, AI chatbots & SEO for startups. Makers of CamToCode — AI camera-to-code scanner. Transparent pricing from ₹6,999. Free consultation.",
+    "Fast Next.js websites, AI chatbots & SEO for startups. Makers of CamToCode & WhatsApp CRM — bulk messaging for businesses. Pricing from ₹6,999. Free consultation.",
   keywords: [
     "NexCraft Technologies",
     "web development Chennai",
     "AI chatbot development",
     "SEO services India",
     "CamToCode",
+    "WhatsApp CRM",
+    "WhatsApp bulk messenger",
+    "bulk WhatsApp sender India",
     "camera to code",
     "AI OCR scanner",
     "developer tools",
@@ -29,7 +32,7 @@ export const metadata = {
   openGraph: {
     title: "NexCraft Technologies — Web Dev, AI & SaaS Products",
     description:
-      "We build fast websites, AI chatbots & SEO — plus our own SaaS products like CamToCode, the AI-powered code scanner for developers.",
+      "We build fast websites, AI chatbots & SEO — plus SaaS products like CamToCode and WhatsApp CRM for bulk business messaging.",
     url: "https://nexcrafttech.com",
     type: "website",
   },

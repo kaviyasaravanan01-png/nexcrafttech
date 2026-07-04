@@ -1,5 +1,6 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import Script from "next/script";
+import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 import ClientShell from "@/components/ClientShell";
 
@@ -50,7 +51,17 @@ export const metadata = {
     "developer OCR",
     "scroll automation",
     "SaaS developer tools",
+    "WhatsApp CRM",
+    "WhatsApp bulk messenger",
+    "bulk WhatsApp sender India",
+    "WhatsApp campaign manager",
+    "WhatsApp marketing tool",
   ],
+  icons: {
+    icon: [{ url: "/nct-logo.svg", type: "image/svg+xml" }],
+    shortcut: "/nct-logo.svg",
+    apple: "/nct-logo.svg",
+  },
   authors: [{ name: "NexCraft Technologies", url: "https://nexcrafttech.com" }],
   creator: "NexCraft Technologies",
   publisher: "NexCraft Technologies",
@@ -190,6 +201,7 @@ export default function RootLayout({ children }) {
           {`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-JJSGBLLT8R');`}
         </Script>
         <ClientShell>{children}</ClientShell>
+        <Analytics />
       </body>
     </html>
   );

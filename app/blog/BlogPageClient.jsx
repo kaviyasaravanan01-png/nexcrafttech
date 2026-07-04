@@ -8,7 +8,7 @@ import Link from "next/link";
 
 if (typeof window !== "undefined") gsap.registerPlugin(ScrollTrigger);
 
-const categories = ["All", "Web Development", "AI & Automation", "SEO & Marketing", "Business Strategy", "App Development", "Design"];
+const categories = ["All", "Web Development", "AI & Automation", "Marketing", "SEO & Marketing", "Business Strategy", "App Development", "Design"];
 
 const cardVariants = {
   hidden: { opacity: 0, y: 40, scale: 0.96 },
