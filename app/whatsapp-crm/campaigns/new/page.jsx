@@ -74,6 +74,9 @@ export default function NewCampaignPage() {
     if (selectedContacts.size === 0) { setError("Select at least one contact."); return; }
     if (!message.trim()) { setError("Message cannot be empty."); return; }
     if (delayMin > delayMax) { setError("Min delay must be ≤ max delay."); return; }
+    if (scheduleType === "later" && !scheduledAt) { setError("Please select a date and time for scheduling."); return; }
+    if (scheduleType === "later" && new Date(scheduledAt) <= new Date()) { setError("Scheduled time must be in the future."); return; }
+
     setSubmitting(true);
     try {
       const campaign = await createCampaign(user.id, {
@@ -86,20 +89,19 @@ export default function NewCampaignPage() {
         delay_max_sec: delayMax,
         spin_enabled: spinEnabled,
         typing_sim: typingEnabled,
-        scheduled_at: scheduleType === "later" && scheduledAt ? new Date(scheduledAt).toISOString() : null,
-        status: scheduleType === "now" ? "queued" : "draft",
+        scheduled_at: scheduleType === "later" ? new Date(scheduledAt).toISOString() : null,
+        status: "draft",
         attachments: attachments.map((a) => ({ type: a.type, name: a.name })),
       });
 
-      if (scheduleType === "now" && token) {
+      // Always queue to Railway — BullMQ uses scheduled_at to delay the job automatically
+      if (token) {
         try {
           await queueCampaign(token, campaign.id);
         } catch (queueErr) {
-          // Campaign saved in DB but failed to enqueue — show warning then still navigate
           console.warn("[Campaign] Queue error:", queueErr.message);
-          setError(`Campaign saved but could not be queued: ${queueErr.message}. You can start it manually from the Campaigns page.`);
+          setError(`Campaign saved but could not be queued: ${queueErr.message}. Start it manually from the Campaigns page.`);
           setSubmitting(false);
-          // Give user a moment to read the error, then navigate
           setTimeout(() => router.push("/whatsapp-crm/campaigns"), 3000);
           return;
         }
@@ -336,25 +338,116 @@ export default function NewCampaignPage() {
 
           {/* Schedule */}
           <div style={{ borderRadius: "1rem", background: "linear-gradient(145deg,rgba(255,255,255,0.03),rgba(255,255,255,0.008))", border: "1px solid rgba(255,255,255,0.07)", padding: "1.5rem" }}>
-            <h3 style={{ fontSize: 14, fontWeight: 700, color: "#fff", marginBottom: "1rem" }}>Schedule</h3>
-            <div style={{ display: "flex", gap: 8, marginBottom: "1rem" }}>
+            <h3 style={{ fontSize: 14, fontWeight: 700, color: "#fff", marginBottom: "0.25rem" }}>Schedule</h3>
+            <p style={{ fontSize: 12.5, color: "rgba(255,255,255,0.4)", marginBottom: "1rem" }}>Choose when to send this campaign</p>
+
+            {/* Send Now / Schedule Later toggle */}
+            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 8, marginBottom: "1.25rem" }}>
               {[
-                { id: "now", label: "Send Now" },
-                { id: "later", label: "Schedule Later" },
+                { id: "now",   icon: "🚀", label: "Send Now",       sub: "Launch immediately" },
+                { id: "later", icon: "📅", label: "Schedule Later", sub: "Pick a date & time" },
               ].map((opt) => (
-                <button key={opt.id} onClick={() => setScheduleType(opt.id)} style={{ flex: 1, padding: "9px 16px", borderRadius: 8, background: scheduleType === opt.id ? "rgba(37,211,102,0.1)" : "rgba(255,255,255,0.03)", border: `1px solid ${scheduleType === opt.id ? "rgba(37,211,102,0.3)" : "rgba(255,255,255,0.08)"}`, color: scheduleType === opt.id ? "#25D366" : "rgba(255,255,255,0.5)", fontSize: 13, fontWeight: scheduleType === opt.id ? 600 : 400, cursor: "pointer" }}>
-                  {opt.label}
+                <button
+                  key={opt.id}
+                  type="button"
+                  onClick={() => setScheduleType(opt.id)}
+                  style={{
+                    padding: "14px 16px", borderRadius: 12, textAlign: "left", cursor: "pointer",
+                    background: scheduleType === opt.id ? "rgba(37,211,102,0.08)" : "rgba(255,255,255,0.02)",
+                    border: `1.5px solid ${scheduleType === opt.id ? "rgba(37,211,102,0.35)" : "rgba(255,255,255,0.07)"}`,
+                    transition: "all 0.15s",
+                  }}
+                >
+                  <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 4 }}>
+                    <span style={{ fontSize: 18 }}>{opt.icon}</span>
+                    <span style={{ fontSize: 13.5, fontWeight: 700, color: scheduleType === opt.id ? "#25D366" : "rgba(255,255,255,0.8)" }}>{opt.label}</span>
+                    {scheduleType === opt.id && (
+                      <span style={{ marginLeft: "auto", width: 16, height: 16, borderRadius: "50%", background: "#25D366", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                        <svg width="9" height="9" viewBox="0 0 12 10" fill="none"><polyline points="1,5 4.5,8.5 11,1" stroke="#fff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                      </span>
+                    )}
+                  </div>
+                  <div style={{ fontSize: 11.5, color: "rgba(255,255,255,0.35)", paddingLeft: 26 }}>{opt.sub}</div>
                 </button>
               ))}
             </div>
-            {scheduleType === "later" && (
-              <input
-                type="datetime-local"
-                value={scheduledAt}
-                onChange={(e) => setScheduledAt(e.target.value)}
-                style={{ width: "100%", padding: "9px 12px", borderRadius: 8, background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.1)", color: "#fff", fontSize: 13, outline: "none", boxSizing: "border-box" }}
-              />
-            )}
+
+            {/* Date & Time picker — shown only when Schedule Later is selected */}
+            {scheduleType === "later" && (() => {
+              const [dateVal, timeVal] = scheduledAt ? scheduledAt.split("T") : ["", ""];
+              const sharedFieldStyle = {
+                flex: 1, padding: "12px 14px", borderRadius: 10, fontSize: 13.5,
+                background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.12)",
+                color: "#fff", outline: "none", colorScheme: "dark", boxSizing: "border-box",
+                fontFamily: "inherit",
+              };
+              const handleDateChange = (d) => {
+                const t = timeVal || "09:00";
+                setScheduledAt(`${d}T${t}`);
+              };
+              const handleTimeChange = (t) => {
+                const d = dateVal || new Date().toISOString().split("T")[0];
+                setScheduledAt(`${d}T${t}`);
+              };
+              // Get min date = today
+              const minDate = new Date().toISOString().split("T")[0];
+              const scheduledDisplay = scheduledAt
+                ? new Date(scheduledAt).toLocaleString("en-IN", { weekday: "short", day: "numeric", month: "short", year: "numeric", hour: "2-digit", minute: "2-digit" })
+                : null;
+
+              return (
+                <div style={{ display: "flex", flexDirection: "column", gap: "0.875rem" }}>
+                  <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "0.75rem" }}>
+                    {/* Date picker */}
+                    <div>
+                      <label style={{ fontSize: 11, fontWeight: 600, color: "rgba(255,255,255,0.4)", letterSpacing: "0.07em", display: "block", marginBottom: 6, textTransform: "uppercase" }}>
+                        Date
+                      </label>
+                      <div style={{ position: "relative" }}>
+                        <input
+                          type="date"
+                          value={dateVal}
+                          min={minDate}
+                          onChange={(e) => handleDateChange(e.target.value)}
+                          style={sharedFieldStyle}
+                        />
+                      </div>
+                    </div>
+
+                    {/* Time picker */}
+                    <div>
+                      <label style={{ fontSize: 11, fontWeight: 600, color: "rgba(255,255,255,0.4)", letterSpacing: "0.07em", display: "block", marginBottom: 6, textTransform: "uppercase" }}>
+                        Time
+                      </label>
+                      <input
+                        type="time"
+                        value={timeVal}
+                        onChange={(e) => handleTimeChange(e.target.value)}
+                        style={sharedFieldStyle}
+                      />
+                    </div>
+                  </div>
+
+                  {/* Preview */}
+                  {scheduledDisplay ? (
+                    <div style={{
+                      padding: "10px 14px", borderRadius: 9,
+                      background: "rgba(99,102,241,0.08)", border: "1px solid rgba(99,102,241,0.2)",
+                      display: "flex", alignItems: "center", gap: 8,
+                    }}>
+                      <span style={{ fontSize: 14 }}>🗓️</span>
+                      <span style={{ fontSize: 12.5, color: "#818cf8", fontWeight: 600 }}>
+                        Will send on {scheduledDisplay}
+                      </span>
+                    </div>
+                  ) : (
+                    <div style={{ padding: "10px 14px", borderRadius: 9, background: "rgba(245,158,11,0.07)", border: "1px solid rgba(245,158,11,0.2)" }}>
+                      <span style={{ fontSize: 12.5, color: "#f59e0b" }}>⚠️ Please select a date and time</span>
+                    </div>
+                  )}
+                </div>
+              );
+            })()}
           </div>
         </div>
       )}
@@ -372,7 +465,7 @@ export default function NewCampaignPage() {
               { label: "Delay Range", value: `${delayMin}–${delayMax} seconds per message` },
               { label: "Message Spinning", value: spinEnabled ? "Enabled" : "Disabled" },
               { label: "Typing Simulation", value: typingEnabled ? "Enabled" : "Disabled" },
-              { label: "Schedule", value: scheduleType === "now" ? "Send immediately" : (scheduledAt ? new Date(scheduledAt).toLocaleString("en-IN") : "No time set") },
+              { label: "Schedule", value: scheduleType === "now" ? "🚀 Send immediately" : (scheduledAt ? `📅 ${new Date(scheduledAt).toLocaleString("en-IN", { weekday: "short", day: "numeric", month: "short", year: "numeric", hour: "2-digit", minute: "2-digit" })}` : "⚠️ No time set") },
               { label: "Est. Duration", value: `~${Math.round((selectedContacts.size * (delayMin + delayMax) / 2) / 60)} minutes` },
             ].map(({ label, value }) => (
               <div key={label} style={{ display: "flex", gap: 12, alignItems: "flex-start" }}>

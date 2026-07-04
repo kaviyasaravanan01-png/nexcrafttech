@@ -12,6 +12,7 @@ import {
 const STATUS_STYLE = {
   draft:     { color: "rgba(255,255,255,0.4)",  bg: "rgba(255,255,255,0.05)"  },
   queued:    { color: "#8b5cf6",                bg: "rgba(139,92,246,0.1)"    },
+  scheduled: { color: "#6366f1",                bg: "rgba(99,102,241,0.1)"    },
   running:   { color: "#f59e0b",                bg: "rgba(245,158,11,0.1)"    },
   paused:    { color: "#6366f1",                bg: "rgba(99,102,241,0.1)"    },
   completed: { color: "#25D366",                bg: "rgba(37,211,102,0.1)"    },
@@ -324,7 +325,10 @@ export default function CampaignsPage() {
       ) : (
         <div style={{ display: "flex", flexDirection: "column", gap: "0.875rem" }}>
           {campaigns.map((c) => {
-            const st  = STATUS_STYLE[c.status] || STATUS_STYLE.draft;
+            // Treat queued+future scheduled_at as "scheduled"
+            const displayStatus = (c.status === "queued" && c.scheduled_at && new Date(c.scheduled_at) > new Date())
+              ? "scheduled" : c.status;
+            const st  = STATUS_STYLE[displayStatus] || STATUS_STYLE.draft;
             const live = liveStats[c.id];
             const sent   = live?.sent   ?? c.sent_count   ?? 0;
             const failed = live?.failed ?? c.failed_count ?? 0;
@@ -351,11 +355,16 @@ export default function CampaignsPage() {
                         color: st.color, background: st.bg, border: `1px solid ${st.color}30`,
                         textTransform: "capitalize", letterSpacing: "0.05em",
                       }}>
-                        {c.status === "running" ? "🔄 Running" : c.status === "queued" ? "⏳ Queued" : c.status}
+                        {displayStatus === "running"   ? "🔄 Running"
+                          : displayStatus === "queued"    ? "⏳ Queued"
+                          : displayStatus === "scheduled" ? "📅 Scheduled"
+                          : displayStatus}
                       </span>
                     </div>
                     <div style={{ fontSize: 11.5, color: "rgba(255,255,255,0.35)", marginBottom: 8 }}>
-                      {new Date(c.created_at).toLocaleString("en-IN", { day: "numeric", month: "short", year: "numeric", hour: "2-digit", minute: "2-digit" })}
+                      {c.scheduled_at && new Date(c.scheduled_at) > new Date()
+                        ? <span style={{ color: "#6366f1" }}>📅 Scheduled: {new Date(c.scheduled_at).toLocaleString("en-IN", { day: "numeric", month: "short", hour: "2-digit", minute: "2-digit" })}</span>
+                        : new Date(c.created_at).toLocaleString("en-IN", { day: "numeric", month: "short", year: "numeric", hour: "2-digit", minute: "2-digit" })}
                       {c.delay_min_sec && ` · ${c.delay_min_sec}–${c.delay_max_sec}s delay`}
                       {c.spin_enabled && " · Spin ✓"}
                     </div>
