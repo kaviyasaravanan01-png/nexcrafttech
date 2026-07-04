@@ -59,10 +59,29 @@ io.on("connection", (socket) => {
 // Init BullMQ queues
 initQueues(io).catch((err) => log.error(err, "Failed to init queues"));
 
-httpServer.listen(PORT, () => {
+httpServer.listen(PORT, async () => {
   log.info(`WhatsApp service running on http://localhost:${PORT}`);
-  // Restore any previously connected WhatsApp sessions from Supabase
-  // Small delay so the server is fully ready before opening WA sockets
+
+  // On startup: any campaign still marked "running" or "queued" means the
+  // previous process died mid-flight. Reset them so users can re-run.
+  try {
+    const { authMiddleware: _ignore, supabase } = require("./middleware/auth");
+    const now = new Date().toISOString();
+    const { error, count } = await supabase
+      .from("wa_campaigns")
+      .update({
+        status: "failed",
+        error_message: "Service restarted — please re-run this campaign",
+        updated_at: now,
+      })
+      .in("status", ["running", "queued"])
+      .select("id", { count: "exact", head: true });
+    if (!error) log.info(`[Startup] Reset ${count ?? "?"} stuck campaigns to failed`);
+  } catch (e) {
+    log.warn({ e }, "[Startup] Could not reset stuck campaigns");
+  }
+
+  // Restore WhatsApp sessions from Supabase (3 s delay so server is fully up)
   setTimeout(() => {
     restoreAllSessions(io).catch((err) =>
       log.error(err, "Failed to restore sessions on startup")

@@ -112,8 +112,21 @@ export default function CampaignsPage() {
     if (!token) return;
     setActionLoading(campaign.id + "_start");
     try {
+      // If stuck in running, reset counters before re-queuing
+      if (campaign.status === "running") {
+        const { updateCampaign } = await import("@/lib/whatsapp-crm/supabase");
+        await updateCampaign(campaign.id, {
+          status: "draft",
+          sent_count: 0,
+          failed_count: 0,
+          pending_count: campaign.total_contacts,
+          started_at: null,
+          completed_at: null,
+          error_message: null,
+        });
+      }
       await queueCampaign(token, campaign.id);
-      setCampaigns((prev) => prev.map((c) => c.id === campaign.id ? { ...c, status: "queued" } : c));
+      setCampaigns((prev) => prev.map((c) => c.id === campaign.id ? { ...c, status: "queued", sent_count: 0, failed_count: 0 } : c));
       setActive(campaign);
       setLogs([`🚀 Campaign queued — waiting for worker…`]);
     } catch (err) {
@@ -326,14 +339,15 @@ export default function CampaignsPage() {
                       </button>
                     )}
 
-                    {/* Start (draft / completed / failed / cancelled) */}
-                    {["draft", "completed", "failed", "cancelled"].includes(c.status) && (
+                    {/* Start (draft / completed / failed / cancelled / stuck-running) */}
+                    {["draft", "completed", "failed", "cancelled", "running"].includes(c.status) && (
                       <button
                         onClick={() => handleStart(c)}
                         disabled={al === c.id + "_start"}
                         style={BtnStyle("#25D366", "rgba(37,211,102,0.1)")}
                       >
-                        {al === c.id + "_start" ? "⏳" : "▶"} {c.status === "draft" ? "Start" : "Re-run"}
+                        {al === c.id + "_start" ? "⏳" : "▶"}{" "}
+                        {c.status === "draft" ? "Start" : c.status === "running" ? "Force Re-run" : "Re-run"}
                       </button>
                     )}
 
