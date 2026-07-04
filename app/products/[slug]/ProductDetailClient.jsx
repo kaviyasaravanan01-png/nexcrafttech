@@ -130,8 +130,8 @@ export default function ProductDetailClient({ product, slug }) {
           <div style={{ display: "flex", flexWrap: "wrap", gap: 10 }}>
             <motion.a
               href={product.url}
-              target="_blank"
-              rel="noopener noreferrer"
+              target={product.url?.startsWith("/") ? "_self" : "_blank"}
+              rel={product.url?.startsWith("/") ? undefined : "noopener noreferrer"}
               whileHover={{ scale: 1.04, boxShadow: `0 0 28px ${product.color}40` }}
               whileTap={{ scale: 0.97 }}
               style={{
@@ -143,15 +143,15 @@ export default function ProductDetailClient({ product, slug }) {
                 textDecoration: "none", boxShadow: `0 4px 20px ${product.color}30`,
               }}
             >
-              Visit camtocode.com
+              {product.slug === "whatsappcrm" ? "Open Dashboard" : `Visit ${product.slug}.com`}
               <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" /><polyline points="15 3 21 3 21 9" /><line x1="10" y1="14" x2="21" y2="3" />
               </svg>
             </motion.a>
             <motion.a
               href={product.tryUrl}
-              target="_blank"
-              rel="noopener noreferrer"
+              target={product.tryUrl?.startsWith("/") ? "_self" : "_blank"}
+              rel={product.tryUrl?.startsWith("/") ? undefined : "noopener noreferrer"}
               whileHover={{ scale: 1.04 }}
               whileTap={{ scale: 0.97 }}
               style={{

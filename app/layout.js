@@ -1,13 +1,7 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
-import ClientExtras from "@/components/ClientExtras";
-import PageTransition from "@/components/PageTransition";
-import ScrollProgress from "@/components/ScrollProgress";
-import BackToTop from "@/components/BackToTop";
-import SearchProvider from "@/components/SearchProvider";
+import ClientShell from "@/components/ClientShell";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -195,13 +189,7 @@ export default function RootLayout({ children }) {
         <Script id="gtag-init" strategy="afterInteractive">
           {`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-JJSGBLLT8R');`}
         </Script>
-        <ClientExtras />
-        <ScrollProgress />
-        <Navbar />
-        <main><PageTransition>{children}</PageTransition></main>
-        <Footer />
-        <BackToTop />
-        <SearchProvider />
+        <ClientShell>{children}</ClientShell>
       </body>
     </html>
   );

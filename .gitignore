@@ -29,17 +29,13 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-<<<<<<< HEAD
 .pnpm-debug.log*
 
-# env files (can opt-in for committing if needed)
+# env files — never commit secrets
 .env*
-=======
-
-# local env files
 .env*.local
 .env
->>>>>>> 2fb29b1845df57e54d2ec2f31637f1c7d157eadd
+whatsapp-service/.env
 
 # vercel
 .vercel

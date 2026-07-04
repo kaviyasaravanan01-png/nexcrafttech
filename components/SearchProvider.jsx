@@ -25,6 +25,7 @@ const portfolioProjects = [
 
 const productItems = [
   { slug: "camtocode", title: "CamToCode", tagline: "Camera to Code with AI Vision OCR — scan code from any screen" },
+  { slug: "whatsappcrm", title: "WhatsApp CRM", tagline: "Bulk WhatsApp Messenger — send personalised campaigns with human-like delays" },
 ];
 
 export default function SearchProvider() {
