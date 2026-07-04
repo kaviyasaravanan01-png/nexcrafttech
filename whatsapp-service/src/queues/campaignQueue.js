@@ -14,7 +14,22 @@ const abortMap = new Map();
 
 function initQueues(io) {
   const redisUrl = process.env.REDIS_URL || "redis://localhost:6379";
-  const connection = new IORedis(redisUrl, { maxRetriesPerRequest: null });
+
+  let connection;
+  try {
+    connection = new IORedis(redisUrl, {
+      maxRetriesPerRequest: null,
+      lazyConnect: true,
+      connectTimeout: 5000,
+    });
+  } catch (err) {
+    log.warn("Redis not available — campaign queue disabled. Campaigns will not be processed.");
+    return Promise.resolve({ queue: null, worker: null });
+  }
+
+  connection.on("error", (err) => {
+    log.warn({ err }, "Redis connection error — queue paused");
+  });
 
   queue = new Queue(QUEUE_NAME, { connection });
   queueEvents = new QueueEvents(QUEUE_NAME, { connection });
@@ -62,7 +77,7 @@ function initQueues(io) {
 
 /** Add a campaign job to the queue */
 async function enqueueCampaign(campaignId, userId, scheduledAt) {
-  if (!queue) throw new Error("Queue not initialised");
+  if (!queue) throw new Error("Queue not available — Redis is not connected. Make sure REDIS_URL is set.");
   const delay = scheduledAt ? Math.max(0, new Date(scheduledAt).getTime() - Date.now()) : 0;
 
   const job = await queue.add(
