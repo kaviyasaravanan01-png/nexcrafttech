@@ -5,8 +5,9 @@ const http = require("http");
 const { Server: SocketServer } = require("socket.io");
 const pino = require("pino");
 
-const sessionRoutes = require("./routes/session.routes");
+const sessionRoutes  = require("./routes/session.routes");
 const campaignRoutes = require("./routes/campaign.routes");
+const paymentRoutes  = require("./routes/payment.routes");
 const { initQueues } = require("./queues/campaignQueue");
 const { authMiddleware } = require("./middleware/auth");
 const { restoreAllSessions } = require("./providers/WhatsAppFactory");
@@ -43,8 +44,11 @@ app.use(express.json());
 app.get("/health", (_req, res) => res.json({ status: "ok", ts: new Date().toISOString() }));
 
 // Routes (protected)
-app.use("/api/session", authMiddleware, sessionRoutes);
+app.use("/api/session",  authMiddleware, sessionRoutes);
 app.use("/api/campaign", authMiddleware, campaignRoutes);
+app.use("/api/payment",  authMiddleware, paymentRoutes);
+// Razorpay webhook — no auth middleware, signature verified inside the route
+app.use("/api/webhook/razorpay", paymentRoutes);
 
 // Socket.IO — clients join their user's room by userId
 io.on("connection", (socket) => {
