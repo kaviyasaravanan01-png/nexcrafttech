@@ -6,7 +6,7 @@ import { useWACRMAuth } from "@/lib/whatsapp-crm/useAuth";
 import { getCampaigns } from "@/lib/whatsapp-crm/supabase";
 import {
   queueCampaign, pauseCampaign, resumeCampaign,
-  stopCampaign, getSocketURL,
+  stopCampaign, getSocketURL, getSessionStatus,
 } from "@/lib/whatsapp-crm/api";
 
 const STATUS_STYLE = {
@@ -33,6 +33,7 @@ export default function CampaignsPage() {
   const [campaigns, setCampaigns]   = useState([]);
   const [loading, setLoading]       = useState(true);
   const [token, setToken]           = useState(null);
+  const [waConnected, setWaConnected] = useState(null); // null=checking, true/false
   const [activeCampaign, setActive] = useState(null); // campaign being watched for live logs
   const [logs, setLogs]             = useState([]);
   const [liveStats, setLiveStats]   = useState({}); // { [campaignId]: { sent, failed, total } }
@@ -40,12 +41,18 @@ export default function CampaignsPage() {
   const logsEndRef = useRef(null);
   const socketRef  = useRef(null);
 
-  // Load token
+  // Load token, then check WA connection status
   useEffect(() => {
     import("@/lib/whatsapp-crm/supabase").then(({ getSupabase }) => {
-      getSupabase()?.auth.getSession().then(({ data }) =>
-        setToken(data?.session?.access_token ?? null)
-      );
+      getSupabase()?.auth.getSession().then(({ data }) => {
+        const t = data?.session?.access_token ?? null;
+        setToken(t);
+        if (t) {
+          getSessionStatus(t)
+            .then((s) => setWaConnected(s?.status === "connected"))
+            .catch(() => setWaConnected(false));
+        }
+      });
     });
   }, []);
 
@@ -212,6 +219,39 @@ export default function CampaignsPage() {
         </Link>
       </div>
 
+      {/* WhatsApp not connected banner */}
+      {waConnected === false && (
+        <div style={{
+          marginBottom: "1.25rem",
+          padding: "1rem 1.25rem",
+          borderRadius: "0.875rem",
+          background: "rgba(239,68,68,0.07)",
+          border: "1px solid rgba(239,68,68,0.25)",
+          display: "flex", alignItems: "center", justifyContent: "space-between",
+          gap: "1rem", flexWrap: "wrap",
+        }}>
+          <div style={{ display: "flex", alignItems: "center", gap: "0.75rem" }}>
+            <span style={{ fontSize: 20 }}>📵</span>
+            <div>
+              <p style={{ fontSize: 13.5, fontWeight: 600, color: "#ef4444", margin: 0 }}>
+                WhatsApp not connected
+              </p>
+              <p style={{ fontSize: 12, color: "rgba(255,255,255,0.4)", margin: "2px 0 0" }}>
+                You must connect WhatsApp before sending campaigns.
+              </p>
+            </div>
+          </div>
+          <Link href="/whatsapp-crm/connect" style={{
+            padding: "8px 18px", borderRadius: 100, fontSize: 12.5, fontWeight: 700,
+            background: "rgba(239,68,68,0.15)", color: "#ef4444",
+            border: "1px solid rgba(239,68,68,0.3)", textDecoration: "none",
+            whiteSpace: "nowrap",
+          }}>
+            → Connect WhatsApp
+          </Link>
+        </div>
+      )}
+
       {/* Live log console (shown when a campaign is selected) */}
       {activeCampaign && (
         <div style={{
@@ -358,9 +398,17 @@ export default function CampaignsPage() {
                     {/* Start (draft / completed / failed / cancelled / stuck-running) */}
                     {["draft", "completed", "failed", "cancelled", "running"].includes(c.status) && (
                       <button
-                        onClick={() => handleStart(c)}
-                        disabled={al === c.id + "_start"}
-                        style={BtnStyle("#25D366", "rgba(37,211,102,0.1)")}
+                        onClick={() => waConnected ? handleStart(c) : null}
+                        disabled={al === c.id + "_start" || waConnected === false}
+                        title={waConnected === false ? "Connect WhatsApp first" : undefined}
+                        style={{
+                          ...BtnStyle(
+                            waConnected === false ? "rgba(255,255,255,0.2)" : "#25D366",
+                            waConnected === false ? "rgba(255,255,255,0.04)" : "rgba(37,211,102,0.1)"
+                          ),
+                          cursor: waConnected === false ? "not-allowed" : "pointer",
+                          opacity: waConnected === false ? 0.5 : 1,
+                        }}
                       >
                         {al === c.id + "_start" ? "⏳" : "▶"}{" "}
                         {c.status === "draft" ? "Start" : c.status === "running" ? "Force Re-run" : "Re-run"}
