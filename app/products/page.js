@@ -4,11 +4,15 @@ import ProductsPageClient from "./ProductsPageClient";
 export const metadata = {
   title: "Our Products — SaaS Tools",
   description:
-    "Explore SaaS products built by NexCraft Technologies — CamToCode AI code scanner and WhatsApp CRM bulk messenger for businesses in India.",
+    "Explore SaaS products built by NexCraft Technologies — CamToCode, WhatsApp CRM, PDF AI, and more.",
   keywords: [
     "NexCraft products",
     "CamToCode",
     "WhatsApp CRM",
+    "PDF AI",
+    "PDF tools",
+    "merge PDF",
+    "PDF to Word",
     "WhatsApp bulk messenger",
     "bulk WhatsApp sender India",
     "camera to code",
@@ -21,7 +25,7 @@ export const metadata = {
   openGraph: {
     title: "Our Products — SaaS Tools by NexCraft",
     description:
-      "SaaS products built by NexCraft — CamToCode AI code scanner and WhatsApp CRM for bulk business messaging with anti-ban features.",
+      "SaaS products built by NexCraft — CamToCode, WhatsApp CRM, PDF AI document tools, and more.",
     url: "https://nexcrafttech.com/products",
     type: "website",
     images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: "NexCraft Technologies Products" }],

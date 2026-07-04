@@ -60,8 +60,9 @@ export default function Products() {
   const next = () => setActiveIndex((i) => (i + 1) % products.length);
 
   const isWA = active.slug === "whatsappcrm";
+  const isInternal = isWA || (active.url || "").startsWith("/");
   const primaryHref = isWA ? "/whatsapp-crm/dashboard" : (active.url || "#");
-  const primaryLabel = isWA ? "Open Dashboard" : `Visit ${active.slug === "camtocode" ? "camtocode.com" : active.name}`;
+  const primaryLabel = active.primaryCtaLabel || (isWA ? "Open Dashboard" : active.slug === "camtocode" ? "Visit camtocode.com" : `Visit ${active.name}`);
 
   return (
     <section
@@ -160,7 +161,12 @@ export default function Products() {
                     display: "flex", alignItems: "center", justifyContent: "center",
                     color: active.color,
                   }}>
-                    {active.slug === "whatsappcrm" ? <WhatsAppIcon /> : (
+                    {active.slug === "whatsappcrm" ? <WhatsAppIcon /> : active.slug === "pdf-ai" ? (
+                      <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                        <polyline points="14 2 14 8 20 8" /><line x1="16" y1="13" x2="8" y2="13" /><line x1="16" y1="17" x2="8" y2="17" />
+                      </svg>
+                    ) : (
                       <svg width="36" height="36" viewBox="0 0 24 24" fill="currentColor">
                         <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
                       </svg>
@@ -253,8 +259,8 @@ export default function Products() {
                 <div style={{ display: "flex", flexWrap: "wrap", gap: 10, alignItems: "center" }}>
                   <motion.a
                     href={primaryHref}
-                    target={isWA ? "_self" : "_blank"}
-                    rel={isWA ? undefined : "noopener noreferrer"}
+                    target={isInternal ? "_self" : "_blank"}
+                    rel={isInternal ? undefined : "noopener noreferrer"}
                     whileHover={{ scale: 1.04, boxShadow: `0 0 28px ${active.color}40` }}
                     whileTap={{ scale: 0.97 }}
                     style={{
@@ -273,8 +279,8 @@ export default function Products() {
                   {active.tryUrl && (
                     <motion.a
                       href={active.tryUrl}
-                      target={isWA ? "_self" : "_blank"}
-                      rel={isWA ? undefined : "noopener noreferrer"}
+                      target={isInternal ? "_self" : "_blank"}
+                      rel={isInternal ? undefined : "noopener noreferrer"}
                       whileHover={{ scale: 1.04 }}
                       whileTap={{ scale: 0.97 }}
                       style={{
@@ -287,7 +293,7 @@ export default function Products() {
                         textDecoration: "none",
                       }}
                     >
-                      Try free
+                      {active.secondaryCtaLabel || "Try free"}
                     </motion.a>
                   )}
 

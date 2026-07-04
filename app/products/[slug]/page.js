@@ -24,7 +24,7 @@ export async function generateMetadata({ params }) {
     alternates: { canonical: pageUrl },
     openGraph: {
       title: `${product.name} — ${product.subtitle}`,
-      description: product.tagline,
+      description: product.ogDescription || product.tagline,
       url: pageUrl,
       type: "website",
       siteName: "NexCraft Technologies",
@@ -45,7 +45,7 @@ export async function generateMetadata({ params }) {
     twitter: {
       card: "summary_large_image",
       title: `${product.name} — ${product.subtitle}`,
-      description: product.tagline,
+      description: product.ogDescription || product.tagline,
       images: ["/twitter-image"],
     },
   };

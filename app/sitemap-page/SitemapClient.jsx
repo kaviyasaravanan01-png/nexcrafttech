@@ -54,6 +54,7 @@ const sitemapData = [
       { label: "All Products", href: "/products" },
       { label: "CamToCode", href: "/products/camtocode" },
       { label: "WhatsApp CRM", href: "/products/whatsappcrm" },
+      { label: "PDF AI", href: "/products/pdf-ai" },
     ],
   },
   {

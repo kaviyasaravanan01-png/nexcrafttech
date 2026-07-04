@@ -24,8 +24,9 @@ const portfolioProjects = [
 ];
 
 const productItems = [
-  { slug: "camtocode", title: "CamToCode", tagline: "Camera to Code with AI Vision OCR — scan code from any screen" },
   { slug: "whatsappcrm", title: "WhatsApp CRM", tagline: "Bulk WhatsApp Messenger — send personalised campaigns with human-like delays" },
+  { slug: "pdf-ai", title: "PDF AI", tagline: "61+ free document & image tools — merge, convert, AI analysis, and more" },
+  { slug: "camtocode", title: "CamToCode", tagline: "Camera to Code with AI Vision OCR — scan code from any screen" },
 ];
 
 export default function SearchProvider() {

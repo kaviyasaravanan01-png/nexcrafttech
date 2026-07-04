@@ -143,11 +143,12 @@ export default function ProductDetailClient({ product, slug }) {
                 textDecoration: "none", boxShadow: `0 4px 20px ${product.color}30`,
               }}
             >
-              {product.slug === "whatsappcrm" ? "Open Dashboard" : `Visit ${product.slug}.com`}
+              {product.primaryCtaLabel || (product.slug === "whatsappcrm" ? "Open Dashboard" : product.slug === "camtocode" ? "Visit camtocode.com" : "Visit Live Site")}
               <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" /><polyline points="15 3 21 3 21 9" /><line x1="10" y1="14" x2="21" y2="3" />
               </svg>
             </motion.a>
+            {product.tryUrl && (
             <motion.a
               href={product.tryUrl}
               target={product.tryUrl?.startsWith("/") ? "_self" : "_blank"}
@@ -164,8 +165,9 @@ export default function ProductDetailClient({ product, slug }) {
                 textDecoration: "none",
               }}
             >
-              Try free
+              {product.secondaryCtaLabel || "Try free"}
             </motion.a>
+            )}
           </div>
         </motion.div>
 
@@ -211,6 +213,41 @@ export default function ProductDetailClient({ product, slug }) {
             {product.description}
           </p>
         </motion.div>
+
+        {/* Tool breakdown */}
+        {product.toolBreakdown && (
+          <motion.div variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }} style={{ marginBottom: "3rem" }}>
+            <h3 style={{ fontSize: 11, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.12em", color: "#c9a96e", marginBottom: "1rem" }}>
+              Tool Breakdown
+            </h3>
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))", gap: "1rem" }}>
+              {product.toolBreakdown.map((group) => (
+                <div key={group.category} style={{
+                  padding: "1.25rem", borderRadius: 12,
+                  background: "linear-gradient(145deg, rgba(255,255,255,0.025), rgba(255,255,255,0.008))",
+                  border: "1px solid rgba(255,255,255,0.06)",
+                }}>
+                  <div style={{ fontSize: 13, fontWeight: 700, color: product.color, marginBottom: 4 }}>
+                    {group.category} <span style={{ color: "rgba(255,255,255,0.35)", fontWeight: 500 }}>({group.count})</span>
+                  </div>
+                  <div style={{ fontSize: 12, color: "rgba(255,255,255,0.45)", lineHeight: 1.55 }}>{group.summary}</div>
+                </div>
+              ))}
+            </div>
+          </motion.div>
+        )}
+
+        {/* Architecture */}
+        {product.architecture && (
+          <motion.div variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }} style={{ marginBottom: "3rem" }}>
+            <h3 style={{ fontSize: 11, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.12em", color: "#c9a96e", marginBottom: "1rem" }}>
+              Architecture
+            </h3>
+            <p style={{ fontSize: 13.5, lineHeight: 1.75, color: "rgba(255,255,255,0.5)", padding: "1.25rem", borderRadius: 12, background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.06)" }}>
+              {product.architecture}
+            </p>
+          </motion.div>
+        )}
 
         {/* Features */}
         <motion.div variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }} style={{ marginBottom: "3rem" }}>
@@ -346,7 +383,7 @@ export default function ProductDetailClient({ product, slug }) {
         {/* Differentiators */}
         <motion.div variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }} style={{ marginBottom: "3rem" }}>
           <h3 style={{ fontSize: 11, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.12em", color: "#c9a96e", marginBottom: "1rem" }}>
-            Why CamToCode
+            {product.differentiatorsTitle || `Why ${product.name}`}
           </h3>
           <div className="product-diff-grid" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "1rem" }}>
             {product.differentiators.map((d, i) => (
@@ -372,6 +409,33 @@ export default function ProductDetailClient({ product, slug }) {
             ))}
           </div>
         </motion.div>
+
+        {/* Completion status */}
+        {product.completionNotes && (
+          <motion.div variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }} style={{ marginBottom: "3rem" }}>
+            <h3 style={{ fontSize: 11, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.12em", color: "#c9a96e", marginBottom: "1rem" }}>
+              Project Status
+            </h3>
+            <div className="product-grid-2" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1rem" }}>
+              <div style={{ padding: "1.25rem", borderRadius: 12, background: "rgba(37,211,102,0.04)", border: "1px solid rgba(37,211,102,0.15)" }}>
+                <div style={{ fontSize: 12, fontWeight: 700, color: "#25D366", marginBottom: "0.75rem" }}>✅ Shipped</div>
+                <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
+                  {product.completionNotes.shipped.map((item) => (
+                    <li key={item} style={{ fontSize: 12.5, color: "rgba(255,255,255,0.5)", marginBottom: 6, lineHeight: 1.5 }}>• {item}</li>
+                  ))}
+                </ul>
+              </div>
+              <div style={{ padding: "1.25rem", borderRadius: 12, background: "rgba(245,158,11,0.04)", border: "1px solid rgba(245,158,11,0.15)" }}>
+                <div style={{ fontSize: 12, fontWeight: 700, color: "#f59e0b", marginBottom: "0.75rem" }}>⚙️ Phase 2</div>
+                <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
+                  {product.completionNotes.phase2.map((item) => (
+                    <li key={item} style={{ fontSize: 12.5, color: "rgba(255,255,255,0.5)", marginBottom: 6, lineHeight: 1.5 }}>• {item}</li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </motion.div>
+        )}
 
         {/* Links */}
         <motion.div variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }} style={{ marginBottom: "3rem" }}>
