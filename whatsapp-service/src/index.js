@@ -11,23 +11,31 @@ const { initQueues } = require("./queues/campaignQueue");
 const { authMiddleware } = require("./middleware/auth");
 
 const log = pino({ transport: { target: "pino-pretty", options: { colorize: true } } });
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 8080;
+
+// Support comma-separated CORS origins e.g. "https://nexcrafttech.com,http://localhost:3000"
+const rawOrigins = process.env.CORS_ORIGIN || "http://localhost:3000";
+const ALLOWED_ORIGINS = rawOrigins.split(",").map((o) => o.trim());
+
+function corsOriginFn(origin, callback) {
+  // Allow requests with no origin (curl, Postman, Railway health checks)
+  if (!origin) return callback(null, true);
+  if (ALLOWED_ORIGINS.includes(origin)) return callback(null, true);
+  callback(new Error(`CORS blocked: ${origin}`));
+}
 
 const app = express();
 const httpServer = http.createServer(app);
 
 // Socket.IO for real-time campaign progress
 const io = new SocketServer(httpServer, {
-  cors: {
-    origin: process.env.CORS_ORIGIN || "http://localhost:3000",
-    methods: ["GET", "POST"],
-  },
+  cors: { origin: corsOriginFn, methods: ["GET", "POST"], credentials: true },
 });
 
 // Attach io to every request so routes can emit events
 app.set("io", io);
 
-app.use(cors({ origin: process.env.CORS_ORIGIN || "http://localhost:3000", credentials: true }));
+app.use(cors({ origin: corsOriginFn, credentials: true }));
 app.use(express.json());
 
 // Health check
