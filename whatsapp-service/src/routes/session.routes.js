@@ -25,12 +25,22 @@ router.post("/qr", async (req, res) => {
 // GET /api/session/status — get current session status
 router.get("/status", async (req, res) => {
   const userId = req.userId;
+
+  // First check in-memory (most accurate — reflects actual WA socket state)
+  const { activeProviders } = require("../providers/WhatsAppFactory");
+  const entry = activeProviders.get(userId);
+  if (entry) {
+    const liveStatus = await entry.instance.getStatus();
+    return res.json({ status: liveStatus, provider: entry.provider });
+  }
+
+  // Fallback to DB
   try {
     const { data } = await supabase
       .from("wa_sessions")
       .select("status, phone, provider, last_seen")
       .eq("user_id", userId)
-      .single();
+      .maybeSingle();
     res.json(data || { status: "disconnected" });
   } catch {
     res.json({ status: "disconnected" });

@@ -109,17 +109,35 @@ async function disconnectSession(userId) {
 
 async function updateSessionStatus(userId, status, provider, phone) {
   try {
-    await supabase.from("wa_sessions").upsert(
-      {
-        user_id: userId,
-        status,
-        provider: provider || "baileys",
-        phone: phone || null,
-        last_seen: new Date().toISOString(),
-        updated_at: new Date().toISOString(),
-      },
-      { onConflict: "user_id" }
-    );
+    const now = new Date().toISOString();
+    const payload = {
+      user_id: userId,
+      status,
+      provider: provider || "baileys",
+      phone: phone || null,
+      last_seen: now,
+      updated_at: now,
+    };
+
+    // Check if a row already exists for this user
+    const { data: existing } = await supabase
+      .from("wa_sessions")
+      .select("id")
+      .eq("user_id", userId)
+      .maybeSingle();
+
+    if (existing?.id) {
+      // Update existing row
+      await supabase
+        .from("wa_sessions")
+        .update({ status, provider: provider || "baileys", phone: phone || null, last_seen: now, updated_at: now })
+        .eq("id", existing.id);
+    } else {
+      // Insert new row
+      await supabase.from("wa_sessions").insert(payload);
+    }
+
+    log.info(`[DB] wa_sessions updated: user=${userId} status=${status}`);
   } catch (err) {
     log.error(err, "Failed to update wa_sessions");
   }
