@@ -20,14 +20,15 @@ const STEPS = [
 
 export default function ConnectPage() {
   const { user } = useWACRMAuth();
-  const [session, setSession]     = useState(null);
-  const [qr, setQR]               = useState(null);
-  const [provider, setProvider]   = useState("baileys");
-  const [status, setStatus]       = useState("idle");
-  const [phone, setPhone]         = useState("");
-  const [errorMsg, setErrorMsg]   = useState("");
+  const [session, setSession]       = useState(null);
+  const [qr, setQR]                 = useState(null);
+  const [provider, setProvider]     = useState("baileys");
+  const [status, setStatus]         = useState("idle");
+  const [phone, setPhone]           = useState("");
+  const [errorMsg, setErrorMsg]     = useState("");
   const [loadingSession, setLoadingSession] = useState(true);
-  const [token, setToken]         = useState(null);
+  const [token, setToken]           = useState(null);
+  const [needsRescan, setNeedsRescan] = useState(false); // true when session_data is null in DB
   const socketRef = useRef(null);
 
   // Fetch Supabase access token (must run first)
@@ -51,6 +52,8 @@ export default function ConnectPage() {
           setStatus(s.status);
           if (s.phone) setPhone(s.phone);
         }
+        // If session_data is null, credentials aren't persisted yet — flag for rescan
+        if (!s?.session_data) setNeedsRescan(true);
       } catch { /* table may not exist yet */ }
 
       // 2. Confirm with Railway live status (source of truth)
@@ -104,6 +107,7 @@ export default function ConnectPage() {
       // WhatsApp connected
       io.on("wa:ready", ({ phone: p, provider: prov }) => {
         setStatus("connected");
+        setNeedsRescan(false);
         setQR(null);
         if (p) setPhone(p);
         if (prov) setProvider(prov);
@@ -176,6 +180,28 @@ export default function ConnectPage() {
           Link your WhatsApp number to start sending campaigns.
         </p>
       </div>
+
+      {/* ── One-time rescan banner ── */}
+      {needsRescan && !loadingSession && (
+        <div style={{
+          marginBottom: "1.25rem",
+          padding: "1rem 1.25rem",
+          borderRadius: "0.875rem",
+          background: "rgba(245,158,11,0.08)",
+          border: "1px solid rgba(245,158,11,0.3)",
+          display: "flex", alignItems: "flex-start", gap: "0.875rem",
+        }}>
+          <span style={{ fontSize: 20, flexShrink: 0 }}>⚠️</span>
+          <div>
+            <p style={{ fontSize: 13.5, fontWeight: 600, color: "#f59e0b", margin: "0 0 0.25rem" }}>
+              One-time QR scan required
+            </p>
+            <p style={{ fontSize: 12.5, color: "rgba(255,255,255,0.5)", margin: 0, lineHeight: 1.5 }}>
+              Your credentials aren't saved yet. Scan the QR code below <strong style={{ color: "rgba(255,255,255,0.75)" }}>one more time</strong> — after this, your session will be stored securely in Supabase and you'll <strong style={{ color: "rgba(255,255,255,0.75)" }}>never need to scan again</strong> after a Railway restart.
+            </p>
+          </div>
+        </div>
+      )}
 
       <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1.5rem" }} className="connect-grid">
 
