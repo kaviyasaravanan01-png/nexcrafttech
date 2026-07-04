@@ -285,13 +285,14 @@ export default function DashboardPage() {
               </Link>
             </div>
           ) : (
-            <>
+            <div style={{ overflowX: "auto", WebkitOverflowScrolling: "touch" }}>
               {/* Table header */}
               <div style={{
                 display: "grid",
                 gridTemplateColumns: "1fr 90px 80px 80px 80px 90px",
                 gap: "1rem",
                 padding: "0 1rem 0.5rem",
+                minWidth: 540,
               }}>
                 {["Campaign", "Status", "Total", "Sent", "Failed", "Rate"].map((h) => (
                   <div key={h} style={{ fontSize: 10.5, fontWeight: 600, color: "rgba(255,255,255,0.3)", letterSpacing: "0.08em", textTransform: "uppercase", textAlign: h === "Campaign" || h === "Status" ? "left" : "right" }}>
@@ -299,10 +300,10 @@ export default function DashboardPage() {
                   </div>
                 ))}
               </div>
-              <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
+              <div style={{ display: "flex", flexDirection: "column", gap: 6, minWidth: 540 }}>
                 {recentCampaigns.map((c) => <CampaignRow key={c.id} campaign={c} />)}
               </div>
-            </>
+            </div>
           )}
         </div>
       </div>

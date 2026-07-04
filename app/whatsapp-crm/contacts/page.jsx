@@ -13,11 +13,34 @@ function parseCSV(text) {
     const obj = {};
     headers.forEach((h, i) => { obj[h] = vals[i] ?? ""; });
     return {
-      name: obj.name || obj.fullname || obj.full_name || "",
+      name: (obj.name || obj.fullname || obj.full_name || "").trim(),
       phone: (obj.phone || obj.mobile || obj.number || "").replace(/\D/g, ""),
-      email: obj.email || "",
+      email: (obj.email || "").trim(),
     };
   }).filter((c) => c.phone.length >= 7);
+}
+
+function assignUnknownNames(contacts) {
+  let counter = 1;
+  return contacts.map((c) => ({
+    ...c,
+    name: c.name || `unknown${counter++}`,
+  }));
+}
+
+const CSV_TEMPLATE = `name,phone,email
+Anand,919876543210,anand@example.com
+,918765432109,
+Priya,917654321098,priya@example.com`;
+
+function downloadCSVTemplate() {
+  const blob = new Blob([CSV_TEMPLATE], { type: "text/csv;charset=utf-8;" });
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement("a");
+  link.href = url;
+  link.download = "contacts_template.csv";
+  link.click();
+  URL.revokeObjectURL(url);
 }
 
 export default function ContactsPage() {
@@ -78,7 +101,7 @@ export default function ContactsPage() {
     if (!file) return;
     setUploadMsg("Parsing CSV…");
     const text = await file.text();
-    const parsed = parseCSV(text);
+    const parsed = assignUnknownNames(parseCSV(text));
     if (!parsed.length) { setUploadMsg("No valid contacts found in CSV."); return; }
     setUploadMsg(`Uploading ${parsed.length} contacts…`);
     let done = 0;
@@ -136,6 +159,20 @@ export default function ContactsPage() {
             </button>
           )}
           <button
+            onClick={downloadCSVTemplate}
+            style={{
+              padding: "9px 16px", borderRadius: 8,
+              background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.12)",
+              color: "rgba(255,255,255,0.65)", fontSize: 12.5, fontWeight: 600, cursor: "pointer",
+              display: "flex", alignItems: "center", gap: 6,
+            }}
+          >
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" /><polyline points="7 10 12 15 17 10" /><line x1="12" y1="15" x2="12" y2="3" />
+            </svg>
+            Download Template
+          </button>
+          <button
             onClick={() => fileRef.current?.click()}
             style={{
               padding: "9px 16px", borderRadius: 8,
@@ -184,7 +221,7 @@ export default function ContactsPage() {
         background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.06)",
         fontSize: 11.5, color: "rgba(255,255,255,0.35)",
       }}>
-        CSV format: <code style={{ color: "rgba(255,255,255,0.6)" }}>name,phone,email</code> — phone must include country code (e.g. 919876543210)
+        CSV format: <code style={{ color: "rgba(255,255,255,0.6)" }}>name,phone,email</code> — phone is required with country code (e.g. 919876543210). Name and email are optional; empty names become <code style={{ color: "rgba(255,255,255,0.6)" }}>unknown1</code>, <code style={{ color: "rgba(255,255,255,0.6)" }}>unknown2</code>, etc.
       </div>
 
       {/* Add contact form */}
@@ -195,7 +232,7 @@ export default function ContactsPage() {
           background: "rgba(37,211,102,0.04)", border: "1px solid rgba(37,211,102,0.2)",
         }}>
           <h3 style={{ fontSize: 14, fontWeight: 700, color: "#fff", marginBottom: "1rem" }}>Add Contact</h3>
-          <form onSubmit={handleAddContact} style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: "0.75rem", alignItems: "end" }}>
+          <form onSubmit={handleAddContact} style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(180px,1fr))", gap: "0.75rem", alignItems: "end" }}>
             <div>
               <label style={{ fontSize: 11, color: "rgba(255,255,255,0.4)", display: "block", marginBottom: 4 }}>NAME *</label>
               <input style={inputStyle} value={addForm.name} onChange={(e) => setAddForm((f) => ({ ...f, name: e.target.value }))} placeholder="John Doe" required />
@@ -236,51 +273,52 @@ export default function ContactsPage() {
 
       {/* Table */}
       <div style={{ borderRadius: "1rem", background: "linear-gradient(145deg,rgba(255,255,255,0.03),rgba(255,255,255,0.008))", border: "1px solid rgba(255,255,255,0.07)", overflow: "hidden" }}>
-        {/* Header */}
-        <div style={{ display: "grid", gridTemplateColumns: "40px 1fr 1fr 1fr 80px", gap: "0.75rem", padding: "0.75rem 1rem", borderBottom: "1px solid rgba(255,255,255,0.05)" }}>
-          <div style={{ display: "flex", alignItems: "center" }}>
-            <input type="checkbox" checked={selected.size === contacts.length && contacts.length > 0} onChange={toggleAll} style={{ accentColor: "#25D366", width: 14, height: 14, cursor: "pointer" }} />
+        <div style={{ overflowX: "auto", WebkitOverflowScrolling: "touch" }}>
+          {/* Header */}
+          <div style={{ display: "grid", gridTemplateColumns: "40px 1fr 130px 150px 80px", gap: "0.75rem", padding: "0.75rem 1rem", borderBottom: "1px solid rgba(255,255,255,0.05)", minWidth: 520 }}>
+            <div style={{ display: "flex", alignItems: "center" }}>
+              <input type="checkbox" checked={selected.size === contacts.length && contacts.length > 0} onChange={toggleAll} style={{ accentColor: "#25D366", width: 14, height: 14, cursor: "pointer" }} />
+            </div>
+            {["Name", "Phone", "Email", "Added"].map((h) => (
+              <div key={h} style={{ fontSize: 10.5, fontWeight: 600, color: "rgba(255,255,255,0.3)", letterSpacing: "0.07em", textTransform: "uppercase" }}>{h}</div>
+            ))}
           </div>
-          {["Name", "Phone", "Email", "Added"].map((h) => (
-            <div key={h} style={{ fontSize: 10.5, fontWeight: 600, color: "rgba(255,255,255,0.3)", letterSpacing: "0.07em", textTransform: "uppercase" }}>{h}</div>
-          ))}
-        </div>
 
-        <div style={{ maxHeight: 500, overflowY: "auto" }}>
-          {loading ? (
-            <div style={{ padding: "3rem", textAlign: "center", color: "rgba(255,255,255,0.3)", fontSize: 13 }}>Loading contacts…</div>
-          ) : contacts.length === 0 ? (
-            <div style={{ padding: "3rem", textAlign: "center" }}>
-              <p style={{ fontSize: 14, color: "rgba(255,255,255,0.5)", fontWeight: 500 }}>No contacts found</p>
-              <p style={{ fontSize: 12.5, color: "rgba(255,255,255,0.3)" }}>Upload a CSV or add contacts manually above</p>
-            </div>
-          ) : contacts.map((c) => (
-            <div
-              key={c.id}
-              style={{
-                display: "grid", gridTemplateColumns: "40px 1fr 1fr 1fr 80px", gap: "0.75rem",
-                padding: "0.75rem 1rem",
-                borderBottom: "1px solid rgba(255,255,255,0.04)",
-                background: selected.has(c.id) ? "rgba(37,211,102,0.04)" : "transparent",
-                cursor: "pointer",
-                transition: "background 0.1s",
-              }}
-              onClick={() => toggleSelect(c.id)}
-            >
-              <div style={{ display: "flex", alignItems: "center" }}>
-                <input type="checkbox" checked={selected.has(c.id)} onChange={() => toggleSelect(c.id)} onClick={(e) => e.stopPropagation()} style={{ accentColor: "#25D366", width: 14, height: 14, cursor: "pointer" }} />
+          <div style={{ maxHeight: 500, overflowY: "auto" }}>
+            {loading ? (
+              <div style={{ padding: "3rem", textAlign: "center", color: "rgba(255,255,255,0.3)", fontSize: 13 }}>Loading contacts…</div>
+            ) : contacts.length === 0 ? (
+              <div style={{ padding: "3rem", textAlign: "center" }}>
+                <p style={{ fontSize: 14, color: "rgba(255,255,255,0.5)", fontWeight: 500 }}>No contacts found</p>
+                <p style={{ fontSize: 12.5, color: "rgba(255,255,255,0.3)" }}>Upload a CSV or add contacts manually above</p>
               </div>
-              <div style={{ fontSize: 13, fontWeight: 500, color: "#fff", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap", display: "flex", alignItems: "center" }}>
-                <div style={{ width: 26, height: 26, borderRadius: "50%", background: "rgba(37,211,102,0.12)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 11, fontWeight: 700, color: "#25D366", flexShrink: 0, marginRight: 8 }}>
-                  {(c.name || "?")[0].toUpperCase()}
+            ) : contacts.map((c) => (
+              <div
+                key={c.id}
+                style={{
+                  display: "grid", gridTemplateColumns: "40px 1fr 130px 150px 80px", gap: "0.75rem",
+                  padding: "0.75rem 1rem", minWidth: 520,
+                  borderBottom: "1px solid rgba(255,255,255,0.04)",
+                  background: selected.has(c.id) ? "rgba(37,211,102,0.04)" : "transparent",
+                  cursor: "pointer", transition: "background 0.1s",
+                }}
+                onClick={() => toggleSelect(c.id)}
+              >
+                <div style={{ display: "flex", alignItems: "center" }}>
+                  <input type="checkbox" checked={selected.has(c.id)} onChange={() => toggleSelect(c.id)} onClick={(e) => e.stopPropagation()} style={{ accentColor: "#25D366", width: 14, height: 14, cursor: "pointer" }} />
                 </div>
-                {c.name}
+                <div style={{ fontSize: 13, fontWeight: 500, color: "#fff", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap", display: "flex", alignItems: "center" }}>
+                  <div style={{ width: 26, height: 26, borderRadius: "50%", background: "rgba(37,211,102,0.12)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 11, fontWeight: 700, color: "#25D366", flexShrink: 0, marginRight: 8 }}>
+                    {(c.name || "?")[0].toUpperCase()}
+                  </div>
+                  {c.name}
+                </div>
+                <div style={{ fontSize: 12.5, color: "rgba(255,255,255,0.5)", display: "flex", alignItems: "center" }}>+{c.phone}</div>
+                <div style={{ fontSize: 12.5, color: "rgba(255,255,255,0.4)", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap", display: "flex", alignItems: "center" }}>{c.email || "—"}</div>
+                <div style={{ fontSize: 11.5, color: "rgba(255,255,255,0.3)", display: "flex", alignItems: "center" }}>{new Date(c.created_at).toLocaleDateString("en-IN", { day: "2-digit", month: "short" })}</div>
               </div>
-              <div style={{ fontSize: 12.5, color: "rgba(255,255,255,0.5)", display: "flex", alignItems: "center" }}>+{c.phone}</div>
-              <div style={{ fontSize: 12.5, color: "rgba(255,255,255,0.4)", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap", display: "flex", alignItems: "center" }}>{c.email || "—"}</div>
-              <div style={{ fontSize: 11.5, color: "rgba(255,255,255,0.3)", display: "flex", alignItems: "center" }}>{new Date(c.created_at).toLocaleDateString("en-IN", { day: "2-digit", month: "short" })}</div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
     </div>

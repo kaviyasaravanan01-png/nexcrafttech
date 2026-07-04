@@ -132,10 +132,10 @@ router.post("/verify", async (req, res) => {
   }
 });
 
-// ─── POST /api/payment/webhook ─────────────────────────────────────────────
-// Razorpay webhook — handles payment.captured, subscription events, etc.
-// Requires raw body (configured in index.js for this path).
-router.post("/webhook", express.raw({ type: "application/json" }), async (req, res) => {
+// ─── POST /api/webhook/razorpay ────────────────────────────────────────────
+// Razorpay webhook — handles payment.captured, payment.failed, etc.
+// Mounted at /api/webhook/razorpay (no auth — signature verified below).
+router.post("/", express.raw({ type: "application/json" }), async (req, res) => {
   const webhookSig    = req.headers["x-razorpay-signature"];
   const webhookSecret = process.env.RAZORPAY_WEBHOOK_SECRET;
 

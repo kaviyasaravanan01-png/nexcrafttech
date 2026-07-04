@@ -68,6 +68,7 @@ export default function SettingsPage() {
     { id: "billing",       label: "Billing" },
     { id: "api",           label: "API Keys" },
     { id: "notifications", label: "Notifications" },
+    { id: "help",          label: "Help" },
   ];
 
   // Load token + subscription
@@ -162,19 +163,21 @@ export default function SettingsPage() {
         </p>
       </div>
 
-      {/* Tabs */}
-      <div style={{ display: "flex", gap: 4, marginBottom: "1.5rem", background: "rgba(255,255,255,0.03)", borderRadius: 10, padding: 4, border: "1px solid rgba(255,255,255,0.07)" }}>
-        {tabs.map((t) => (
-          <button key={t.id} onClick={() => setActiveTab(t.id)} style={{
-            flex: 1, padding: "8px 12px", borderRadius: 8, border: "none",
-            background: activeTab === t.id ? "rgba(255,255,255,0.08)" : "transparent",
-            color: activeTab === t.id ? "#fff" : "rgba(255,255,255,0.4)",
-            fontSize: 13, fontWeight: activeTab === t.id ? 600 : 400,
-            cursor: "pointer", transition: "all 0.15s",
-          }}>
-            {t.label}
-          </button>
-        ))}
+      {/* Tabs — scrollable on mobile */}
+      <div style={{ overflowX: "auto", WebkitOverflowScrolling: "touch", marginBottom: "1.5rem" }}>
+        <div style={{ display: "flex", gap: 4, background: "rgba(255,255,255,0.03)", borderRadius: 10, padding: 4, border: "1px solid rgba(255,255,255,0.07)", minWidth: "max-content" }}>
+          {tabs.map((t) => (
+            <button key={t.id} onClick={() => setActiveTab(t.id)} style={{
+              padding: "8px 16px", borderRadius: 8, border: "none", whiteSpace: "nowrap",
+              background: activeTab === t.id ? "rgba(255,255,255,0.08)" : "transparent",
+              color: activeTab === t.id ? "#fff" : "rgba(255,255,255,0.4)",
+              fontSize: 13, fontWeight: activeTab === t.id ? 600 : 400,
+              cursor: "pointer", transition: "all 0.15s",
+            }}>
+              {t.label}
+            </button>
+          ))}
+        </div>
       </div>
 
       {/* ── Profile ─────────────────────────────────────────────────────── */}
@@ -316,46 +319,89 @@ export default function SettingsPage() {
         </div>
       )}
 
-      {/* ── API Keys ─────────────────────────────────────────────────────── */}
+      {/* ── API Keys — Coming Soon ────────────────────────────────────────── */}
       {activeTab === "api" && (
         <div style={cardBase}>
-          <h3 style={{ fontSize: 15, fontWeight: 700, color: "#fff", marginBottom: 8 }}>API Keys</h3>
-          <p style={{ fontSize: 13, color: "rgba(255,255,255,0.4)", marginBottom: "1.25rem" }}>Use these keys to integrate WhatsApp CRM into your own systems.</p>
-          {["pro", "business"].includes(currentPlanId) ? (
-            <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
-              {[{ label: "API Key", value: `wa_live_${user?.id?.slice(0, 16)}` }, { label: "Webhook Secret", value: "wh_secret_••••••••••••" }].map(({ label, value }) => (
-                <div key={label}>
-                  <label style={{ fontSize: 11, color: "rgba(255,255,255,0.4)", display: "block", marginBottom: 6, letterSpacing: "0.07em" }}>{label.toUpperCase()}</label>
-                  <div style={{ display: "flex", gap: 8 }}>
-                    <input readOnly value={value} style={{ flex: 1, padding: "10px 14px", borderRadius: 8, background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.1)", color: "#fff", fontSize: 13, outline: "none" }} />
-                    <button onClick={() => navigator.clipboard.writeText(value)} style={{ padding: "10px 16px", borderRadius: 8, background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.1)", color: "rgba(255,255,255,0.6)", cursor: "pointer", fontSize: 12 }}>Copy</button>
-                  </div>
-                </div>
-              ))}
-            </div>
-          ) : (
-            <div style={{ padding: "1rem", borderRadius: 8, background: "rgba(99,102,241,0.06)", border: "1px solid rgba(99,102,241,0.2)" }}>
-              <p style={{ fontSize: 12.5, color: "#6366f1", margin: 0 }}>API access requires Pro or Business plan. <button onClick={() => setActiveTab("billing")} style={{ background: "none", border: "none", color: "#6366f1", fontWeight: 600, cursor: "pointer", padding: 0, fontSize: 12.5 }}>Upgrade →</button></p>
-            </div>
-          )}
+          <div style={{ textAlign: "center", padding: "2.5rem 1rem" }}>
+            <div style={{ fontSize: 48, marginBottom: "1rem" }}>🔑</div>
+            <h3 style={{ fontSize: 17, fontWeight: 700, color: "#fff", margin: "0 0 0.5rem" }}>API Access — Coming Soon</h3>
+            <p style={{ fontSize: 13.5, color: "rgba(255,255,255,0.45)", maxWidth: 380, margin: "0 auto 1.25rem", lineHeight: 1.6 }}>
+              We're building a full REST API for programmatic access to your campaigns, contacts, and message logs. Stay tuned!
+            </p>
+            <span style={{ padding: "5px 16px", borderRadius: 100, background: "rgba(99,102,241,0.1)", border: "1px solid rgba(99,102,241,0.25)", color: "#818cf8", fontSize: 12, fontWeight: 600, letterSpacing: "0.06em" }}>
+              Coming Soon
+            </span>
+          </div>
         </div>
       )}
 
-      {/* ── Notifications ─────────────────────────────────────────────────── */}
+      {/* ── Notifications — Coming Soon ───────────────────────────────────── */}
       {activeTab === "notifications" && (
         <div style={cardBase}>
-          <h3 style={{ fontSize: 15, fontWeight: 700, color: "#fff", marginBottom: "1.5rem" }}>Notification Preferences</h3>
-          {[
-            "Email me when a campaign completes",
-            "Email me on campaign failures",
-            "Email me weekly stats summary",
-            "Browser notifications for live campaigns",
-          ].map((item, i) => (
-            <div key={item} style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "0.875rem 0", borderBottom: i < 3 ? "1px solid rgba(255,255,255,0.05)" : "none" }}>
-              <span style={{ fontSize: 13.5, color: "rgba(255,255,255,0.7)" }}>{item}</span>
-              <Toggle checked={i < 2} onChange={() => {}} />
+          <div style={{ textAlign: "center", padding: "2.5rem 1rem" }}>
+            <div style={{ fontSize: 48, marginBottom: "1rem" }}>🔔</div>
+            <h3 style={{ fontSize: 17, fontWeight: 700, color: "#fff", margin: "0 0 0.5rem" }}>Notifications — Coming Soon</h3>
+            <p style={{ fontSize: 13.5, color: "rgba(255,255,255,0.45)", maxWidth: 380, margin: "0 auto 1.25rem", lineHeight: 1.6 }}>
+              Email and push notification preferences are on our roadmap. You'll be able to get notified when campaigns complete, fail, or hit their daily limit.
+            </p>
+            <span style={{ padding: "5px 16px", borderRadius: 100, background: "rgba(245,158,11,0.1)", border: "1px solid rgba(245,158,11,0.25)", color: "#f59e0b", fontSize: 12, fontWeight: 600, letterSpacing: "0.06em" }}>
+              Coming Soon
+            </span>
+          </div>
+        </div>
+      )}
+
+      {/* ── Help ─────────────────────────────────────────────────────────── */}
+      {activeTab === "help" && (
+        <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
+          {/* Contact card */}
+          <div style={{ ...cardBase, background: "rgba(37,211,102,0.04)", borderColor: "rgba(37,211,102,0.18)" }}>
+            <div style={{ display: "flex", alignItems: "flex-start", gap: "1rem", flexWrap: "wrap" }}>
+              <div style={{ width: 48, height: 48, borderRadius: "50%", background: "rgba(37,211,102,0.12)", border: "2px solid rgba(37,211,102,0.25)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 20, flexShrink: 0 }}>
+                ✉️
+              </div>
+              <div style={{ flex: 1, minWidth: 200 }}>
+                <h3 style={{ fontSize: 15, fontWeight: 700, color: "#fff", margin: "0 0 0.4rem" }}>Email Support</h3>
+                <p style={{ fontSize: 13, color: "rgba(255,255,255,0.45)", margin: "0 0 1rem", lineHeight: 1.6 }}>
+                  Have a question or issue? Send us an email and we'll respond within 24 hours (Mon–Sat).
+                </p>
+                <a
+                  href="mailto:anandanathurelangovan94@gmail.com"
+                  style={{ display: "inline-flex", alignItems: "center", gap: 7, padding: "9px 18px", borderRadius: 100, background: "linear-gradient(135deg,#25D366,#128C7E)", color: "#fff", fontSize: 13, fontWeight: 700, textDecoration: "none", boxShadow: "0 4px 14px rgba(37,211,102,0.25)" }}
+                >
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                    <polyline points="22,6 12,13 2,6" />
+                  </svg>
+                  anandanathurelangovan94@gmail.com
+                </a>
+              </div>
             </div>
-          ))}
+          </div>
+
+          {/* Docs + Support links */}
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(200px,1fr))", gap: "0.75rem" }}>
+            {[
+              { href: "/whatsapp-crm/docs",    icon: "📖", title: "Read Documentation",  desc: "Step-by-step guides for every feature" },
+              { href: "/whatsapp-crm/support", icon: "💬", title: "Help Centre",          desc: "FAQs and troubleshooting tips" },
+            ].map((item) => (
+              <a key={item.href} href={item.href} style={{
+                display: "flex", alignItems: "flex-start", gap: 12, padding: "1rem",
+                borderRadius: "0.875rem", textDecoration: "none",
+                background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.07)",
+              }}>
+                <span style={{ fontSize: 24, flexShrink: 0 }}>{item.icon}</span>
+                <div>
+                  <div style={{ fontSize: 13.5, fontWeight: 600, color: "#fff", marginBottom: 3 }}>{item.title}</div>
+                  <div style={{ fontSize: 12, color: "rgba(255,255,255,0.4)" }}>{item.desc}</div>
+                </div>
+              </a>
+            ))}
+          </div>
+
+          <p style={{ fontSize: 12, color: "rgba(255,255,255,0.2)", textAlign: "center", marginTop: "0.5rem" }}>
+            NexCraft WhatsApp CRM · Built by <a href="https://nexcrafttech.com" style={{ color: "rgba(255,255,255,0.35)", textDecoration: "none" }}>NexCraft Tech</a>
+          </p>
         </div>
       )}
     </div>
