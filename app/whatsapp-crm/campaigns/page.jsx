@@ -448,6 +448,13 @@ export default function CampaignsPage() {
                       </button>
                     )}
 
+                    {/* Edit — only for non-active */}
+                    {!["running", "queued"].includes(c.status) && (
+                      <Link href={`/whatsapp-crm/campaigns/${c.id}/edit`} style={BtnStyle("rgba(255,255,255,0.4)", "rgba(255,255,255,0.04)")}>
+                        ✏️ Edit
+                      </Link>
+                    )}
+
                     {/* View logs */}
                     <Link href={`/whatsapp-crm/history`} style={BtnStyle("rgba(255,255,255,0.4)", "rgba(255,255,255,0.04)")}>
                       📋 Logs
