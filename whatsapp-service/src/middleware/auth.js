@@ -1,3 +1,8 @@
+// Polyfill WebSocket for Node < 22 (Supabase realtime requires it)
+if (!globalThis.WebSocket) {
+  globalThis.WebSocket = require("ws");
+}
+
 const { createClient } = require("@supabase/supabase-js");
 
 const supabase = createClient(

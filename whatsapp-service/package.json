@@ -8,7 +8,7 @@
     "dev": "nodemon src/index.js"
   },
   "engines": {
-    "node": ">=18"
+    "node": ">=22"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.98.0",
@@ -22,7 +22,8 @@
     "pino": "^9.2.0",
     "pino-pretty": "^11.2.1",
     "dotenv": "^16.4.5",
-    "sharp": "^0.32.6"
+    "sharp": "^0.32.6",
+    "ws": "^8.18.0"
   },
   "devDependencies": {
     "nodemon": "^3.1.4"
