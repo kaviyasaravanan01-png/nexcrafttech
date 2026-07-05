@@ -12,16 +12,18 @@ import Contact from "@/components/Contact";
 import Map from "@/components/Map";
 
 export const metadata = {
-  title: "NexCraft Tech — Web Dev, AI Chatbots & SEO | Chennai",
+  title: "NexCraft Tech — Web Dev, AI Chatbots & SEO | Chennai, India",
   description:
-    "Fast Next.js websites, AI chatbots & SEO for startups. Makers of CamToCode & WhatsApp CRM — bulk messaging for businesses. Pricing from ₹6,999. Free consultation.",
+    "Web development, AI chatbots & SEO agency in Chennai, India. Fast Next.js sites, WhatsApp CRM, PDF AI & CamToCode. Pricing from ₹6,999. Free consultation.",
   keywords: [
     "NexCraft Technologies",
     "web development Chennai",
+    "web development India",
     "AI chatbot development",
     "SEO services India",
     "CamToCode",
     "WhatsApp CRM",
+    "PDF AI",
     "WhatsApp bulk messenger",
     "bulk WhatsApp sender India",
     "camera to code",
@@ -30,17 +32,17 @@ export const metadata = {
   ],
   alternates: { canonical: "https://nexcrafttech.com" },
   openGraph: {
-    title: "NexCraft Technologies — Web Dev, AI & SaaS Products",
+    title: "NexCraft Technologies — Web Dev, AI & SEO | Chennai, India",
     description:
-      "We build fast websites, AI chatbots & SEO — plus SaaS products like CamToCode and WhatsApp CRM for bulk business messaging.",
+      "Web development, AI chatbots & SEO in Chennai, India — plus SaaS products like CamToCode, WhatsApp CRM, and PDF AI.",
     url: "https://nexcrafttech.com",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "NexCraft Technologies — Web Dev, AI & SaaS Products",
+    title: "NexCraft Technologies — Web Dev, AI & SEO | Chennai, India",
     description:
-      "Fast Next.js websites, AI chatbots & SEO. Explore CamToCode — scan code from any screen with your phone.",
+      "Web development, AI chatbots & SEO in Chennai, India. CamToCode, WhatsApp CRM, PDF AI & more.",
   },
 };
 

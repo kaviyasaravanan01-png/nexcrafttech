@@ -1,50 +1,34 @@
-import { getAllPortfolioSlugs } from "@/lib/portfolioData";
-import { getAllBlogSlugs } from "@/lib/blogData";
-import { getAllProductSlugs } from "@/lib/productsData";
+import { getAllPublicUrls, SITE_URL } from "@/lib/siteUrls";
 
-const BASE_URL = "https://nexcrafttech.com";
+const PRIORITY = {
+  [SITE_URL]: 1,
+  [`${SITE_URL}/products`]: 0.85,
+  [`${SITE_URL}/blog`]: 0.8,
+};
+
+function priorityFor(url) {
+  if (PRIORITY[url] != null) return PRIORITY[url];
+  if (url.includes("/products/")) return 0.8;
+  if (url.includes("/whatsapp-crm/")) return 0.7;
+  if (url.includes("/portfolio/")) return 0.7;
+  if (url.includes("/blog/")) return 0.6;
+  return 0.5;
+}
+
+function changeFrequencyFor(url) {
+  if (url === SITE_URL || url.includes("/products")) return "weekly";
+  if (url.includes("/blog/")) return "monthly";
+  if (url.includes("/terms") || url.includes("/privacy")) return "yearly";
+  return "monthly";
+}
 
 export default function sitemap() {
-  const portfolioSlugs = getAllPortfolioSlugs();
-  const blogSlugs = getAllBlogSlugs();
-  const productSlugs = getAllProductSlugs();
+  const now = new Date();
 
-  const staticPages = [
-    { url: BASE_URL, lastModified: new Date(), changeFrequency: "weekly", priority: 1 },
-    { url: `${BASE_URL}/products`, lastModified: new Date(), changeFrequency: "weekly", priority: 0.85 },
-    { url: `${BASE_URL}/blog`, lastModified: new Date(), changeFrequency: "weekly", priority: 0.8 },
-    { url: `${BASE_URL}/team`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.7 },
-    { url: `${BASE_URL}/terms`, lastModified: new Date(), changeFrequency: "yearly", priority: 0.3 },
-    { url: `${BASE_URL}/privacy`, lastModified: new Date(), changeFrequency: "yearly", priority: 0.3 },
-    { url: `${BASE_URL}/sitemap-page`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.4 },
-    // WhatsApp CRM — public landing pages
-    { url: `${BASE_URL}/products/whatsappcrm`, lastModified: new Date(), changeFrequency: "weekly", priority: 0.9 },
-    { url: `${BASE_URL}/whatsapp-crm/login`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.75 },
-    { url: `${BASE_URL}/whatsapp-crm/register`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.75 },
-    { url: `${BASE_URL}/whatsapp-crm/docs`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.7 },
-    { url: `${BASE_URL}/whatsapp-crm/support`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.65 },
-  ];
-
-  const portfolioPages = portfolioSlugs.map((slug) => ({
-    url: `${BASE_URL}/portfolio/${slug}`,
-    lastModified: new Date(),
-    changeFrequency: "monthly",
-    priority: 0.7,
+  return getAllPublicUrls().map((url) => ({
+    url,
+    lastModified: now,
+    changeFrequency: changeFrequencyFor(url),
+    priority: priorityFor(url),
   }));
-
-  const blogPages = blogSlugs.map((slug) => ({
-    url: `${BASE_URL}/blog/${slug}`,
-    lastModified: new Date(),
-    changeFrequency: "monthly",
-    priority: 0.6,
-  }));
-
-  const productPages = productSlugs.map((slug) => ({
-    url: `${BASE_URL}/products/${slug}`,
-    lastModified: new Date(),
-    changeFrequency: "monthly",
-    priority: 0.8,
-  }));
-
-  return [...staticPages, ...productPages, ...portfolioPages, ...blogPages];
 }

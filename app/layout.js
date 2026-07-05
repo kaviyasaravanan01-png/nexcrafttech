@@ -23,7 +23,7 @@ export const viewport = {
 export const metadata = {
   metadataBase: new URL("https://nexcrafttech.com"),
   title: {
-    default: "NexCraft Tech — Web Dev, AI & SEO Agency India",
+    default: "NexCraft Tech — Web Dev, AI & SEO | Chennai, India",
     template: "%s | NexCraft Technologies",
   },
   description:
@@ -56,6 +56,8 @@ export const metadata = {
     "bulk WhatsApp sender India",
     "WhatsApp campaign manager",
     "WhatsApp marketing tool",
+    "PDF AI",
+    "PDF tools",
   ],
   icons: {
     icon: [{ url: "/nct-logo.svg", type: "image/svg+xml" }],
@@ -67,7 +69,7 @@ export const metadata = {
   publisher: "NexCraft Technologies",
   formatDetection: { telephone: true, email: true },
   openGraph: {
-    title: "NexCraft Technologies — Web Development, AI & SEO Agency",
+    title: "NexCraft Technologies — Web Development, AI & SEO | Chennai, India",
     description: "We build fast, modern websites, AI chatbots & handle SEO for startups and businesses. Transparent pricing from ₹6,999 ($85). Free consultation.",
     siteName: "NexCraft Technologies",
     type: "website",
@@ -82,7 +84,7 @@ export const metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "NexCraft Technologies — Web Development, AI & SEO Agency",
+    title: "NexCraft Technologies — Web Development, AI & SEO | Chennai, India",
     description: "We build fast websites, AI chatbots & handle SEO. Transparent pricing from ₹6,999 ($85). Free consultation.",
     images: ["https://nexcrafttech.com/twitter-image"],
   },
