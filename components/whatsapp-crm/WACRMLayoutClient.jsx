@@ -3,16 +3,16 @@
 import { useEffect, useState } from "react";
 import { useRouter, usePathname } from "next/navigation";
 import { WACRMAuthProvider, useWACRMAuth } from "@/lib/whatsapp-crm/useAuth";
-import { getWASession } from "@/lib/whatsapp-crm/supabase";
+import { useWAConnectionStatus } from "@/lib/whatsapp-crm/useWAConnection";
 import Sidebar from "@/components/whatsapp-crm/Sidebar";
 
 const PUBLIC_PATHS = ["/whatsapp-crm/login", "/whatsapp-crm/register"];
 
 function DashboardShell({ children }) {
   const { user, loading } = useWACRMAuth();
+  const { status: waStatus } = useWAConnectionStatus({ pollMs: 30000 });
   const router = useRouter();
   const pathname = usePathname();
-  const [waStatus, setWAStatus] = useState("disconnected");
   const [mobileSidebarOpen, setMobile] = useState(false);
   const isPublic = PUBLIC_PATHS.includes(pathname);
 
@@ -22,26 +22,6 @@ function DashboardShell({ children }) {
     if (!loading && !user && !isPublic) router.replace("/whatsapp-crm/login");
     if (!loading && user && isPublic) router.replace("/whatsapp-crm/dashboard");
   }, [user, loading, isPublic, router]);
-
-  useEffect(() => {
-    if (!user) return;
-    async function fetchStatus() {
-      const { getSupabase } = await import("@/lib/whatsapp-crm/supabase");
-      const { data } = await getSupabase()?.auth.getSession() ?? {};
-      const token = data?.session?.access_token;
-      if (!token) return;
-      try {
-        const { getSessionStatus } = await import("@/lib/whatsapp-crm/api");
-        const live = await getSessionStatus(token);
-        if (live?.status) setWAStatus(live.status);
-      } catch {
-        getWASession(user.id).then((s) => { if (s?.status) setWAStatus(s.status); }).catch(() => {});
-      }
-    }
-    fetchStatus();
-    const iv = setInterval(fetchStatus, 30000);
-    return () => clearInterval(iv);
-  }, [user]);
 
   if (loading) return (
     <div style={{ minHeight: "100vh", background: "#0a0a0e", display: "flex", alignItems: "center", justifyContent: "center" }}>
@@ -70,11 +50,11 @@ function DashboardShell({ children }) {
         transform: mobileSidebarOpen ? "translateX(0)" : "translateX(-100%)",
         transition: "transform 0.25s ease", display: "block",
       }} className="wa-sidebar-mobile">
-        <Sidebar user={user} waStatus={waStatus} onClose={() => setMobile(false)} />
+        <Sidebar user={user} waStatus={waStatus || "disconnected"} onClose={() => setMobile(false)} />
       </div>
 
       <div className="wa-sidebar-desktop">
-        <Sidebar user={user} waStatus={waStatus} />
+        <Sidebar user={user} waStatus={waStatus || "disconnected"} />
       </div>
 
       <div style={{ flex: 1, display: "flex", flexDirection: "column", minWidth: 0 }}>

@@ -3,7 +3,8 @@
 import { useState, useEffect, useRef } from "react";
 import { useWACRMAuth } from "@/lib/whatsapp-crm/useAuth";
 import { getWASession } from "@/lib/whatsapp-crm/supabase";
-import { requestQRCode, getSessionStatus, disconnectSession, getSocketURL } from "@/lib/whatsapp-crm/api";
+import { fetchWAConnectionStatus } from "@/lib/whatsapp-crm/waConnection";
+import { requestQRCode, disconnectSession, getSocketURL } from "@/lib/whatsapp-crm/api";
 
 const PROVIDERS = [
   { id: "baileys",    name: "Baileys",    description: "Primary — lightweight, fast, multi-device", badge: "Recommended" },
@@ -45,25 +46,13 @@ export default function ConnectPage() {
     if (!user || !token) return;
 
     async function loadStatus() {
-      // 1. Read from Supabase DB first (fast)
       try {
-        const s = await getWASession(user.id);
-        if (s?.status) {
-          setStatus(s.status);
-          if (s.phone) setPhone(s.phone);
-        }
-        // If session_data is null, credentials aren't persisted yet — flag for rescan
-        if (!s?.session_data) setNeedsRescan(true);
+        const resolved = await fetchWAConnectionStatus(user.id, token);
+        setStatus(resolved);
+        const row = await getWASession(user.id).catch(() => null);
+        if (row?.phone) setPhone(row.phone);
+        if (!row?.session_data) setNeedsRescan(true);
       } catch { /* table may not exist yet */ }
-
-      // 2. Confirm with Railway live status (source of truth)
-      try {
-        const live = await getSessionStatus(token);
-        if (live?.status) {
-          setStatus(live.status);
-          if (live.phone) setPhone(live.phone);
-        }
-      } catch { /* Railway may be waking up */ }
 
       setLoadingSession(false);
     }

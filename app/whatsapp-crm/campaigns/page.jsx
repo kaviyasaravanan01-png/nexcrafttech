@@ -3,10 +3,11 @@
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { useWACRMAuth } from "@/lib/whatsapp-crm/useAuth";
+import { useWAConnectionStatus } from "@/lib/whatsapp-crm/useWAConnection";
 import { getCampaigns } from "@/lib/whatsapp-crm/supabase";
 import {
   queueCampaign, pauseCampaign, resumeCampaign,
-  stopCampaign, getSocketURL, getSessionStatus,
+  stopCampaign, getSocketURL,
 } from "@/lib/whatsapp-crm/api";
 
 const STATUS_STYLE = {
@@ -30,32 +31,17 @@ function ProgressBar({ sent, total, color = "#25D366" }) {
 }
 
 export default function CampaignsPage() {
-  const { user } = useWACRMAuth();
+  const { user, session } = useWACRMAuth();
+  const { ready: waConnected, loading: waStatusLoading } = useWAConnectionStatus({ pollMs: 30000 });
   const [campaigns, setCampaigns]   = useState([]);
   const [loading, setLoading]       = useState(true);
-  const [token, setToken]           = useState(null);
-  const [waConnected, setWaConnected] = useState(null); // null=checking, true/false
+  const token = session?.access_token ?? null;
   const [activeCampaign, setActive] = useState(null); // campaign being watched for live logs
   const [logs, setLogs]             = useState([]);
   const [liveStats, setLiveStats]   = useState({}); // { [campaignId]: { sent, failed, total } }
   const [actionLoading, setActionLoading] = useState(null);
   const logsEndRef = useRef(null);
   const socketRef  = useRef(null);
-
-  // Load token, then check WA connection status
-  useEffect(() => {
-    import("@/lib/whatsapp-crm/supabase").then(({ getSupabase }) => {
-      getSupabase()?.auth.getSession().then(({ data }) => {
-        const t = data?.session?.access_token ?? null;
-        setToken(t);
-        if (t) {
-          getSessionStatus(t)
-            .then((s) => setWaConnected(s?.status === "connected"))
-            .catch(() => setWaConnected(false));
-        }
-      });
-    });
-  }, []);
 
   // Load campaigns
   const load = () => {
@@ -221,7 +207,7 @@ export default function CampaignsPage() {
       </div>
 
       {/* WhatsApp not connected banner */}
-      {waConnected === false && (
+      {waConnected === false && !waStatusLoading && (
         <div style={{
           marginBottom: "1.25rem",
           padding: "1rem 1.25rem",
