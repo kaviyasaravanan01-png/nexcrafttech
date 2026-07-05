@@ -34,8 +34,30 @@ export default function Products() {
   const isInView = useInView(sectionRef, { once: true, margin: "-80px" });
   const products = getAllProducts();
   const [activeIndex, setActiveIndex] = useState(0);
+  const [autoplayPaused, setAutoplayPaused] = useState(false);
+  const autoplayTimerRef = useRef(null);
+  const resumeTimerRef = useRef(null);
 
   const active = products[activeIndex];
+
+  const prev = () => setActiveIndex((i) => (i - 1 + products.length) % products.length);
+  const next = () => setActiveIndex((i) => (i + 1) % products.length);
+
+  const pauseAutoplay = () => {
+    setAutoplayPaused(true);
+    clearInterval(autoplayTimerRef.current);
+    clearTimeout(resumeTimerRef.current);
+    resumeTimerRef.current = setTimeout(() => setAutoplayPaused(false), 8000);
+  };
+
+  // Auto-advance carousel every 5s (pauses on hover / manual nav)
+  useEffect(() => {
+    if (products.length <= 1 || autoplayPaused) return;
+    autoplayTimerRef.current = setInterval(() => {
+      setActiveIndex((i) => (i + 1) % products.length);
+    }, 5000);
+    return () => clearInterval(autoplayTimerRef.current);
+  }, [products.length, autoplayPaused]);
 
   useEffect(() => {
     if (!sectionRef.current) return;
@@ -56,8 +78,16 @@ export default function Products() {
 
   if (!active) return null;
 
-  const prev = () => setActiveIndex((i) => (i - 1 + products.length) % products.length);
-  const next = () => setActiveIndex((i) => (i + 1) % products.length);
+  const visualPanelStyle = {
+    borderRadius: 14,
+    overflow: "hidden",
+    border: "1px solid rgba(255,255,255,0.08)",
+    background: `linear-gradient(145deg, ${active.color}10, rgba(17,17,20,0.8))`,
+    height: 420,
+    width: "100%",
+    maxWidth: 236,
+    margin: "0 auto",
+  };
 
   const isWA = active.slug === "whatsappcrm";
   const isInternal = isWA || (active.url || "").startsWith("/");
@@ -103,7 +133,11 @@ export default function Products() {
         }} />
 
         {/* Carousel card */}
-        <div style={{ position: "relative" }}>
+        <div
+          style={{ position: "relative" }}
+          onMouseEnter={pauseAutoplay}
+          onFocus={pauseAutoplay}
+        >
           <AnimatePresence mode="wait">
             <motion.div
               key={active.slug}
@@ -114,7 +148,7 @@ export default function Products() {
               className="products-card"
               style={{
                 display: "grid",
-                gridTemplateColumns: active.video ? "1fr 1fr" : "1fr",
+                gridTemplateColumns: "1fr 1fr",
                 gap: "2rem",
                 alignItems: "center",
                 padding: "2rem",
@@ -133,12 +167,7 @@ export default function Products() {
 
               {/* Visual side — video or icon */}
               {active.video ? (
-                <div style={{
-                  borderRadius: 14, overflow: "hidden",
-                  border: "1px solid rgba(255,255,255,0.08)",
-                  background: `linear-gradient(145deg, ${active.color}10, rgba(17,17,20,0.8))`,
-                  aspectRatio: "9/16", maxHeight: 420, margin: "0 auto", width: "100%",
-                }}>
+                <div style={visualPanelStyle}>
                   <video
                     src={active.video}
                     autoPlay muted loop playsInline
@@ -147,12 +176,10 @@ export default function Products() {
                 </div>
               ) : (
                 <div style={{
-                  borderRadius: 14, overflow: "hidden",
-                  border: "1px solid rgba(255,255,255,0.08)",
-                  background: `linear-gradient(145deg, ${active.color}18, rgba(17,17,20,0.8))`,
-                  aspectRatio: "9/16", maxHeight: 420, margin: "0 auto", width: "100%",
-                  display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center",
-                  gap: "1.5rem",
+                  ...visualPanelStyle,
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
                 }}>
                   <div style={{
                     width: 88, height: 88, borderRadius: 24,
@@ -171,23 +198,6 @@ export default function Products() {
                         <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
                       </svg>
                     )}
-                  </div>
-                  <div style={{ textAlign: "center", padding: "0 2rem" }}>
-                    <p style={{ fontSize: 13, color: active.color, fontWeight: 600, letterSpacing: "0.05em", textTransform: "uppercase", marginBottom: 8 }}>
-                      {active.subtitle}
-                    </p>
-                    <p style={{ fontSize: 12, color: "rgba(255,255,255,0.35)", lineHeight: 1.6 }}>
-                      {active.tagline?.split("—")[0]?.trim()}
-                    </p>
-                  </div>
-                  <div style={{ display: "flex", flexWrap: "wrap", gap: 6, justifyContent: "center", padding: "0 1.5rem" }}>
-                    {active.tags?.slice(0, 4).map((tag) => (
-                      <span key={tag} style={{
-                        padding: "3px 8px", borderRadius: 6, fontSize: 10, fontWeight: 500,
-                        color: active.color, background: `${active.color}12`,
-                        border: `1px solid ${active.color}25`,
-                      }}>{tag}</span>
-                    ))}
                   </div>
                 </div>
               )}
@@ -217,7 +227,7 @@ export default function Products() {
                 <p style={{ fontSize: 12, color: active.color, fontWeight: 500, marginBottom: "0.75rem" }}>
                   {active.subtitle}
                 </p>
-                <p style={{ fontSize: 13.5, lineHeight: 1.65, color: "rgba(255,255,255,0.5)", marginBottom: "1.25rem" }}>
+                <p className="products-tagline" style={{ fontSize: 13.5, lineHeight: 1.65, color: "rgba(255,255,255,0.5)", marginBottom: "1.25rem" }}>
                   {active.tagline}
                 </p>
 
@@ -318,7 +328,7 @@ export default function Products() {
           {products.length > 1 && (
             <>
               <button
-                onClick={prev}
+                onClick={() => { pauseAutoplay(); prev(); }}
                 aria-label="Previous product"
                 style={{
                   position: "absolute", left: -20, top: "50%", transform: "translateY(-50%)",
@@ -334,7 +344,7 @@ export default function Products() {
                 <ArrowIcon dir="left" />
               </button>
               <button
-                onClick={next}
+                onClick={() => { pauseAutoplay(); next(); }}
                 aria-label="Next product"
                 style={{
                   position: "absolute", right: -20, top: "50%", transform: "translateY(-50%)",
@@ -366,7 +376,7 @@ export default function Products() {
               {products.map((p, i) => (
                 <button
                   key={p.slug}
-                  onClick={() => setActiveIndex(i)}
+                  onClick={() => { pauseAutoplay(); setActiveIndex(i); }}
                   aria-label={`View ${p.name}`}
                   style={{
                     width: i === activeIndex ? 24 : 8, height: 8, borderRadius: 100,
@@ -383,7 +393,7 @@ export default function Products() {
               {products.map((p, i) => (
                 <button
                   key={p.slug}
-                  onClick={() => setActiveIndex(i)}
+                  onClick={() => { pauseAutoplay(); setActiveIndex(i); }}
                   style={{
                     display: "flex", alignItems: "center", gap: 8,
                     padding: "8px 14px", borderRadius: 100,
@@ -408,6 +418,12 @@ export default function Products() {
       </div>
 
       <style jsx>{`
+        .products-tagline {
+          display: -webkit-box;
+          -webkit-line-clamp: 3;
+          -webkit-box-orient: vertical;
+          overflow: hidden;
+        }
         @media (max-width: 768px) {
           .products-card {
             grid-template-columns: 1fr !important;

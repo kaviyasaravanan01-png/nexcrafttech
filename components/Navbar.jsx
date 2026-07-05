@@ -112,7 +112,7 @@ export default function Navbar() {
         >
           {/* ─── LOGO ─── */}
           <a
-            href="#hero"
+            href="/"
             style={{ display: "flex", alignItems: "center", gap: 12, textDecoration: "none" }}
           >
             {/* Icon mark */}
