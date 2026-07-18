@@ -3,21 +3,27 @@ import nodemailer from "nodemailer";
 export async function POST(request) {
   const { name, email, company, service, budget, message } = await request.json();
 
-  // Hardcoded Gmail credentials for development only
   const transporter = nodemailer.createTransport({
     service: "gmail",
     auth: {
       user: "nexcrafttech@gmail.com",
-      pass: "fczb pjks neum wvdi",
+      pass: "fexhrqwfnspjziwh",
     },
   });
 
-  // Email content
   const mailOptions = {
     from: "nexcrafttech@gmail.com",
     to: "anandanathurelangovan94@gmail.com",
+    replyTo: email || undefined,
     subject: `New Inquiry from ${name}`,
-    text: `Name: ${name}\nEmail: ${email}\nCompany: ${company}\nService: ${service}\nBudget: ${budget}\nMessage: ${message}`,
+    text: [
+      `Name: ${name}`,
+      `Email: ${email}`,
+      `Company: ${company || "—"}`,
+      `Service: ${service}`,
+      `Budget: ${budget || "—"}`,
+      `Message: ${message}`,
+    ].join("\n"),
   };
 
   try {
