@@ -5,6 +5,7 @@ import SearchModal from "./SearchModal";
 
 // Import blog and portfolio data directly for the client-side search
 const blogPosts = [
+  { slug: "web-development-company-chennai", title: "How to Choose a Web Development Company in Chennai (2026 Guide)", excerpt: "Compare stacks, pricing, and red flags when hiring a web development company in Chennai.", category: "Web Development" },
   { slug: "introducing-camtocode-ai-code-scanner", title: "Introducing CamToCode: Turn Your Phone Camera Into a Code Scanner", excerpt: "CamToCode uses AI Vision OCR to capture clean, copy-ready source code from any screen.", category: "AI & Automation" },
   { slug: "why-nextjs-best-framework-2026", title: "Why Next.js Is the Best Framework for Business Websites in 2026", excerpt: "From server components to built-in SEO — here's why Next.js dominates modern web development.", category: "Web Development" },
   { slug: "ai-chatbots-small-business-guide", title: "AI Chatbots for Small Businesses: A Practical Guide", excerpt: "How AI chatbots can automate 70% of customer queries and generate leads.", category: "AI & Automation" },

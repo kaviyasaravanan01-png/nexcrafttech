@@ -4,6 +4,14 @@ import ProductDetailClient from "./ProductDetailClient";
 
 const SITE_URL = "https://nexcrafttech.com";
 
+/** Google VideoObject requires ISO 8601 with timezone (e.g. 2026-07-05T00:00:00+00:00). */
+function formatUploadDate(date) {
+  if (!date) return undefined;
+  if (/T\d{2}:\d{2}:\d{2}([+-]\d{2}:\d{2}|Z)/.test(date)) return date;
+  if (/^\d{4}-\d{2}-\d{2}$/.test(date)) return `${date}T00:00:00+00:00`;
+  return date;
+}
+
 export async function generateStaticParams() {
   return getAllProductSlugs().map((slug) => ({ slug }));
 }
@@ -98,7 +106,7 @@ function buildVideoSchema(product, slug, pageUrl) {
     name: videoMeta.title,
     description: videoMeta.description,
     thumbnailUrl: `${SITE_URL}${videoMeta.thumbnailUrl || "/opengraph-image"}`,
-    uploadDate: videoMeta.uploadDate,
+    uploadDate: formatUploadDate(videoMeta.uploadDate),
     contentUrl: `${SITE_URL}${product.video}`,
     embedUrl: pageUrl,
     inLanguage: "en",

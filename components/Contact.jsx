@@ -119,26 +119,28 @@ export default function Contact() {
     setStatus("sending");
 
     try {
+      const payload = {
+        name: form.name,
+        email: form.email,
+        company: form.company,
+        service: form.service,
+        budget: form.budget,
+        message: form.message,
+      };
+
       const { supabase } = await import("@/lib/supabaseClient");
       if (supabase) {
-        const { error } = await supabase.from("inquiries").insert([
-          { name: form.name, email: form.email, company: form.company, service: form.service, budget: form.budget, message: form.message },
-        ]);
-        if (error) throw error;
+        const { error } = await supabase.from("inquiries").insert([payload]);
+        if (error) console.error("Inquiry save failed:", error.message);
       }
-      // Send email notification
-      await fetch("/api/sendMail", {
+
+      const mailRes = await fetch("/api/sendMail", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          name: form.name,
-          email: form.email,
-          company: form.company,
-          service: form.service,
-          budget: form.budget,
-          message: form.message,
-        }),
+        body: JSON.stringify(payload),
       });
+      if (!mailRes.ok) throw new Error("Email send failed");
+
       setStatus("success");
       setForm({ name: "", email: "", company: "", service: "", budget: "", message: "" });
       setStep(0);
