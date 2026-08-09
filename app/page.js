@@ -14,13 +14,17 @@ import Map from "@/components/Map";
 export const metadata = {
   title: "NexCraft Tech — Web Dev, AI Chatbots & SEO | Chennai, India",
   description:
-    "Web development, AI chatbots & SEO agency in Chennai, India. Fast Next.js sites, WhatsApp CRM, PDF AI & CamToCode. Pricing from ₹6,999. Free consultation.",
+    "Web development, AI chatbots & SEO agency in Chennai, India. Fast Next.js sites, VantaHire, AI Call Assistant, WhatsApp CRM, PDF AI & CamToCode. Pricing from ₹6,999. Free consultation.",
   keywords: [
     "NexCraft Technologies",
     "web development Chennai",
     "web development India",
     "AI chatbot development",
     "SEO services India",
+    "VantaHire",
+    "AI job search",
+    "AI Call Assistant",
+    "AI receptionist",
     "CamToCode",
     "WhatsApp CRM",
     "PDF AI",
@@ -34,7 +38,7 @@ export const metadata = {
   openGraph: {
     title: "NexCraft Technologies — Web Dev, AI & SEO | Chennai, India",
     description:
-      "Web development, AI chatbots & SEO in Chennai, India — plus SaaS products like CamToCode, WhatsApp CRM, and PDF AI.",
+      "Web development, AI chatbots & SEO in Chennai, India — plus SaaS products like VantaHire, AI Call Assistant, CamToCode, WhatsApp CRM, and PDF AI.",
     url: "https://nexcrafttech.com",
     type: "website",
   },
@@ -42,7 +46,7 @@ export const metadata = {
     card: "summary_large_image",
     title: "NexCraft Technologies — Web Dev, AI & SEO | Chennai, India",
     description:
-      "Web development, AI chatbots & SEO in Chennai, India. CamToCode, WhatsApp CRM, PDF AI & more.",
+      "Web development, AI chatbots & SEO in Chennai, India. VantaHire, AI Call Assistant, CamToCode, WhatsApp CRM, PDF AI & more.",
   },
 };
 

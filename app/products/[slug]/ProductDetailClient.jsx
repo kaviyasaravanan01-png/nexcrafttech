@@ -169,9 +169,16 @@ export default function ProductDetailClient({ product, slug }) {
             </motion.a>
             )}
           </div>
+          {product.demoNumber && (
+            <p style={{ marginTop: "1rem", fontSize: 13, color: "rgba(255,255,255,0.45)" }}>
+              Demo call:{" "}
+              <a href={`tel:${product.demoNumber.replace(/[^\d+]/g, "")}`} style={{ color: product.color, textDecoration: "none", fontWeight: 600 }}>
+                {product.demoNumber}
+              </a>
+              {product.demoNote ? ` — ${product.demoNote}` : null}
+            </p>
+          )}
         </motion.div>
-
-        {/* Demo video */}
         {product.video && (
           <motion.div
             initial={{ opacity: 0, y: 20 }}

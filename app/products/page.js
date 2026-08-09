@@ -4,9 +4,15 @@ import ProductsPageClient from "./ProductsPageClient";
 export const metadata = {
   title: "Our Products — SaaS Tools",
   description:
-    "Explore SaaS products built by NexCraft Technologies — CamToCode, WhatsApp CRM, PDF AI, and more.",
+    "Explore SaaS products built by NexCraft Technologies — VantaHire, AI Call Assistant, CamToCode, WhatsApp CRM, PDF AI, and more.",
   keywords: [
     "NexCraft products",
+    "VantaHire",
+    "AI job search",
+    "LinkedIn auto apply",
+    "Naukri auto apply",
+    "AI Call Assistant",
+    "AI receptionist",
     "CamToCode",
     "WhatsApp CRM",
     "PDF AI",
@@ -20,12 +26,13 @@ export const metadata = {
     "developer tools SaaS",
     "scan code from phone",
     "scroll automation",
+    "voice AI receptionist",
   ],
   alternates: { canonical: "https://nexcrafttech.com/products" },
   openGraph: {
     title: "Our Products — SaaS Tools by NexCraft",
     description:
-      "SaaS products built by NexCraft — CamToCode, WhatsApp CRM, PDF AI document tools, and more.",
+      "SaaS products built by NexCraft — VantaHire, AI Call Assistant, CamToCode, WhatsApp CRM, PDF AI, and more.",
     url: "https://nexcrafttech.com/products",
     type: "website",
     images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: "NexCraft Technologies Products" }],
@@ -33,7 +40,7 @@ export const metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Our Products — NexCraft Technologies",
-    description: "Explore CamToCode and other SaaS tools built by NexCraft Technologies.",
+    description: "Explore VantaHire, AI Call Assistant, CamToCode, and other SaaS tools built by NexCraft Technologies.",
     images: ["/twitter-image"],
   },
 };

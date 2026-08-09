@@ -145,6 +145,60 @@ function renderMarkdown(content) {
     const line = lines[i];
     const trimmed = line.trim();
 
+    // Fenced code blocks ```lang
+    if (trimmed.startsWith("```")) {
+      flushList();
+      flushTable();
+      const lang = trimmed.slice(3).trim() || "text";
+      const codeLines = [];
+      i += 1;
+      while (i < lines.length && !lines[i].trim().startsWith("```")) {
+        codeLines.push(lines[i]);
+        i += 1;
+      }
+      elements.push(
+        <div
+          key={`code-${elements.length}`}
+          style={{
+            margin: "1.25rem 0",
+            borderRadius: 10,
+            border: "1px solid rgba(255,255,255,0.08)",
+            background: "rgba(8,8,12,0.95)",
+            overflow: "hidden",
+          }}
+        >
+          <div style={{
+            display: "flex", justifyContent: "space-between", alignItems: "center",
+            padding: "8px 12px", borderBottom: "1px solid rgba(255,255,255,0.06)",
+            background: "rgba(255,255,255,0.03)",
+          }}>
+            <span style={{ fontSize: 10, fontWeight: 600, letterSpacing: "0.08em", color: "rgba(201,169,110,0.8)", textTransform: "uppercase" }}>
+              {lang}
+            </span>
+            <span style={{ fontSize: 10, color: "rgba(255,255,255,0.25)" }}>{codeLines.length} lines</span>
+          </div>
+          <pre style={{ margin: 0, padding: "12px 0", overflowX: "auto", fontSize: 12, lineHeight: 1.65 }}>
+            <code style={{ fontFamily: "var(--font-mono), ui-monospace, monospace", display: "block" }}>
+              {codeLines.map((codeLine, li) => (
+                <div key={li} style={{ display: "flex", minWidth: "max-content" }}>
+                  <span style={{
+                    width: 40, flexShrink: 0, textAlign: "right", paddingRight: 12,
+                    color: "rgba(255,255,255,0.2)", userSelect: "none",
+                  }}>
+                    {li + 1}
+                  </span>
+                  <span style={{ color: "rgba(255,255,255,0.72)", paddingRight: 16, whiteSpace: "pre" }}>
+                    {codeLine || " "}
+                  </span>
+                </div>
+              ))}
+            </code>
+          </pre>
+        </div>
+      );
+      continue;
+    }
+
     // Table detection
     if (trimmed.startsWith("|") && trimmed.endsWith("|")) {
       if (!inTable) { flushList(); inTable = true; }
