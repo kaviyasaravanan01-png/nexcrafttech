@@ -94,6 +94,7 @@ export default function Hero() {
       id="hero"
       ref={sectionRef}
       className="relative min-h-screen flex items-center justify-center overflow-hidden"
+      style={{ paddingTop: "7.5rem", paddingBottom: "5rem" }}
     >
       {/* Three.js Background */}
       <div className="hero-bg-layer absolute inset-0 z-0">
@@ -115,9 +116,9 @@ export default function Hero() {
           transition={{ duration: 0.8, delay: 0.2 }}
           className="mb-10"
         >
-          <div className="inline-flex items-center gap-2.5 px-5 py-2 rounded-full border border-white/[0.08] bg-white/[0.02]">
+          <div className="inline-flex items-center gap-2.5 px-5 py-2 rounded-full border border-white/[0.12] bg-[#09090b]/80">
             <span className="w-1.5 h-1.5 rounded-full bg-[#c9a96e]" />
-            <span className="text-white/40 text-xs font-medium tracking-[0.2em] uppercase">
+            <span className="text-white/70 text-xs font-medium tracking-[0.2em] uppercase">
               AI &middot; Automation &middot; Digital Solutions
             </span>
           </div>
@@ -213,11 +214,26 @@ export default function Hero() {
           transition={{ duration: 1, delay: 1.05, ease: [0.25, 0.1, 0, 1] }}
           style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: "1rem", width: "100%", marginTop: "1.25rem" }}
         >
-          <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", justifyContent: "center", gap: "0.85rem", padding: "4px" }}>
+          <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", justifyContent: "center", gap: "0.85rem" }}>
             <a
               href="#contact"
-              className="px-8 py-4 rounded-full bg-[#c9a96e] text-[#09090b] font-semibold text-sm tracking-wide hover:bg-[#d4b883] transition-all duration-500"
-              style={{ boxShadow: "0 0 24px rgba(201,169,110,0.25)", padding: "12px 22px" }}
+              className="hover:bg-[#d4b883] transition-all duration-500"
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                justifyContent: "center",
+                minHeight: 48,
+                padding: "0 22px",
+                borderRadius: 100,
+                background: "#c9a96e",
+                color: "#09090b",
+                fontWeight: 600,
+                fontSize: 14,
+                letterSpacing: "0.04em",
+                textDecoration: "none",
+                boxShadow: "0 0 24px rgba(201,169,110,0.25)",
+                boxSizing: "border-box",
+              }}
             >
               Talk to us
             </a>
@@ -225,14 +241,44 @@ export default function Hero() {
               href="https://wa.me/918778585263?text=Hi%20NexCraft%2C%20I%27d%20like%20to%20discuss%20a%20project"
               target="_blank"
               rel="noopener noreferrer"
-              className="px-8 py-4 rounded-full font-semibold text-sm tracking-wide transition-all duration-500"
-              style={{ background: "#25D366", color: "#fff", padding: "12px 22px" }}
+              className="transition-all duration-500"
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                justifyContent: "center",
+                minHeight: 48,
+                padding: "0 22px",
+                borderRadius: 100,
+                background: "#25D366",
+                color: "#fff",
+                fontWeight: 600,
+                fontSize: 14,
+                letterSpacing: "0.04em",
+                textDecoration: "none",
+                boxSizing: "border-box",
+              }}
             >
               WhatsApp
             </a>
             <a
               href="#portfolio"
-              className="group px-8 py-4 rounded-full border border-white/15 text-white/60 hover:text-white hover:border-white/30 font-medium text-sm tracking-wide transition-all duration-500"
+              className="hover:text-white hover:border-white/30 transition-all duration-500"
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                justifyContent: "center",
+                minHeight: 48,
+                padding: "0 22px",
+                borderRadius: 100,
+                background: "transparent",
+                border: "1px solid rgba(255,255,255,0.2)",
+                color: "rgba(255,255,255,0.8)",
+                fontWeight: 600,
+                fontSize: 14,
+                letterSpacing: "0.04em",
+                textDecoration: "none",
+                boxSizing: "border-box",
+              }}
             >
               See our work
             </a>
