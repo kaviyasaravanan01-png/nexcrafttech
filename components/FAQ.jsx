@@ -9,36 +9,28 @@ if (typeof window !== "undefined") gsap.registerPlugin(ScrollTrigger);
 
 const faqs = [
   {
-    q: "How long does it take to build a website?",
-    a: "Most websites are delivered within 2–4 weeks depending on complexity. Simple landing pages can be ready in 5–7 days, while full eCommerce or SaaS platforms take 4–8 weeks.",
+    q: "What does NexCraft actually do?",
+    a: "We are an AI and automation solutions studio. We also build websites, SEO, product prototypes, production SaaS, and data engineering — from discovery to launch, with a team you can call.",
   },
   {
-    q: "What technologies do you use?",
-    a: "We primarily build with Next.js, React, Tailwind CSS, Node.js, and Supabase. For mobile apps we use React Native, and for AI/ML we leverage Python, TensorFlow, and OpenAI APIs.",
+    q: "How do we start?",
+    a: "Call, WhatsApp, or send the form. We reply with a short discovery call, then a written scope and estimate. You only commit after that.",
   },
   {
-    q: "Do you offer post-launch support?",
-    a: "Absolutely! All our packages come with lifetime support — we never disappear after launch. Bug fixes, security patches, and content guidance are always covered. SEO maintenance is included for the first 6–12 months depending on your plan, and can be extended on a monthly basis after that.",
+    q: "How are projects priced?",
+    a: "Digital work typically starts around ₹15,000. AI and automation engagements typically start around ₹50,000. Product and data work is custom. Quotes are milestone-based — no hidden add-ons and no fake lifetime promises.",
   },
   {
-    q: "Can you redesign my existing website?",
-    a: "Absolutely. We specialize in redesigns — improving speed, SEO, mobile experience, and conversions while preserving your existing content and brand identity.",
+    q: "Can you build AI on our data and rules?",
+    a: "Yes. We ground agents in your catalog, knowledge base, and offer rules (like AI Call Assistant), with transfer to humans when needed. We also set evaluation so quality does not drift.",
   },
   {
-    q: "What's included in your SEO services?",
-    a: "Our SEO package covers keyword research, on-page optimization, technical SEO audits, content strategy, Google Business Profile setup, monthly analytics reports, and backlink building.",
+    q: "Do you only work in Chennai?",
+    a: "HQ is in Chennai. We deliver remotely for clients in India, Australia, and elsewhere. Calls and WhatsApp keep the loop short.",
   },
   {
-    q: "Do you build mobile apps?",
-    a: "Yes. We build cross-platform mobile apps using React Native — one codebase for both iOS and Android. Native performance, 60% faster development time compared to separate native builds.",
-  },
-  {
-    q: "How does your pricing work?",
-    a: "We offer transparent, fixed-price packages starting at ₹6,999 ($85) for websites. No hidden fees. You get a detailed quote before we start, and payment is milestone-based so you only pay for completed work.",
-  },
-  {
-    q: "Can you integrate AI chatbots into my website?",
-    a: "Yes — we build custom AI chatbots for websites and WhatsApp that handle customer queries, generate leads, and automate support. Powered by GPT/Gemini with your business knowledge base.",
+    q: "What stack do you use?",
+    a: "Next.js, React, Node, Python, Supabase, Vercel, Railway, Claude, Vapi, Playwright, and standard cloud data tools. We pick the stack that fits the problem, not a single vendor.",
   },
 ];
 

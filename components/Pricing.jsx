@@ -23,62 +23,55 @@ const cardVariants = {
 
 const plans = [
   {
-    name: "Starter",
-    desc: "A professional website to build an online presence for your small business.",
-    priceINR: "₹6,999",
-    priceUSD: "$85",
-    period: "one-time",
+    name: "Digital",
+    desc: "Websites, SEO, and conversion-ready properties for teams that need to be found and trusted.",
+    priceINR: "₹15,000+",
+    priceUSD: "$180+",
+    period: "scoped",
     features: [
-      "Up to 4 pages",
-      "Mobile responsive",
-      "Custom design & animations",
-      "SEO setup",
-      "SEO maintenance (12 months)",
-      "Contact form",
-      "WhatsApp chat integration",
-      "Lifetime support",
-      "Vercel / Netlify hosting",
-      "Speed optimization"
+      "Business or product website",
+      "SEO setup & Search Console",
+      "Mobile-first, fast Core Web Vitals",
+      "Analytics and lead capture",
+      "Hosting & handover docs",
+      "Optional monthly SEO retainers",
     ],
     highlight: false,
+    cta: "Discuss Digital",
   },
   {
-    name: "Growth",
-    desc: "Scale with custom features & ongoing support. Best for startups and growing businesses.",
-    priceINR: "₹14,999",
-    priceUSD: "$179",
-    period: "one-time",
+    name: "AI & Automation",
+    desc: "Voice, chat, apply-agents, and ops workflows that sit on your data and rules.",
+    priceINR: "₹50,000+",
+    priceUSD: "$600+",
+    period: "engagement",
     features: [
-      "Up to 10 pages",
-      "Custom design & animations",
-      "SEO setup + analytics",
-      "SEO maintenance (12 months)",
-      "WhatsApp integration",
-      "Admin content update option",
-      "Performance optimized",
-      "Lifetime support",
+      "AI receptionist / assistants",
+      "Process & job-search automation",
+      "Knowledge base & RAG",
+      "Integrations (CRM, WhatsApp, phone)",
+      "Evaluation, logs, and handoff",
+      "Training for your team",
     ],
     highlight: true,
+    cta: "Discuss AI",
   },
   {
-    name: "Business / Advanced",
-    desc: "For serious businesses that need a powerful website built to grow.",
-    priceINR: "₹29,999+",
-    priceUSD: "$349+",
-    period: "project based",
+    name: "Product Studio",
+    desc: "Prototypes, SaaS, and data platforms — from MVP to something customers can pay for.",
+    priceINR: "Custom",
+    priceUSD: "Custom",
+    period: "project",
     features: [
-      "Up to 20 pages",
-      "Custom UI/UX",
-      "AI chatbot integration",
-      "Custom cloud backend",
-      "CMS / Admin panel",
-      "SEO setup + analytics",
-      "SEO maintenance (24 months)",
-      "Performance optimization",
-      "Lifetime support",
-      "CI/CD & staging setup"
+      "Prototype in weeks, not quarters",
+      "Auth, billing, and admin",
+      "Data pipelines & dashboards",
+      "Cloud architecture",
+      "Staging, CI, and documentation",
+      "Ongoing product partnership",
     ],
     highlight: false,
+    cta: "Discuss a product",
   },
 ];
 
@@ -203,7 +196,7 @@ export default function Pricing() {
                 WebkitTextFillColor: "transparent",
               }}
             >
-              Pricing
+              engagements
             </span>
           </h2>
           <p
@@ -214,25 +207,8 @@ export default function Pricing() {
               fontWeight: 300,
             }}
           >
-            No hidden fees — pick the right plan to build a website that helps your business grow.
+            Starting ranges after a discovery call. Final quotes are written, scoped, and milestone-based — no launch gimmicks.
           </p>
-
-          {/* Special Launch Offer heading */}
-          <div style={{ margin: "1.2rem 0 0.7rem 0", textAlign: "center" }}>
-            <span style={{
-              display: "inline-block",
-              fontWeight: 700,
-              fontSize: 16,
-              color: "#c9a96e",
-              background: "rgba(201,169,110,0.08)",
-              padding: "6px 18px",
-              borderRadius: 8,
-              letterSpacing: "0.04em",
-              marginBottom: 6,
-            }}>
-              Special Launch Offer – Limited Time Pricing
-            </span>
-          </div>
 
           {/* Currency Toggle */}
           <div style={{ display: "flex", justifyContent: "center", marginTop: "0.75rem" }}>
@@ -365,7 +341,7 @@ export default function Pricing() {
                     color: "#c9a96e",
                   }}
                 >
-                  Most Popular
+                  Recommended
                 </div>
               )}
 
@@ -418,7 +394,7 @@ export default function Pricing() {
                       / {plan.period}
                     </span>
                   </div>
-                  {/* Alternate currency */}
+                  {plan.priceINR !== "Custom" && (
                   <div style={{
                     marginTop: 6,
                     display: "inline-flex",
@@ -437,6 +413,7 @@ export default function Pricing() {
                       ≈ {currency === "INR" ? plan.priceUSD : plan.priceINR}
                     </span>
                   </div>
+                  )}
                 </div>
 
                 {/* Features */}
@@ -490,7 +467,7 @@ export default function Pricing() {
                         }),
                   }}
                 >
-                  Get Started
+                  {plan.cta || "Talk to us"}
                 </a>
               </div>
 
@@ -526,7 +503,7 @@ export default function Pricing() {
             color: "rgba(255,255,255,0.2)",
           }}
         >
-          Need something custom?{" "}
+          Not sure which track?{" "}
           <a
             href="#contact"
             style={{
@@ -534,9 +511,13 @@ export default function Pricing() {
               textDecoration: "underline",
             }}
           >
-            Contact us
-          </a>{" "}
-          for a free tailored quote.
+            Book a discovery call
+          </a>
+          {" "}or WhatsApp{" "}
+          <a href="https://wa.me/918778585263" style={{ color: "rgba(201,169,110,0.6)", textDecoration: "underline" }}>
+            +91 87785 85263
+          </a>
+          .
         </motion.p>
       </div>
 

@@ -12,58 +12,58 @@ if (typeof window !== "undefined") gsap.registerPlugin(ScrollTrigger);
 
 const services3D = [
   {
+    id: "ai",
+    title: "AI Solutions",
+    desc: "Voice receptionists, RAG assistants, and copilots grounded in your catalog, policies, and tools.",
+    price: "Scoped",
+    color: "#8b5cf6",
+    icon: "bot",
+    features: ["Voice & chat agents", "RAG on your data", "Eval & guardrails", "Human handoff"],
+  },
+  {
+    id: "auto",
+    title: "Automation",
+    desc: "Workflows that apply, notify, transfer, and follow up across WhatsApp, CRM, and ops tools.",
+    price: "Scoped",
+    color: "#22c55e",
+    icon: "wrench",
+    features: ["Process design", "Integrations", "Job & CRM agents", "Live monitoring"],
+  },
+  {
     id: "web",
-    title: "Website Development",
-    desc: "Fast, responsive websites built with Next.js, React, and Tailwind. From landing pages to complex platforms.",
-    price: "₹6,999",
+    title: "Websites",
+    desc: "Fast Next.js sites and stores that rank, convert, and stay maintainable.",
+    price: "From ₹15k",
     color: "#6366f1",
     icon: "globe",
-    features: ["Next.js / React", "Responsive Design", "SEO Optimized", "Fast Loading"],
+    features: ["Next.js / React", "SEO-ready", "Lead capture", "Core Web Vitals"],
   },
   {
     id: "seo",
-    title: "SEO & Marketing",
-    desc: "Get found on Google. Technical SEO, content strategy, and analytics-driven campaigns.",
-    price: "₹4,000/mo",
+    title: "SEO",
+    desc: "Technical SEO, content, and Search Console so shipped work is actually found.",
+    price: "Retainer",
     color: "#f97316",
     icon: "chart",
-    features: ["Keyword Strategy", "On-Page SEO", "Analytics", "Content Plan"],
+    features: ["Technical SEO", "Content plan", "Local search", "Reporting"],
   },
   {
-    id: "ai",
-    title: "AI Chatbots",
-    desc: "Smart chatbots for WhatsApp and website that automate support and generate leads 24/7.",
-    price: "₹5,000",
-    color: "#22c55e",
-    icon: "bot",
-    features: ["GPT-Powered", "WhatsApp Integration", "Lead Capture", "24/7 Active"],
-  },
-  {
-    id: "cloud",
-    title: "Cloud & AI",
-    desc: "Cloud infrastructure, data pipelines, and AI-powered workflows on GCP and AWS.",
-    price: "₹15,000",
-    color: "#06b6d4",
-    icon: "cloud",
-    features: ["GCP / AWS", "Data Pipelines", "ML Models", "Auto Scaling"],
-  },
-  {
-    id: "app",
-    title: "App Development",
-    desc: "Cross-platform mobile apps with React Native. One codebase, every device.",
-    price: "₹10,000",
+    id: "product",
+    title: "Product & Prototype",
+    desc: "MVPs and production SaaS — from clickable prototype to live product.",
+    price: "Custom",
     color: "#ec4899",
     icon: "phone",
-    features: ["React Native", "iOS + Android", "Push Notifications", "Offline Support"],
+    features: ["MVP in weeks", "Auth & billing", "Admin & analytics", "Staging / CI"],
   },
   {
-    id: "maintenance",
-    title: "Maintenance",
-    desc: "Bug fixes, updates, security patches, and uptime monitoring. We keep things running.",
-    price: "₹2,000/mo",
-    color: "#eab308",
-    icon: "wrench",
-    features: ["Bug Fixes", "Security Patches", "Monitoring", "Content Updates"],
+    id: "data",
+    title: "Data Engineering",
+    desc: "Pipelines, warehouses, embeddings, and dashboards for AI and operations.",
+    price: "Custom",
+    color: "#06b6d4",
+    icon: "cloud",
+    features: ["Pipelines", "Embeddings / RAG", "Dashboards", "Cloud data"],
   },
 ];
 
@@ -276,7 +276,7 @@ const shapeMap = {
 };
 
 function Scene3D({ icon, color }) {
-  const ShapeComponent = shapeMap[icon];
+  const ShapeComponent = shapeMap[icon] || GlobeShape;
   return (
     <Canvas
       camera={{ position: [0, 0, 4], fov: 45 }}
@@ -380,7 +380,7 @@ export default function ServiceShowcase() {
             transition={{ duration: 0.5, delay: 0.15 }}
             style={{ fontSize: 13, color: "rgba(255,255,255,0.4)", maxWidth: "28rem", margin: "0 auto" }}
           >
-            Click each service to see interactive 3D visuals and details.
+            Click to explore each practice, then talk to us about a scoped engagement.
           </motion.p>
 
           <div className="showcase-divider" style={{
@@ -432,7 +432,7 @@ export default function ServiceShowcase() {
                     color: activeService === i ? service.color : "rgba(255,255,255,0.2)",
                     fontWeight: 600, transition: "color 0.3s",
                   }}>
-                    from {service.price}
+                    {service.price}
                   </div>
                 </div>
               </motion.button>
@@ -535,7 +535,7 @@ export default function ServiceShowcase() {
                     boxShadow: `0 4px 16px ${active.color}25`,
                   }}
                 >
-                  Get Started
+                  Talk to us
                   <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                     <path d="M5 12h14M12 5l7 7-7 7" />
                   </svg>

@@ -366,7 +366,7 @@ export default function Navbar() {
                   zIndex: 0,
                 }}
               />
-              <span style={{ position: "relative", zIndex: 1 }}>Get a Quote</span>
+              <span style={{ position: "relative", zIndex: 1 }}>Talk to us</span>
               <svg
                 width="13"
                 height="13"
@@ -502,7 +502,7 @@ export default function Navbar() {
                   boxShadow: "0 4px 20px rgba(201,169,110,0.3)",
                 }}
               >
-                Get a Quote
+                Talk to us
                 <svg
                   width="13"
                   height="13"

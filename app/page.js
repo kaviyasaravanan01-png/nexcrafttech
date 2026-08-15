@@ -1,52 +1,47 @@
 import Hero from "@/components/Hero";
 import About from "@/components/About";
 import Services from "@/components/Services";
-import ServiceShowcaseClient from "@/components/ServiceShowcaseClient";
 import Process from "@/components/Process";
 import Products from "@/components/Products";
 import Portfolio from "@/components/Portfolio";
-import Testimonials from "@/components/Testimonials";
 import Pricing from "@/components/Pricing";
 import FAQ from "@/components/FAQ";
+import ServiceShowcaseClient from "@/components/ServiceShowcaseClient";
 import Contact from "@/components/Contact";
 import Map from "@/components/Map";
 
 export const metadata = {
-  title: "NexCraft Tech — Web Dev, AI Chatbots & SEO | Chennai, India",
+  title: "NexCraft Tech — AI, Automation & Digital Solutions | Chennai",
   description:
-    "Web development, AI chatbots & SEO agency in Chennai, India. Fast Next.js sites, VantaHire, AI Call Assistant, WhatsApp CRM, PDF AI & CamToCode. Pricing from ₹6,999. Free consultation.",
+    "AI solutions, automation, websites, SEO, product & prototype development, and data engineering. NexCraft Technologies, Chennai — from discovery to production.",
   keywords: [
     "NexCraft Technologies",
+    "AI solutions Chennai",
+    "automation solutions India",
+    "data engineering Chennai",
+    "prototype development",
     "web development Chennai",
-    "web development India",
-    "AI chatbot development",
     "SEO services India",
+    "AI chatbot development",
     "VantaHire",
-    "AI job search",
     "AI Call Assistant",
-    "AI receptionist",
     "CamToCode",
     "WhatsApp CRM",
     "PDF AI",
-    "WhatsApp bulk messenger",
-    "bulk WhatsApp sender India",
-    "camera to code",
-    "AI OCR scanner",
-    "developer tools",
   ],
   alternates: { canonical: "https://nexcrafttech.com" },
   openGraph: {
-    title: "NexCraft Technologies — Web Dev, AI & SEO | Chennai, India",
+    title: "NexCraft Technologies — AI, Automation & Digital Solutions",
     description:
-      "Web development, AI chatbots & SEO in Chennai, India — plus SaaS products like VantaHire, AI Call Assistant, CamToCode, WhatsApp CRM, and PDF AI.",
+      "AI solutions, automation, websites, SEO, product development, and data engineering from Chennai, India.",
     url: "https://nexcrafttech.com",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "NexCraft Technologies — Web Dev, AI & SEO | Chennai, India",
+    title: "NexCraft Technologies — AI, Automation & Digital Solutions",
     description:
-      "Web development, AI chatbots & SEO in Chennai, India. VantaHire, AI Call Assistant, CamToCode, WhatsApp CRM, PDF AI & more.",
+      "AI, automation, websites, SEO, products, and data engineering. Talk to NexCraft.",
   },
 };
 
@@ -56,13 +51,12 @@ export default function Home() {
       <Hero />
       <About />
       <Services />
-      <ServiceShowcaseClient />
       <Process />
       <Products />
       <Portfolio />
-      <Testimonials />
       <Pricing />
       <FAQ />
+      <ServiceShowcaseClient />
       <Contact />
       <Map />
     </>

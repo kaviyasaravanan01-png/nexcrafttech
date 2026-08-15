@@ -14,12 +14,33 @@ const services = [
   {
     icon: (
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+        <rect width="16" height="16" x="4" y="4" rx="2" /><rect width="6" height="6" x="9" y="9" rx="1" />
+        <path d="M15 2v2" /><path d="M15 20v2" /><path d="M2 15h2" /><path d="M2 9h2" />
+        <path d="M20 15h2" /><path d="M20 9h2" /><path d="M9 2v2" /><path d="M9 20v2" />
+      </svg>
+    ),
+    title: "AI Solutions",
+    desc: "Voice receptionists, RAG assistants, copilots, and LLM apps grounded in your knowledge, policies, and tools.",
+    lottieType: "chip",
+  },
+  {
+    icon: (
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z" />
+      </svg>
+    ),
+    title: "Process Automation",
+    desc: "Workflows that apply, notify, transfer, and follow up — WhatsApp, CRM, job boards, and internal ops.",
+    lottieType: "wrench",
+  },
+  {
+    icon: (
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
         <circle cx="12" cy="12" r="10" /><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20" /><path d="M2 12h20" />
       </svg>
     ),
-    title: "Website Development",
-    desc: "We build fast, responsive websites — from landing pages to full eCommerce stores for your business.",
-    price: "₹6,999",
+    title: "Websites",
+    desc: "Fast Next.js sites and stores that rank, convert, and stay maintainable — not a template dumped on cheap hosting.",
     lottieType: "globe",
   },
   {
@@ -28,34 +49,9 @@ const services = [
         <polyline points="22 7 13.5 15.5 8.5 10.5 2 17" /><polyline points="16 7 22 7 22 13" />
       </svg>
     ),
-    title: "SEO & Marketing",
-    desc: "Get your business found on Google with SEO, ads, and content strategies that grow traffic.",
-    price: "₹4,000/mo",
+    title: "SEO",
+    desc: "Technical SEO, content, Search Console, and local presence so the work we ship is actually found.",
     lottieType: "chart",
-  },
-  {
-    icon: (
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-        <rect width="16" height="16" x="4" y="4" rx="2" /><rect width="6" height="6" x="9" y="9" rx="1" />
-        <path d="M15 2v2" /><path d="M15 20v2" /><path d="M2 15h2" /><path d="M2 9h2" />
-        <path d="M20 15h2" /><path d="M20 9h2" /><path d="M9 2v2" /><path d="M9 20v2" />
-      </svg>
-    ),
-    title: "AI Chatbots",
-    desc: "WhatsApp & website bots that automate support and generate leads.",
-    price: "₹5,000",
-    lottieType: "chip",
-  },
-  {
-    icon: (
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z" />
-      </svg>
-    ),
-    title: "Cloud & AI",
-    desc: "Cloud infra, data pipelines, and AI-powered workflows on GCP.",
-    price: "₹15,000",
-    lottieType: "cloud",
   },
   {
     icon: (
@@ -63,21 +59,19 @@ const services = [
         <rect width="14" height="20" x="5" y="2" rx="2" ry="2" /><path d="M12 18h.01" />
       </svg>
     ),
-    title: "App Development",
-    desc: "Cross-platform mobile & desktop apps. One codebase, every device.",
-    price: "₹10,000",
+    title: "Product & Prototype",
+    desc: "MVPs and production SaaS — from clickable prototype to live product with auth, billing, and analytics.",
     lottieType: "phone",
   },
   {
     icon: (
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z" />
+        <path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z" />
       </svg>
     ),
-    title: "Maintenance",
-    desc: "Bug fixes, updates, security patches. We keep your site running.",
-    price: "₹2,000/mo",
-    lottieType: "wrench",
+    title: "Data Engineering",
+    desc: "Pipelines, warehouses, embeddings, and dashboards so AI and operations run on clean, owned data.",
+    lottieType: "cloud",
   },
 ];
 
@@ -124,13 +118,13 @@ export default function Services() {
           transition={{ duration: 0.7, ease: [0.25, 0.1, 0, 1] }}
         >
           <span style={{ display: "inline-block", color: "#c9a96e", fontSize: 11, fontWeight: 600, letterSpacing: "0.3em", textTransform: "uppercase", marginBottom: "1rem" }}>
-            Services
+            What we offer
           </span>
           <h2 className="text-4xl sm:text-5xl font-bold leading-[1.1] text-white">
-            What We <span className="gradient-text">Offer</span>
+            Six practices, <span className="gradient-text">one delivery team</span>
           </h2>
-          <p className="font-light leading-relaxed" style={{ color: "rgba(255,255,255,0.4)", fontSize: "1.05rem", maxWidth: "32rem", marginLeft: "auto", marginRight: "auto", marginTop: "1rem" }}>
-            Everything your business needs to build high-performing websites, grow your audience, and maintain a strong online presence that converts visitors into customers.
+          <p className="font-light leading-relaxed" style={{ color: "rgba(255,255,255,0.4)", fontSize: "1.05rem", maxWidth: "36rem", marginLeft: "auto", marginRight: "auto", marginTop: "1rem" }}>
+            AI, automation, digital, product, and data — scoped together so you are not stitching five vendors.
           </p>
         </motion.div>
 
@@ -199,19 +193,12 @@ export default function Services() {
               </h3>
 
               {/* Description */}
-              <p style={{ color: "rgba(255,255,255,0.25)", fontSize: 12.5, lineHeight: 1.55, marginBottom: "0.875rem" }}>
+              <p style={{ color: "rgba(255,255,255,0.25)", fontSize: 12.5, lineHeight: 1.55, marginBottom: "0.5rem" }}>
                 {service.desc}
               </p>
-
-              {/* Price */}
-              <div style={{
-                paddingTop: "0.75rem",
-                borderTop: "1px solid rgba(255,255,255,0.04)",
-                display: "flex", alignItems: "center", justifyContent: "center", gap: "0.5rem",
-              }}>
-                <span style={{ color: "rgba(255,255,255,0.18)", fontSize: 10, textTransform: "uppercase", letterSpacing: "0.12em" }}>From</span>
-                <span className="gradient-text-static font-semibold" style={{ fontSize: "0.9rem" }}>{service.price}</span>
-              </div>
+              <a href="#contact" style={{ fontSize: 11, fontWeight: 600, color: "rgba(201,169,110,0.7)", textDecoration: "none", letterSpacing: "0.04em" }}>
+                Discuss this →
+              </a>
             </motion.div>
           ))}
         </div>

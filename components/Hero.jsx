@@ -118,13 +118,13 @@ export default function Hero() {
           <div className="inline-flex items-center gap-2.5 px-5 py-2 rounded-full border border-white/[0.08] bg-white/[0.02]">
             <span className="w-1.5 h-1.5 rounded-full bg-[#c9a96e]" />
             <span className="text-white/40 text-xs font-medium tracking-[0.2em] uppercase">
-              Web &middot; AI &middot; SEO &middot; Chatbots
+              AI &middot; Automation &middot; Digital Solutions
             </span>
           </div>
         </motion.div>
 
         <h1 className="text-5xl sm:text-6xl lg:text-8xl font-bold leading-[1.05] tracking-tight">
-          {["We", "Build"].map((word, i) => (
+          {["We", "Engineer"].map((word, i) => (
             <motion.span
               key={word}
               custom={i}
@@ -138,7 +138,7 @@ export default function Hero() {
             </motion.span>
           ))}
           <br />
-          {["Websites", "That"].map((word, i) => (
+          {["AI", "&", "Automation"].map((word, i) => (
             <motion.span
               key={word}
               custom={i + 2}
@@ -152,10 +152,10 @@ export default function Hero() {
             </motion.span>
           ))}
           <br />
-          {["Grow", "Your", "Business"].map((word, i) => (
+          {["That", "Scale", "Business"].map((word, i) => (
             <motion.span
               key={word}
-              custom={i + 4}
+              custom={i + 5}
               variants={wordVariants}
               initial="hidden"
               animate="visible"
@@ -172,9 +172,9 @@ export default function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.8, ease: [0.25, 0.1, 0, 1] }}
           className="leading-relaxed font-light"
-          style={{ color: "rgba(255,255,255,0.55)", fontSize: "1.18rem", maxWidth: "42rem", marginLeft: "auto", marginRight: "auto", textAlign: "center", marginTop: "1rem" }}
+          style={{ color: "rgba(255,255,255,0.55)", fontSize: "1.18rem", maxWidth: "44rem", marginLeft: "auto", marginRight: "auto", textAlign: "center", marginTop: "1rem" }}
         >
-          We build custom websites, handle SEO, and develop AI-powered chatbots that help your business grow online with real, measurable results — all at startup-friendly prices with no hidden costs.
+          NexCraft delivers AI solutions, process automation, websites, SEO, product &amp; prototype development, and data engineering — from discovery to production, with a team you can actually reach.
         </motion.p>
 
         {/* Services pills */}
@@ -182,14 +182,15 @@ export default function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.95, ease: [0.25, 0.1, 0, 1] }}
-          style={{ display: "flex", flexWrap: "wrap", alignItems: "center", justifyContent: "center", gap: "0.75rem", maxWidth: "36rem", marginLeft: "auto", marginRight: "auto", marginTop: "2.5rem" }}
+          style={{ display: "flex", flexWrap: "wrap", alignItems: "center", justifyContent: "center", gap: "0.75rem", maxWidth: "40rem", marginLeft: "auto", marginRight: "auto", marginTop: "2.5rem" }}
         >
           {[
-            "Website Development",
-            "SEO Optimization",
-            "AI Chatbots",
-            "Digital Marketing",
-            "App Development",
+            "AI Solutions",
+            "Automation",
+            "Websites",
+            "SEO",
+            "Product & Prototype",
+            "Data Engineering",
           ].map((label) => (
             <span
               key={label}
@@ -210,22 +211,35 @@ export default function Hero() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 1.05, ease: [0.25, 0.1, 0, 1] }}
-          style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: "1.25rem", width: "100%", marginTop: "1rem" }}
+          style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: "1rem", width: "100%", marginTop: "1.25rem" }}
         >
-          <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", justifyContent: "center", gap: "1.25rem", padding: "4px" }}>
-          <a
-            href="#contact"
-            className="px-8 py-4 rounded-full bg-[#c9a96e] text-[#09090b] font-semibold text-sm tracking-wide hover:bg-[#d4b883] transition-all duration-500"
-            style={{ boxShadow: "0 0 24px rgba(201,169,110,0.25)", padding: "8px" }}
-          >
-            Start Your Project &rarr;
-          </a>
-          <a
-            href="#portfolio"
-            className="group px-8 py-4 rounded-full border border-white/15 text-white/60 hover:text-white hover:border-white/30 font-medium text-sm tracking-wide transition-all duration-500"
-          >
-            See Our Work
-          </a>
+          <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", justifyContent: "center", gap: "0.85rem", padding: "4px" }}>
+            <a
+              href="#contact"
+              className="px-8 py-4 rounded-full bg-[#c9a96e] text-[#09090b] font-semibold text-sm tracking-wide hover:bg-[#d4b883] transition-all duration-500"
+              style={{ boxShadow: "0 0 24px rgba(201,169,110,0.25)", padding: "12px 22px" }}
+            >
+              Talk to us
+            </a>
+            <a
+              href="https://wa.me/918778585263?text=Hi%20NexCraft%2C%20I%27d%20like%20to%20discuss%20a%20project"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-8 py-4 rounded-full font-semibold text-sm tracking-wide transition-all duration-500"
+              style={{ background: "#25D366", color: "#fff", padding: "12px 22px" }}
+            >
+              WhatsApp
+            </a>
+            <a
+              href="#portfolio"
+              className="group px-8 py-4 rounded-full border border-white/15 text-white/60 hover:text-white hover:border-white/30 font-medium text-sm tracking-wide transition-all duration-500"
+            >
+              See our work
+            </a>
+          </div>
+          <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", gap: "1.25rem", fontSize: 13 }}>
+            <a href="tel:+918778585263" style={{ color: "rgba(255,255,255,0.45)", textDecoration: "none" }}>+91 87785 85263</a>
+            <a href="mailto:nexcrafttech@gmail.com" style={{ color: "rgba(255,255,255,0.45)", textDecoration: "none" }}>nexcrafttech@gmail.com</a>
           </div>
         </motion.div>
 
@@ -234,22 +248,13 @@ export default function Hero() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1, delay: 1.4 }}
-          style={{ display: "flex", flexWrap: "wrap", alignItems: "center", justifyContent: "center", gap: "1.5rem", color: "rgba(255,255,255,0.2)", fontSize: 12, letterSpacing: "0.05em", marginTop: "1rem" }}
+          style={{ display: "flex", flexWrap: "wrap", alignItems: "center", justifyContent: "center", gap: "1.5rem", color: "rgba(255,255,255,0.2)", fontSize: 12, letterSpacing: "0.05em", marginTop: "1.25rem" }}
         >
-          <span className="flex items-center gap-2">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-            Transparent Pricing
-          </span>
+          <span className="flex items-center gap-2">Chennai HQ</span>
           <span style={{ width: 1, height: 14, background: "rgba(255,255,255,0.08)" }} />
-          <span className="flex items-center gap-2">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-            Fast Delivery
-          </span>
+          <span className="flex items-center gap-2">India &amp; Australia clients</span>
           <span className="hidden sm:block" style={{ width: 1, height: 14, background: "rgba(255,255,255,0.08)" }} />
-          <span className="hidden sm:flex items-center gap-2">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-            24/7 Support
-          </span>
+          <span className="hidden sm:flex items-center gap-2">Products we ship ourselves</span>
         </motion.div>
       </div>
 

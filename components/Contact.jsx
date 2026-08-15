@@ -25,8 +25,8 @@ const contactItems = [
       </svg>
     ),
     label: "Phone",
-    value: "8778585263",
-    href: "tel:8778585263",
+    value: "+91 87785 85263",
+    href: "tel:+918778585263",
   },
   {
     icon: (
@@ -35,7 +35,7 @@ const contactItems = [
       </svg>
     ),
     label: "WhatsApp",
-    value: "8778585263",
+    value: "+91 87785 85263",
     href: "https://wa.me/918778585263",
   },
   {
@@ -291,7 +291,7 @@ export default function Contact() {
               margin: 0,
             }}
           >
-            Let&apos;s Build{" "}
+            Start a{" "}
             <span
               style={{
                 background: "linear-gradient(135deg, #c9a96e, #e8d5b0)",
@@ -299,7 +299,7 @@ export default function Contact() {
                 WebkitTextFillColor: "transparent",
               }}
             >
-              Together
+              conversation
             </span>
           </h2>
           <p
@@ -310,8 +310,19 @@ export default function Contact() {
               fontWeight: 300,
             }}
           >
-            Tell us about your project and let us build the right website or digital solution to help your business grow — free quote within 24 hours.
+            Tell us about your project and we will reply with a scoped next step — usually within one business day.
           </p>
+          <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", gap: "0.6rem", marginTop: "1.1rem" }}>
+            <a href="tel:+918778585263" style={{ padding: "8px 16px", borderRadius: 100, background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.1)", color: "#fff", fontSize: 12, fontWeight: 600, textDecoration: "none" }}>
+              Call
+            </a>
+            <a href="https://wa.me/918778585263?text=Hi%20NexCraft%2C%20I%27d%20like%20to%20discuss%20a%20project" target="_blank" rel="noopener noreferrer" style={{ padding: "8px 16px", borderRadius: 100, background: "#25D366", color: "#fff", fontSize: 12, fontWeight: 600, textDecoration: "none" }}>
+              WhatsApp
+            </a>
+            <a href="mailto:nexcrafttech@gmail.com" style={{ padding: "8px 16px", borderRadius: 100, background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.1)", color: "#fff", fontSize: 12, fontWeight: 600, textDecoration: "none" }}>
+              Email
+            </a>
+          </div>
         </motion.div>
 
         {/* Gold divider */}
@@ -423,11 +434,11 @@ export default function Contact() {
                   <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" /><polyline points="22 4 12 14.01 9 11.01" />
                 </svg>
                 <span style={{ fontSize: 12, fontWeight: 600, color: "rgba(201,169,110,0.7)" }}>
-                  Avg. response: 4 hours
+                  Call, WhatsApp, or email — we reply
                 </span>
               </div>
               <p style={{ fontSize: 11, color: "rgba(255,255,255,0.2)", margin: 0 }}>
-                Every enquiry gets a real human reply. No chatbots.
+                A person reads every enquiry. Typical response: same business day.
               </p>
             </motion.div>
           </div>
@@ -538,11 +549,12 @@ export default function Contact() {
                         </div>
                         <select name="service" value={form.service} onChange={handleChange} required className="contact-input input-glow" style={{ ...inputStyle, appearance: "none" }}>
                           <option value="" disabled>Select a service</option>
-                          <option value="web">Web Development</option>
-                          <option value="cloud">Cloud & AI Solutions</option>
-                          <option value="chatbot">Custom Chatbots</option>
-                          <option value="app">App Development</option>
-                          <option value="marketing">Digital Marketing & SEO</option>
+                          <option value="ai">AI Solutions</option>
+                          <option value="automation">Automation</option>
+                          <option value="web">Website Development</option>
+                          <option value="seo">SEO</option>
+                          <option value="product">Product / Prototype</option>
+                          <option value="data">Data Engineering</option>
                           <option value="other">Other</option>
                         </select>
                       </div>

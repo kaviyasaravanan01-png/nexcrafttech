@@ -6,12 +6,12 @@ import Link from "next/link";
 
 // Static searchable data — services
 const servicesData = [
-  { title: "Website Development", description: "Custom websites built with Next.js, React & modern tech", type: "service", href: "/#services" },
-  { title: "SEO & Marketing", description: "Search engine optimization and digital marketing strategies", type: "service", href: "/#services" },
-  { title: "AI Chatbots", description: "Intelligent chatbots that automate customer queries 24/7", type: "service", href: "/#services" },
-  { title: "Cloud & AI Solutions", description: "Cloud infrastructure and AI-powered business tools", type: "service", href: "/#services" },
-  { title: "App Development", description: "Cross-platform mobile apps with React Native & Flutter", type: "service", href: "/#services" },
-  { title: "Maintenance & Support", description: "Ongoing website maintenance, updates, and technical support", type: "service", href: "/#services" },
+  { title: "AI Solutions", description: "Voice, RAG, and copilots grounded in your data", type: "service", href: "/#services" },
+  { title: "Automation", description: "Process automation across WhatsApp, CRM, and ops", type: "service", href: "/#services" },
+  { title: "Websites", description: "Custom websites built with Next.js and modern tech", type: "service", href: "/#services" },
+  { title: "SEO", description: "Technical SEO, content, and Search Console", type: "service", href: "/#services" },
+  { title: "Product & Prototype", description: "MVP to production SaaS", type: "service", href: "/#services" },
+  { title: "Data Engineering", description: "Pipelines, embeddings, and dashboards", type: "service", href: "/#services" },
 ];
 
 const pageData = [
@@ -23,7 +23,7 @@ const pageData = [
   { title: "Privacy Policy", description: "How we handle your data", type: "page", href: "/privacy" },
   { title: "Sitemap", description: "Full site overview", type: "page", href: "/sitemap-page" },
   { title: "About Us", description: "Who we are and our mission", type: "section", href: "/#about" },
-  { title: "Pricing", description: "Transparent pricing plans", type: "section", href: "/#pricing" },
+  { title: "Pricing", description: "Engagement tracks for digital, AI, and product work", type: "section", href: "/#pricing" },
   { title: "FAQ", description: "Frequently asked questions", type: "section", href: "/#faq" },
   { title: "Contact", description: "Get in touch with us", type: "section", href: "/#contact" },
   { title: "Portfolio", description: "Our latest work and case studies", type: "section", href: "/#portfolio" },

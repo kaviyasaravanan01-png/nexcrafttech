@@ -7,31 +7,32 @@ const COMPANY_INFO = {
   name: "NexCraft Technologies",
   email: "nexcrafttech@gmail.com",
   website: "nexcrafttech.com",
-  location: "India (Remote-first)",
-  response_time: "4 hours average",
-  whatsapp: "+91 98765 43210",
+  location: "Chennai, India",
+  response_time: "same business day",
+  phone: "+91 87785 85263",
+  whatsapp: "+91 87785 85263",
 };
 
 const SERVICES = [
-  { name: "Website Development", price: "From ₹6,999 ($85)", desc: "Fast, responsive websites — landing pages to full eCommerce." },
-  { name: "SEO & Marketing", price: "From ₹3,000/mo", desc: "Get found on Google. Ads, SEO, and content that drives traffic." },
-  { name: "AI Chatbots", price: "From ₹5,000", desc: "WhatsApp & website bots that automate support and generate leads." },
-  { name: "Cloud & AI Solutions", price: "From ₹40,000", desc: "Cloud infra, data pipelines, and AI-powered workflows." },
-  { name: "App Development", price: "From ₹10,000", desc: "Cross-platform mobile apps with modern UI/UX." },
-  { name: "Maintenance & Support", price: "From ₹2,000/mo", desc: "Monthly updates, security patches, and performance monitoring." },
+  { name: "AI Solutions", price: "Scoped after discovery", desc: "Voice, RAG, copilots grounded in your data and rules." },
+  { name: "Automation", price: "Scoped after discovery", desc: "Workflows across WhatsApp, CRM, job boards, and ops." },
+  { name: "Websites", price: "From ₹15,000", desc: "Fast Next.js sites that rank and convert." },
+  { name: "SEO", price: "Monthly retainer", desc: "Technical SEO, content, and Search Console." },
+  { name: "Product & Prototype", price: "Custom", desc: "MVP to production SaaS." },
+  { name: "Data Engineering", price: "Custom", desc: "Pipelines, embeddings, dashboards." },
 ];
 
 const PRICING = [
-  { name: "Starter", price: "₹6,999 / $85 (one-time)", features: "Up to 4 pages, mobile responsive, custom design & animations, SEO setup + 12 months maintenance, contact form, WhatsApp chat, lifetime support" },
-  { name: "Growth", price: "₹14,999 / $179 (one-time)", features: "Up to 10 pages, custom design & animations, SEO + analytics (12 months maintenance), lifetime support, WhatsApp integration" },
-  { name: "Business / Advanced", price: "₹29,999+ / $349+ (project-based)", features: "Up to 20 pages, AI chatbot, custom cloud backend, CMS/Admin panel, SEO + analytics (24 months maintenance), lifetime support" },
+  { name: "Digital", price: "₹15,000+", features: "Websites, SEO, lead capture — scoped after a call" },
+  { name: "AI & Automation", price: "₹50,000+", features: "Agents, workflows, integrations, evals" },
+  { name: "Product Studio", price: "Custom", features: "Prototype, SaaS, data platforms" },
 ];
 
 const QUICK_REPLIES = [
   "What services do you offer?",
-  "What are your pricing plans?",
+  "How do engagements work?",
   "How can I contact you?",
-  "Tell me about your company",
+  "Tell me about NexCraft",
 ];
 
 function getResponse(input) {
@@ -39,7 +40,7 @@ function getResponse(input) {
 
   // Greetings
   if (/^(hi|hello|hey|hii|hola|namaste|good\s?(morning|evening|afternoon))/.test(q)) {
-    return `Hello! 👋 Welcome to NexCraft Technologies. How can I help you today?\n\nYou can ask me about:\n• Our services\n• Pricing plans\n• How to contact us\n• Our portfolio`;
+    return `Hello. Welcome to NexCraft Technologies — AI, automation, websites, SEO, product, and data engineering.\n\nAsk about services, engagements, or how to reach us.`;
   }
 
   // Services
@@ -54,42 +55,42 @@ function getResponse(input) {
 
   // Individual services
   if (/website|web\s?dev|landing\s?page|ecommerce|e-commerce/.test(q)) {
-    return `🌐 **Website Development** — From ₹6,999 ($85)\n\nWe build fast, responsive websites from landing pages to full eCommerce stores using Next.js, React, and modern tech.\n\nIncludes: Custom design, mobile responsive, SEO-ready, fast loading.\n\n👉 Want a free quote? Contact us at ${COMPANY_INFO.email}`;
+    return `**Websites** — typically from ₹15,000, scoped after discovery.\n\nFast Next.js sites with SEO, lead capture, and handover.\n\nCall ${COMPANY_INFO.phone} or email ${COMPANY_INFO.email}`;
   }
   if (/seo|marketing|google|ads|traffic|digital marketing/.test(q)) {
-    return `📈 **SEO & Digital Marketing** — From ₹4,000/mo\n\nGet found on Google with our SEO, content marketing, and paid ads management.\n\nIncludes: Keyword research, on-page/off-page SEO, Google Ads, analytics.\n\n👉 Contact: ${COMPANY_INFO.email}`;
+    return `**SEO** — monthly retainers after a technical baseline.\n\nSearch Console, on-page, content, and local search.\n\n${COMPANY_INFO.email} · ${COMPANY_INFO.phone}`;
   }
   if (/chatbot|bot|whatsapp bot|ai bot|automation/.test(q)) {
-    return `🤖 **AI Chatbots** — From ₹5,000\n\nWe build WhatsApp & website chatbots that automate customer support and generate leads 24/7.\n\nIncludes: Custom training, multi-language, CRM integration.\n\n👉 Contact: ${COMPANY_INFO.email}`;
+    return `**AI & automation** — typically from ₹50,000, scoped after discovery.\n\nVoice receptionists, RAG assistants, WhatsApp/CRM workflows, job-search agents.\n\nWhatsApp ${COMPANY_INFO.whatsapp} · ${COMPANY_INFO.email}`;
   }
   if (/cloud|ai solution|gcp|aws|data|pipeline/.test(q)) {
-    return `☁️ **Cloud & AI Solutions** — From ₹15,000\n\nCloud infrastructure, data pipelines, and AI-powered workflows on GCP/AWS.\n\n👉 Contact: ${COMPANY_INFO.email}`;
+    return `**Data engineering** — custom. Pipelines, warehouses, embeddings, dashboards.\n\n${COMPANY_INFO.email}`;
   }
   if (/app|mobile|android|ios|react native|flutter/.test(q)) {
-    return `📱 **App Development** — From ₹10,000\n\nCross-platform mobile apps with modern UI/UX using React Native.\n\n👉 Contact: ${COMPANY_INFO.email}`;
+    return `**Product & prototype** — custom. MVP to production SaaS with auth, billing, and staging.\n\n${COMPANY_INFO.email} · ${COMPANY_INFO.phone}`;
   }
   if (/maintenance|support|update|bug|fix/.test(q)) {
-    return `🔧 **Maintenance & Support** — From ₹2,000/mo\n\nMonthly updates, security patches, performance monitoring, and priority bug fixes.\n\n👉 Contact: ${COMPANY_INFO.email}`;
+    return `Support is scoped in the engagement — not a fake lifetime promise. We operate what we ship.\n\n${COMPANY_INFO.email}`;
   }
 
   // Pricing
-  if (/pric|cost|how much|rate|package|plan|budget|quote|affordable|cheap|expensive/.test(q)) {
-    let msg = "💰 Our pricing plans:\n\n";
+  if (/pric|cost|how much|rate|package|plan|budget|quote|engagement/.test(q)) {
+    let msg = "Engagement tracks (starting ranges, scoped after a call):\n\n";
     PRICING.forEach((p) => {
-      msg += `📋 **${p.name}** — ${p.price}\n   ${p.features}\n\n`;
+      msg += `**${p.name}** — ${p.price}\n   ${p.features}\n\n`;
     });
-    msg += `Need a custom quote? Email us at ${COMPANY_INFO.email} or use the contact form on our website!`;
+    msg += `Call ${COMPANY_INFO.phone} or WhatsApp the same number. Email ${COMPANY_INFO.email}`;
     return msg;
   }
 
   // Contact
   if (/contact|reach|email|phone|call|talk|connect|get in touch/.test(q)) {
-    return `📬 Here's how to reach us:\n\n📧 Email: ${COMPANY_INFO.email}\n🌐 Website: ${COMPANY_INFO.website}\n📍 Location: ${COMPANY_INFO.location}\n⏱ Avg. response: ${COMPANY_INFO.response_time}\n\nYou can also fill out the contact form on our website, or click the WhatsApp icon on the left to chat directly!`;
+    return `Reach us:\n\nPhone / WhatsApp: ${COMPANY_INFO.phone}\nEmail: ${COMPANY_INFO.email}\nLocation: ${COMPANY_INFO.location}\nTypical reply: ${COMPANY_INFO.response_time}\n\nOr use the contact form on this page.`;
   }
 
   // About / Company
   if (/about|company|who are you|tell me|nexcraft|your team|founded/.test(q)) {
-    return `🏢 **NexCraft Technologies**\n\nWe're a remote-first tech agency based in India. We build websites, AI chatbots, and digital products for businesses that want to grow.\n\n✅ Transparent pricing — no hidden fees\n✅ Fast delivery\n✅ Small team, big results\n✅ 24/7 support\n\nWe've built projects for clients in Australia, India, and globally. Check out our portfolio section!`;
+    return `**NexCraft Technologies** is a Chennai-based AI and automation solutions studio. We also deliver websites, SEO, product prototypes, and data engineering.\n\nWe ship our own products (VantaHire, AI Call Assistant, CamToCode, PDF AI, WhatsApp CRM) and client work for India and Australia.`;
   }
 
   // Portfolio
@@ -99,12 +100,12 @@ function getResponse(input) {
 
   // Process
   if (/process|how do you work|workflow|steps|how it works/.test(q)) {
-    return `⚙️ Our process:\n\n1️⃣ **Discovery** — Understand your goals & requirements\n2️⃣ **Design** — Create wireframes & visual mockups\n3️⃣ **Develop** — Build with clean, modern code\n4️⃣ **Launch** — Deploy, test & go live\n\nWe keep you in the loop at every step!`;
+    return `Process:\n1. Discover — call and written scope\n2. Architect — solution design you approve\n3. Build — weekly demos on staging\n4. Operate — launch, train, iterate`;
   }
 
   // Timeline
   if (/time|how long|duration|deadline|delivery|timeline|days|weeks/.test(q)) {
-    return `⏰ Typical timelines:\n\n• Landing page: 3-5 days\n• Full website (5 pages): 1-2 weeks\n• eCommerce / complex: 3-4 weeks\n• AI Chatbot: 1-2 weeks\n• App development: 4-8 weeks\n\nTimelines depend on project scope. Contact us for an accurate estimate!`;
+    return `Timelines depend on scope. Typical: website in weeks; AI/automation after a discovery sprint; products in staged releases.\n\nWe’ll confirm dates in the written scope. ${COMPANY_INFO.phone}`;
   }
 
   // Technology
@@ -123,7 +124,7 @@ function getResponse(input) {
   }
 
   // Default
-  return `I appreciate your question! While I may not have a specific answer for that, I can help you with:\n\n• Our **services** & **pricing**\n• **Contact** information\n• **Portfolio** & past work\n• **Technology** stack\n• **Project timelines**\n\nOr you can reach our team directly at ${COMPANY_INFO.email} — we respond within 4 hours! 🚀`;
+  return `I can help with services, engagements, contact, or portfolio.\n\nOr reach the team: ${COMPANY_INFO.phone} · ${COMPANY_INFO.email}`;
 }
 
 function formatMessage(text) {

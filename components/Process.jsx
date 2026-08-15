@@ -10,8 +10,8 @@ gsap.registerPlugin(ScrollTrigger);
 const steps = [
   {
     num: "01",
-    title: "Discovery",
-    desc: "We learn about your business goals and provide a clear, detailed quote for your website project.",
+    title: "Discover",
+    desc: "A short call to map goals, systems, data, and constraints. You get a written scope — not a vague pitch.",
     icon: (
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
         <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
@@ -20,8 +20,8 @@ const steps = [
   },
   {
     num: "02",
-    title: "Design",
-    desc: "Wireframes & mockups — you approve before we code.",
+    title: "Architect",
+    desc: "Solution design: AI/automation flow, data, integrations, and UX. You approve before we build.",
     icon: (
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
         <path d="M12 20h9" /><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z" />
@@ -30,8 +30,8 @@ const steps = [
   },
   {
     num: "03",
-    title: "Develop",
-    desc: "We build your website with modern tech and send you weekly progress updates along the way.",
+    title: "Build",
+    desc: "We implement in production stacks — weekly demos, staging, and clear change control.",
     icon: (
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
         <polyline points="16 18 22 12 16 6" /><polyline points="8 6 2 12 8 18" />
@@ -40,8 +40,8 @@ const steps = [
   },
   {
     num: "04",
-    title: "Launch",
-    desc: "Your website goes live and we provide ongoing support to help your business grow.",
+    title: "Operate",
+    desc: "Launch, train your team, monitor, and iterate. Support is scoped — no fake “lifetime” promises.",
     icon: (
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
         <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" /><polyline points="22 4 12 14.01 9 11.01" />
@@ -115,13 +115,13 @@ export default function Process() {
           transition={{ duration: 0.6, ease: [0.25, 0.1, 0, 1] }}
         >
           <span style={{ display: "inline-block", color: "#c9a96e", fontSize: 11, fontWeight: 600, letterSpacing: "0.3em", textTransform: "uppercase", marginBottom: "0.75rem" }}>
-            How We Work
+            How we work
           </span>
           <h2 className="text-3xl sm:text-4xl font-bold leading-[1.15] text-white">
-            Simple <span className="gradient-text">4-Step</span> Process
+            A clear <span className="gradient-text">4-step</span> engagement
           </h2>
           <p className="font-light leading-relaxed" style={{ color: "rgba(255,255,255,0.4)", fontSize: "1.05rem", maxWidth: "36rem", marginLeft: "auto", marginRight: "auto", marginTop: "1rem" }}>
-            From discovery to launch, we build your website with a clear, structured workflow that keeps your business goals at the centre of every decision.
+            Same process for a website, an AI receptionist, or a data pipeline — so you always know what happens next.
           </p>
         </motion.div>
 

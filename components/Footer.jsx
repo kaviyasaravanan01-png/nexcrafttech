@@ -25,11 +25,12 @@ const footerLinks = [
   {
     title: "Services",
     links: [
-      { label: "Website Development", href: "#services" },
-      { label: "SEO & Marketing", href: "#services" },
-      { label: "AI Chatbots", href: "#services" },
-      { label: "App Development", href: "#services" },
-      { label: "Maintenance", href: "#services" },
+      { label: "AI Solutions", href: "#services" },
+      { label: "Automation", href: "#services" },
+      { label: "Websites", href: "#services" },
+      { label: "SEO", href: "#services" },
+      { label: "Product & Prototype", href: "#services" },
+      { label: "Data Engineering", href: "#services" },
     ],
   },
   {
@@ -39,7 +40,7 @@ const footerLinks = [
       { label: "Privacy Policy", href: "/privacy" },
       { label: "Sitemap", href: "/sitemap-page" },
       { label: "nexcrafttech@gmail.com", href: "mailto:nexcrafttech@gmail.com" },
-      { label: "India (Remote-first)", href: null },
+      { label: "Chennai, India", href: null },
     ],
   },
 ];
@@ -247,7 +248,7 @@ export default function Footer() {
                 fontWeight: 300,
               }}
             >
-              We build websites, chatbots & digital products for businesses that want to grow. Transparent pricing. No fluff.
+              AI, automation, websites, SEO, product, and data engineering — from Chennai, with clients in India and Australia.
             </p>
             {/* Socials */}
             <div style={{ display: "flex", gap: 8 }}>
