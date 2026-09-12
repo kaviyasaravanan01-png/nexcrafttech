@@ -20,6 +20,7 @@ const portfolioProjects = [
   { slug: "living-fire-australia", title: "Living Fire Australia", tagline: "Luxury fireplace eCommerce" },
   { slug: "blendora-collections", title: "Blendora Collections", tagline: "Fashion & lifestyle brand" },
   { slug: "spark-metal-fabrications", title: "Spark Metal Fabrications", tagline: "Industrial fabrication showcase" },
+  { slug: "orion-metal-industries", title: "Orion Metal Industries", tagline: "B2B sheet metal fabrication — Melbourne, VIC" },
   { slug: "deliverease", title: "DeliverEase", tagline: "Smart delivery management platform" },
   { slug: "pixelforge-studio", title: "PixelForge Studio", tagline: "Creative agency portfolio" },
 ];

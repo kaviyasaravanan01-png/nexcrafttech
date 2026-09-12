@@ -79,6 +79,16 @@ const projects = [
     image: "/project/promptlibrary.png",
     color: "#4f46e5",
   },
+  {
+    id: 8,
+    title: "Orion Metal Industries",
+    slug: "orion-metal-industries",
+    desc: "B2B sheet metal fabrication website — SEO, quote enquiries with drawings, Supabase content.",
+    tags: ["Next.js", "Supabase", "SEO", "Australia"],
+    url: "https://orionmetalindustries.com.au/",
+    image: "/project/orionmetalindustries.png",
+    color: "#dc2626",
+  },
 ];
 
 const cardVariants = {

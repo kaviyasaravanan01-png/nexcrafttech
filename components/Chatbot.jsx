@@ -95,7 +95,7 @@ function getResponse(input) {
 
   // Portfolio
   if (/portfolio|project|work|case study|example|client/.test(q)) {
-    return `🎨 Some of our recent projects:\n\n• **SpaceCrafts** — Interactive website with modern animations\n• **Living Fire Australia** — Premium eCommerce for fireplaces\n• **Blendora Collections** — Fashion storefront\n• **Previzz** — SaaS pre-visualization platform\n• **Spark Metal Fabrications** — Industrial services website\n• **Able Interiors Digital** — Interior design studio\n\nScroll to the Portfolio section to see them, or visit our website!`;
+    return `🎨 Some of our recent projects:\n\n• **SpaceCrafts** — Interactive website with modern animations\n• **Living Fire Australia** — Premium eCommerce for fireplaces\n• **Blendora Collections** — Fashion storefront\n• **Previzz** — SaaS pre-visualization platform\n• **Spark Metal Fabrications** — Industrial services website\n• **Orion Metal Industries** — B2B sheet metal fabrication (Melbourne, AU)\n• **Able Interiors Digital** — Interior design studio\n\nScroll to the Portfolio section to see them, or visit our website!`;
   }
 
   // Process

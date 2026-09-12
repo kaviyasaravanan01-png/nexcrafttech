@@ -83,6 +83,7 @@ const sitemapData = [
       { label: "Living Fire Australia", href: "/portfolio/living-fire-australia" },
       { label: "Blendora Collections", href: "/portfolio/blendora-collections" },
       { label: "Spark Metal Fabrications", href: "/portfolio/spark-metal-fabrications" },
+      { label: "Orion Metal Industries", href: "/portfolio/orion-metal-industries" },
       { label: "DeliverEase", href: "/portfolio/deliverease" },
       { label: "PixelForge Studio", href: "/portfolio/pixelforge-studio" },
     ],
