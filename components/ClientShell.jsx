@@ -10,7 +10,7 @@ import BackToTop from "@/components/BackToTop";
 import SearchProvider from "@/components/SearchProvider";
 
 // Paths that render their own full-screen layout (no NexCraft nav/footer)
-const DASHBOARD_PREFIXES = ["/whatsapp-crm"];
+const DASHBOARD_PREFIXES = ["/whatsapp-crm", "/invoice"];
 
 export default function ClientShell({ children }) {
   const pathname = usePathname();
